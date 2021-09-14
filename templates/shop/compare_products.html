@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Product Comparison' %} {% endblock %}
+{% block content %}
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">Home</a> <span aria-hidden="true">|</span> <span>Product Comparison</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  <!--Page Title with Image-->
+  <div class="page-title">
+    <h1>{% trans 'Product Comparison' %}</h1>
+  </div>
+  <!--End Page Title with Image-->
+  <div class="container">
+
+    {% if compare_count < 1  %}
+    <h3 class="text-center">{% trans 'Please add products to see the Comparison.' %}</h3>
+    <br>
+    <div class="text-center">
+      <a href="{% url 'shop' %}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> {% trans 'Add products' %}</a>
+    </div>
+    {% else %}
+    <div class="row">
+      <!--Main Content-->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+        <div class="wishlist-table table-content table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="product-name text-center alt-font" style="width:14%;">{% trans 'Features' %}</th>
+                <th class="product-name text-center alt-font" style="width:43%;"><a href="{{ compare_product_1.product.get_url }}">{{ compare_product_1.product.product_name }} &nbsp<i class="fa fa-external-link" aria-hidden="true"></i></a></th>
+                <th class="product-name text-center alt-font" style="width:43%;">{% if not compare_product_2 %} <span><a href="{% url 'shop' %}"><i class="fa fa-plus" aria-hidden="true"></i> {% trans 'Add another product' %}</a></span> {% else %}
+                  <a href="{{ compare_product_2.product.get_url }}">{{ compare_product_2.product.product_name }} &nbsp<i class="fa fa-external-link" aria-hidden="true"></i></a> {% endif %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="product-remove text-center" valign="middle">{% trans 'Product Description' %}</td>
+                <td class="product-thumbnail text-center">
+                  {{ compare_product_1.product.description | safe }}
+                </td>
+                <td class="product-thumbnail text-center">
+                  {% if not compare_product_2 %} <span>-</span> {% else %}
+                    {{ compare_product_2.product.description | safe }} {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td class="product-remove text-center" valign="middle">{% trans 'Price' %}</td>
+                <td class="product-thumbnail text-center">
+                  ${{ compare_product_1.product.price }}
+                </td>
+                <td class="product-thumbnail text-center">
+                  {% if not compare_product_2 %} <span>-</span> {% else %}
+                    ${{ compare_product_2.product.price }} {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <td class="product-remove text-center" valign="middle">{% trans 'Availability' %}</td>
+                <td class="product-thumbnail text-center">
+                {% if compare_product_1.product.stock < 1 %}
+                    <h6 style="color:red;">{% trans 'Out of Stock' %}</h6>
+                {% else %}
+                    <h6 style="color:green;">{% trans 'In Stock' %} </h6>
+                {% endif %}
+                </td>
+
+                <td class="product-thumbnail text-center">
+                  {% if not compare_product_2 %}
+                    <span>-</span>
+                  {% else %}
+                    {% if compare_product_2.product.stock < 1 %}
+                        <h6 style="color:red;">{% trans 'Out of Stock' %}</h6>
+                    {% else %}
+                        <h6 style="color:green;">{% trans 'In Stock' %}</h6>
+                    {% endif %}
+                  {% endif %}
+
+                </td>
+              </tr>
+
+              <tr>
+                <td class="product-remove text-center" valign="middle">{% trans 'Action' %}</td>
+                <td class="product-thumbnail text-center">
+                  <a href="{{ compare_product_1.product.get_url }}"><button class="btn btn-primary">{% trans 'View Product' %}</button></a>
+                  <a href="{% url 'remove_from_compare' compare_product_1.product.id %}"><button class="btn btn-danger" style="background-color:#e95144;">{% trans 'Remove' %}</button></a>
+                </td>
+                <td class="product-thumbnail text-center">
+                  {% if not compare_product_2 %}
+                    <span>-</span>
+                  {% else %}
+                    <a href="{{ compare_product_2.product.get_url }}"><button class="btn btn-primary">{% trans 'View Product' %}</button></a>
+                    <a href="{% url 'remove_from_compare' compare_product_2.product.id %}"><button class="btn btn-danger" style="background-color:#e95144;">{% trans 'Remove' %}</button></a>
+                  {% endif %}
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+      <!--End Main Content-->
+    </div>
+
+
+  </div>
+  <!--End Body Container-->
+
+</div>
+<!--End Page Wrapper-->
+{% endblock %}

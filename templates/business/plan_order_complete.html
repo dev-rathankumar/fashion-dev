@@ -1,0 +1,53 @@
+{% extends 'business/base.html' %}
+{% block title %} Order Completion {% endblock %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Order Confirmation</h4>
+
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-xl-10" style="margin:auto;">
+          {% include 'includes/_alerts.html' %}
+          <div class="card">
+            <div class="card-body">
+
+      <h5>Thank you for your order, your order number is: <span class="text-success">{{order.order_number}}</span></h5>
+
+      <h5>Transaction ID: <span class="text-success">{{payment.payment_id}}</span></h5>
+      <h5>Plan Purchased: <span class="text-success">{{order.plan}}</span></h5>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+
+
+  <!-- End Page-content -->
+
+
+
+  {% endblock %}

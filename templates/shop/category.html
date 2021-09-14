@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} Categories {% endblock %}
+{% block content %}
+
+
+<div id="page-content">
+       <!--Body Container-->
+       <!--Breadcrumbs-->
+       <div class="breadcrumbs-wrapper">
+         <div class="container">
+             <div class="breadcrumbs"><a href="index.html" title="Back to the home page">Home</a> <span aria-hidden="true">|</span> <span>Category 4Columns</span></div>
+           </div>
+       </div>
+       <!--End Breadcrumbs-->
+       <div class="container">
+         <div class="page-title"><h1>Category 4 Columns</h1></div>
+           <!--Category Simple Grid-->
+           <div class="collection-banners style3">
+             <div class="row">
+                 {% for category in products %}
+                   <div class="col-12 col-sm-6 col-md-3 col-lg-3 collection-page-item">
+                       <div class="collection-grid-item">
+                           <div class="img">
+                               <a href="#;" class="collection-grid-item__link">
+                                   <img class="blur-up lazyload" data-src="assets/images/collection-banner/268x342.jpg" src="assets/images/collection-banner/268x342.jpg" alt="" title=" " />
+
+                                   <span class="details">
+                                       <span class="inner">
+                                           <span class="collection-grid-item__title">{{ category }}</span>
+                                           <span class="counts">{{ category_count }}</span>
+                                       </span>
+                                   </span>
+
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+                   {% endfor %}
+               </div>
+           </div>
+           <!--End Category Simple Grid-->
+
+       </div><!--End Body Container-->
+
+   </div><!--End Page Wrapper-->
+
+
+{% endblock %}

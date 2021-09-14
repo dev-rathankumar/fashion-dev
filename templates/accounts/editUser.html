@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Edit User' %}{% endblock %}
+
+{% block content %}
+
+<div id="page-content">
+        <!--Body Container-->
+        <!--Breadcrumbs-->
+        <div class="breadcrumbs-wrapper">
+        	<div class="container">
+            	<div class="breadcrumbs"><a href="index.html" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'My Account' %}</span></div>
+            </div>
+        </div>
+        <!--End Breadcrumbs-->
+        {% include 'includes/_alerts.html' %}
+        <div class="container">
+        	{% include 'accounts/includes/_navbar.html' %}
+            <div class="row mb-5">
+                {% include 'accounts/includes/_sidebar.html' %}
+
+                <div class="col-xs-9 col-lg-9 col-md-12">
+                    <!-- Tab panes -->
+                    <div class="tab-content dashboard-content padding-30px-all md-padding-15px-all" style="">
+
+                      <!-- Account Details -->
+                      <div id="account-details" class="tab-pane fade">
+                          <h3>{% trans 'Account details' %}</h3>
+                          <div class="account-login-form bg-light-gray padding-20px-all">
+                              <form action="{% url 'editUser' user.pk %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                      <label for="input-lastname">{% trans 'First Name' %}  <span class="required-f">*</span></label>
+                                        {{ form.first_name }}
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                        <label for="input-lastname">{% trans 'Last Name' %} <span class="required-f">*</span></label>
+                                        {{ form.last_name }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                      <label for="input-lastname">{% trans 'Email Address' %} <span class="required-f">*</span></label>
+                                        {{ form.email }}
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                        <label for="input-lastname">{% trans 'Phone Number' %} <span class="required-f">*</span></label>
+                                        {{ form.phone_number }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                      <label for="input-lastname">{% trans 'Gender' %} <span class="required-f">*</span></label>
+                                        {{ form.gender }}
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                        <label for="input-lastname">{% trans 'Profile Picture' %}<span class="text-muted">&nbsp; 500 x 500px</span></label>
+                                        {{ form.profile_picture }}
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn margin-15px-top btn-primary">{% trans 'Save' %}</button>
+                              </form>
+                          </div>
+
+                      </div>
+                      <!-- End Account Details -->
+
+                    </div>
+                    <!-- End Tab panes -->
+                </div>
+            </div>
+        </div><!--End Body Container-->
+    </div><!--End Page Wrapper-->
+
+{% endblock %}

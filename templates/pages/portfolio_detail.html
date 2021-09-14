@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}  {{single_portfolio.title}} {% endblock %}
+{% block content %}
+{% load static %}
+
+
+<div id="page-content">
+    <!--Services-->
+    <div class="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span class="m-0"><a href="{% url 'portfolio' %}" class="m-0">{% trans 'Our Portfolio' %}</a></span>| <span>{{single_portfolio.title}}</span></div>
+        </div>
+    </div>
+ 
+        <div class="container">
+            <div class="page-title"><h1 class="mb-2">{{portfolio_header.heading}}</h1>
+                <p class="mb-5 text-center" style="width: 70%;margin: auto;">{{portfolio_header.sub_heading}}</p>
+            </div>
+            <div class="product-detail-container product-single-style1 product-single-style5">
+                <div class="product-single">
+                    <div class="row pb-5">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="product-details-img product-horizontal-style">
+                                {% if gallery %}
+                                <div class="product-buttons">
+                                    <a href="#" class="btn prlightbox" title="Zoom">
+                                        <i class="icon anm anm-expand-l-arrows" aria-hidden="true"></i>
+                                        <span class="tooltip-label">Zoom Image</span>
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="product-center-style3">
+                                    {% for i in gallery %}
+                                    <div class="zoompro-span">
+                                        <img class="prlightbox" data-zoom-image="{{i.image.url}}" src="{{i.image.url}}" alt="Portfolio Image" height="300px" />
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="social-sharing">
+                                    <span class="label">Share:</span>
+                                    <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-facebook" title="Share on Facebook">
+                                        <i class="anm anm-facebook-f" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Share</span>
+                                    </a>
+                                    <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-twitter" title="Tweet on Twitter">
+                                        <i class="fa fa-twitter" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Tweet</span>
+                                    </a>
+                                    <a href="#" title="Share on google+" class="btn btn--small btn--secondary btn--share" >
+                                        <i class="fa fa-google-plus" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Google+</span>
+                                    </a>
+                                    <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-pinterest" title="Pin on Pinterest">
+                                        <i class="fa fa-pinterest" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Pin it</span>
+                                    </a>
+                                    <a href="#" class="btn btn--small btn--secondary btn--share share-pinterest" title="Share by Email" target="_blank">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Email</span>
+                                    </a>
+                                </div>
+                                <div class="lightboximages">
+                                    {% for i in gallery %}
+                                    <a href="{{i.image.url}}" data-size="1080x720"></a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="product-info-center">
+                            <div class="product-single__meta">
+                                <h1 class="product-single__title text-center">{{single_portfolio.title}}</h1>
+                                
+                                
+                            </div>
+                            <div class="product-single__description rte text-center">
+                                {{single_portfolio.description | safe }}
+                            </div>
+                            
+                            {% if single_portfolio.live_preview_button %}
+                            <div style="text-align: {{single_portfolio.button_alignment}};">
+                            <a href="{{single_portfolio.button_link}}" class="btn btn-primary" style="background-color: {{single_portfolio.button_bg_color}};color:{{single_portfolio.button_text_color}};">
+                                {{single_portfolio.button_name}}
+                            </a>
+                            {% endif %}
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+    <!--End Services-->
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Payment Settings' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0 font-size-18">{% trans 'Payment Settings' %}</h4>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xl-8" style="margin:auto;">
+                  {% include 'includes/_alerts.html' %}
+
+                    <!-- end card -->
+
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title mb-4">{% trans 'Set Your Preferred Payment Method' %}</h4>
+
+                        <div class="table-responsive" style="overflow-x: hidden;">
+                          <form action="{% url 'paymentSettings' user.pk %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-lastname">{% trans 'Preferred Payment Method' %} </label>
+                                {{ form.payment_method }}
+                              </div>
+
+
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6" id="paypal">
+                                <label for="input-lastname">{% trans 'PayPal Address' %} </label>
+                                {{ form.paypal_address }}
+                              </div>
+                            </div>
+
+
+                            <div id="bankAccount">
+                              <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                  <label for="input-lastname">{% trans 'Bank Name' %} </label>
+                                  {{ form.bank_name }}
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                  <label for="input-lastname">{% trans 'Account Name' %} </label>
+                                  {{ form.bank_account_name }}
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                  <label for="input-lastname">{% trans 'Account Number' %} </label>
+                                  {{ form.bank_account_number }}
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-lastname">{% trans 'Bank Code' %}</label>
+                                    {{ form.bank_code }}
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <button type="submit" class="btn margin-15px-top btn-primary"><i class="fa fa-check" aria-hidden="true"></i>  &nbsp{% trans 'Save' %}</button>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- end card -->
+                </div>
+
+                <div class="col-xl-8">
+
+
+                    <!-- <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Revenue</h4>
+                            <div id="revenue-chart" class="apex-charts"></div>
+                        </div>
+                    </div> -->
+
+
+                </div>
+            </div>
+            <!-- end row -->
+
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+
+    <script type="text/javascript">
+      var payment_method = document.getElementById("id_payment_method").value
+      if(payment_method == 'PayPal'){
+        document.getElementById('bankAccount').style.display = "none";
+        document.getElementById('paypal').style.display = "block";
+      }else{
+        document.getElementById('bankAccount').style.display = "block";
+        document.getElementById('paypal').style.display = "none";
+      }
+      function showDiv(select){
+         if(select.value=='PayPal'){
+            document.getElementById('bankAccount').style.display = "none";
+            document.getElementById('paypal').style.display = "block";
+         } else{
+            document.getElementById('bankAccount').style.display = "block";
+            document.getElementById('paypal').style.display = "none";
+         }
+      }
+      </script>
+
+{% endblock %}

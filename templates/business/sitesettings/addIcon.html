@@ -1,0 +1,113 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Add New Social Media Link {% endblock %}
+
+{% block content %}
+{% load faicon i18n %}
+
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Add New Social Media Link</h4>
+
+
+
+          </div>
+        </div>
+
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+              <h4 class="card-title">Add New Social Media Link</h4>
+
+              <form method="POST" action="{% url 'addIcon' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="logo">Social Media Name</label>
+                      {{ form.social_media_name }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="sitetitle">Choose Icon</label>
+                      {{ form.icon }}
+                    </div>
+                    {% if icon_list %}
+                    <div class="faicon-screen">
+                      <div class="faicon-box">
+                        <div class="faicon-content" id="faicon-list">
+                          <i class="close fas fa-times-circle fa-3x"></i>
+                          <div class="title">{% trans "Icon Picker" %}</div>
+                          <div class="version">{{fa_version}}</div>
+                          <div class="faicon-header">
+                            <input class="search" placeholder="Search " />
+                            <select name="style" id="faicon-style-select">
+                              <option value="">{% trans "Filter by Style" %}</option>
+
+                            </select>
+                          </div>
+                          <ul class="list">
+                            {% for key, icon in icon_list.items %}
+                            {% for style in icon.styles  %}
+                            {% faicon_admin_icon key style icon.label icon.search.terms 'fa-3x' %}
+                            {% endfor %}
+                            {% endfor %}
+                          </ul>
+                          <ul class="pagination"></ul>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="favicon">Enter Link</label>
+                      {{ form.link }}
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-save"></i> SAVE</button>
+              </form>
+              <br>
+              <div style="width:300px;">
+                {% include 'includes/_alerts.html' %}
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Add New Portfolio Item' %} {% endblock %}
+
+{% block content %}
+{{ form.media.js }}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Add New Portfolio Item' %}</h4>
+          </div>
+        </div>
+
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+              
+              <h4 class="card-title">Add Service</h4>
+{% include 'includes/_alerts.html' %}
+              <form method="POST" action="{% url 'addPortfolio' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="logo">{% trans 'Title' %}</label>
+                      {{ form.title }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label>{% trans 'Description' %}</label>
+                      {{ form.description }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label>{% trans 'Image' %}</label>
+                      {{ form.featured_image }}
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <span style="display: flex;"><span>{{ form.live_preview_button }}</span> &emsp; <label>{% trans 'Add a preview button?' %}</label></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="preview-button" style="display: none;">
+
+                  <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="form-group">
+                        <label>{% trans 'Button Name' %}</label>
+                        {{ form.button_name }}
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="form-group">
+                        <label>{% trans 'Button Link' %}</label>
+                        {{ form.button_link }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="form-group">
+                        <label>{% trans 'Button BG Color' %}</label>
+                        {{ form.button_bg_color }}
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="form-group">
+                        <label>{% trans 'Button Text Color' %}</label>
+                        {{ form.button_text_color }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="form-group">
+                        <label>{% trans 'Button Alignment' %}</label>
+                        {{ form.button_alignment }}
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <br><button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-save"></i> {% trans 'SAVE & CONTINUE' %}</button>
+              </form>
+              <br>
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

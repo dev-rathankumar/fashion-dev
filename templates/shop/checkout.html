@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Checkout' %} {% endblock %}
+{% block content %}
+{% load static %}
+{% load humanize %}
+{{ customerinfo_form.media.js }}
+
+
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="{% url 'shopcart' %}" title="Back to cart page">{% trans 'Cart' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'Checkout' %}</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  <!--Page Title with Image-->
+  <div class="page-title">
+    <h1>{% trans 'Checkout' %}</h1>
+  </div>
+  <!--End Page Title with Image-->
+  <div class="container">
+    <form action="{% url 'orderproduct' %}" method="POST">
+      {% csrf_token %}
+      <div class="row billing-fields">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+          <div class="create-ac-content bg-light-gray padding-20px-all">
+            <fieldset>
+              <h2 class="login-title mb-3">{% trans 'Billing details' %}</h2>
+              <div class="row">
+                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                  <label for="input-firstname">{% trans 'First Name' %} <span class="required-f">*</span></label>
+                  {{userinfo_form.first_name}}
+                </div>
+                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                  <label for="input-lastname">{% trans 'Last Name' %} <span class="required-f">*</span></label>
+                  {{userinfo_form.last_name}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                  <label for="input-email">{% trans 'E-Mail' %} <span class="required-f">*</span></label>
+                  {{userinfo_form.email}}
+                </div>
+                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                  <label for="input-telephone">{% trans 'Telephone' %} <span class="required-f">*</span></label>
+                  {{userinfo_form.phone_number}}
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                  <label for="input-company">{% trans 'Address Line' %} 1 <span class="required-f">*</span></label>
+                  {{customerinfo_form.address_line_1}}
+                </div>
+                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                  <label for="input-address-1">{% trans 'Address Line' %} 2 </label>
+                  {{customerinfo_form.address_line_2}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                  <label for="input-city">{% trans 'City' %} <span class="required-f">*</span></label>
+                  {{customerinfo_form.city}}
+                </div>
+                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                  <label for="input-city">{% trans 'Pin Code' %} <span class="required-f">*</span></label>
+                  {{customerinfo_form.pin_code}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                  <label for="input-country">{% trans 'Country' %} <span class="required-f">*</span></label>
+                  {{customerinfo_form.country}}
+                </div>
+                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                  <label for="input-state">{% trans 'State' %} <span class="required-f">*</span></label>
+                  {{customerinfo_form.state}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                  <label for="input-company">{% trans 'Order Notes' %} <span class="cart__meta-text">(Optional)</span></label>
+                  <textarea name="note" id="note" class="form-control resize-both" rows="3"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="your-order-payment">
+            <div class="your-order">
+              <h2 class="order-title mb-4">{% trans 'Your Order' %}</h2>
+              <div class="table-responsive-sm order-table">
+                <table class="bg-white table table-bordered table-hover text-center">
+                  <thead>
+                    <tr>
+                      <th>{% trans 'Product Image' %}</th>
+                      <th class="text-left">{% trans 'Product Name' %}</th>
+                      <th>{% trans 'Price' %}</th>
+                      <th>{% trans 'Qty' %}</th>
+                      <th>{% trans 'Subtotal' %}</th>
+                    </tr>
+                  </thead>
+                  <tbody class="checkout-table">
+                    {% for i in shopcart %}
+                    <tr>
+                      <td>
+                        {% if i.variant.image_id  > 0 %}
+                        <a href="#">
+                          <img class="cart__image" src="{{i.variant.image }}" alt="Product Variant Image" width="30">
+                        </a>
+                        {% else %}
+                        <a href="#">
+                          <img class="cart__image" src="{{i.product.image.url}}" alt="Product Image" width="30">
+                        </a>
+                        {% endif %}
+                      </td>
+                      <td class="text-left"><a href="{{ i.product.get_url }}">
+                        {% if i.product.variant != 'None' %}
+                        {{ i.variant.title }}
+                        {% else %}
+                        {{ i.product.product_name }}
+                        {% endif %}
+                      </a>
+                        <div class="cart__meta-text">
+                          {% if i.product.variant != 'None' %}
+                            {% if i.variant.product.variant == 'Size' %}
+                            Size: {{ i.variant.size }}
+                            {% elif i.variant.product.variant == 'Color' %}
+                            Color: {{ i.variant.color }}
+                            {% elif i.product.variant == 'Custom' %}
+                              {% for key, value in i.variant.variant_data.items %}
+                                <p class="mb-0">{{key}} : {{value}}</p>
+                              {% endfor %}
+                            {% else %}
+                            Color: {{ i.variant.color }} | Size: {{ i.variant.size }}
+                            {% endif %}
+                          {% endif %}<br>
+                        </div>
+                      </td>
+                      <td>
+                        {% if i.product.variant != 'None' %}
+                        ${{ i.variant.price | intcomma }}
+                        {% else %}
+                        ${{i.product.price | intcomma}}
+                        {% endif %}
+                      </td>
+                      <td>{{ i.quantity }}</td>
+                      <td>${{ i.varamount | intcomma }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                  <tfoot class="font-weight-600">
+                    <!-- <tr>
+
+                      <td colspan="4" class="text-right">
+
+                          {% for key, value in tax_dict.items %}
+                          {% for i, j in value.items %}
+                          <span class="col-12 col-sm-6 cart__subtotal-title">{{key}} ({{i}}%)</span><br>
+
+                          {% endfor %}
+                          {% endfor %}
+
+                      </td>
+
+                      <td>
+                        {% for key, value in tax_dict.items %}
+                        {% for i, j in value.items %}
+                        <span class="product-price">${{j | intcomma}}</span><br>
+                        {% endfor %}
+                        {% endfor %}
+                      </td>
+                    </tr> -->
+
+                    <tr>
+
+                      <td colspan="4" class="text-right">
+                          <span class="col-12 col-sm-6 cart__subtotal-title">{% trans 'Tax' %} (<span id="tax_percent">0</span>%)</span><br>
+                      </td>
+
+                      <td>
+                        <span class="product-price">$<span id="tax_amount">0.00</span></span><br>
+                        <input type="hidden" id="tax_hidden" name="tax" value="0.00">
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4" class="text-right bold">
+                        <h4>{% trans 'Grand Total' %}</h4>
+                      </td>
+                      <td>
+                        <h4>$<span id="grand_total">{{total | intcomma}}</span></h4>
+                        <input type="hidden" id="grand_total_hidden" name="grand_total" value="{{total}}">
+                      </td>
+
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <!-- S E L E C T  P A Y M E N T  M E T H O D -->
+              <div class="table-responsive-sm order-table">
+                <h2 class="order-title mb-4">{% trans 'Select Payment Method' %}</h2>
+                <div class="payment_options_dd_paypal">
+                  {% if pp.is_enabled and pp.paypal_client_id %}
+                  <label>
+                    <input type="radio" name="payment_method" value="PayPal" checked>
+                    <img src="{% static 'images/payment_gateways/paypal.png' %}" width="150" style="padding: 0 10px 0 10px;border: 1px solid #d2d2d2;">
+                  </label>
+                  {% endif %}
+                  {% if dd.is_enabled and dd.direct_deposit_email %}
+                  <label>
+                    <input type="radio" name="payment_method" value="Direct Deposit" {% if dd.is_enabled and not pp.is_enabled or not pp.paypal_client_id %}checked{% endif %}>
+                    <img src="{% static 'images/payment_gateways/direct.png' %}" width="150" style="padding: 0 10px 0 10px;border: 1px solid #d2d2d2;">
+                  </label>
+                  {% endif %}
+                  {% if cod.is_enabled %}
+                  <label>
+                    <input type="radio" name="payment_method" value="Cash On Delivery" {% if cod.is_enabled and not pp.is_enabled or not pp.paypal_client_id %}checked{% endif %}>
+                    <img src="{% static 'images/payment_gateways/cod.png' %}" width="150" style="padding: 9px 10px 9px 10px;border: 1px solid #d2d2d2;">
+                  </label>
+                  {% endif %}
+                </div>
+              </div>
+              {% if pp.is_enabled or dd.is_enabled or cod.is_enabled %}
+              {% if pp.paypal_client_id or dd.direct_deposit_email %}
+              <div class="order-button-payment">
+                <button class="btn btn--small-wide" onclick="return payMethodConfirm();" value="Place order" type="submit">{% trans 'Place order' %}</button>
+              </div>
+              {% else %}
+              <h4 class="text-danger">{% trans 'There are no payment options at the moment. Please come back later.' %}</h4>
+              {% endif %}
+              {% else %}
+              <h4 class="text-danger">{% trans 'There are no payment options at the moment. Please come back later.' %}</h4>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+    </form>
+    <!--End Main Content-->
+  </div>
+  <!--End Body Container-->
+
+</div>
+<!--End Page Wrapper-->
+<!--End Page Wrapper-->
+
+<script>
+function payMethodConfirm(){
+  var payMethod = document.querySelector('input[name="payment_method"]:checked').value;
+  var retVal = confirm('You have selected '+payMethod+' as your preferred payment method.\nClick "OK" to continue.');
+  if (retVal == true){
+    return true;
+  }else{
+    return false;
+  }
+}
+</script>
+
+
+
+{% endblock %}

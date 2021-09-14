@@ -1,0 +1,149 @@
+{% extends 'regional_managers/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} Plan Purchase History {% endblock %}
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Plan Purchase History | {{business.company_name}}</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+      {% include 'includes/_alerts.html' %}
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+
+            {% if not plan_orders %}
+            {% if is_expired %}
+              <h4 class="text-center" style="padding:25px;">Your subscription is expired. Please renew it to continue using the website.</h4>
+              <div class="text-center"><a href="{% url 'plans' %}" class="btn btn-primary" style="width:150px;">Buy/Renew</a></div>
+              <br>
+            {% else %}
+            <h4 class="text-center" style="padding:25px;">You are currently on <b>{{current_plan}}</b> plan. Your subscription will be expired on <b>{{account_expiry_date}}</b></h4>
+            <hr>
+            <h6 class="text-center">No history found.</h6>
+            <br>
+            {% endif %}
+            {% else %}
+            <div class="card-body">
+              <div class="row mb-2">
+                <div class="col-sm-4">
+                  <div class="search-box mr-2 mb-2 d-inline-block">
+                    <div class="position-relative">
+                      <input type="text" id="myInput" class="form-control" placeholder="Search...">
+                      <i class="bx bx-search-alt search-icon"></i>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-centered table-nowrap">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>Plan</th>
+                      <th>Order Number</th>
+                      <th>Transaction ID</th>
+                      <th>Total</th>
+                      <th>Date</th>
+                      <th>View Details</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+
+
+
+                    {% for order in plan_orders %}
+                    <tr>
+                      <td><a href="{% url 'planHistoryDetail' order.id %}">{{order.plan}}</a></td>
+                      <td>{{order.order_number}}</td>
+                      <td>{{order.plan_payment}}</td>
+                      <td>
+                        $ {{order.total}}
+                      </td>
+                      <td>
+                        {{order.created_at}}
+                      </td>
+                      <td>
+                        <a href="{% url 'bizPlanHistoryDetail' order.id %}" class="btn btn-primary">
+                          View Profile
+                        </a>
+                      </td>
+
+
+
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+
+
+
+                  <!-- Paginator Start -->
+                  {% if plan_orders.has_other_pages %}
+                  <ul class="pagination pagination-rounded justify-content-end mb-2">
+                    {% if plan_orders.has_previous %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{plan_orders.previous_page_number}}" aria-label="Previous">
+                        <i class="mdi mdi-chevron-left"></i>
+                      </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                      <a class="page-link" aria-label="Previous">
+                        <i class="mdi mdi-chevron-left"></i>
+                      </a>
+                    </li>
+                    {% endif %}
+                    {% for i in plan_orders.paginator.page_range %}
+                    {% if plan_orders.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                    {% endif %}
+                    {% endfor %}
+    
+                    {% if plan_orders.has_next %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{plan_orders.next_page_number}}" aria-label="Next">
+                        <i class="mdi mdi-chevron-right"></i>
+                      </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                      <a class="page-link" aria-label="Next">
+                        <i class="mdi mdi-chevron-right"></i>
+                      </a>
+                    </li>
+                    {% endif %}
+                  </ul>
+                  {% endif %}
+                  <!-- Paginator End -->
+    
+
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div> <!-- container-fluid -->
+  </div>
+
+
+  {% endblock %}

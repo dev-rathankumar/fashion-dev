@@ -1,0 +1,285 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Home'%} {% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+
+   
+ 
+
+    <div id="page-content">
+    	<!--Home slider-->
+    	<div class="slideshow slideshow-wrapper">
+        	<div class="home-slideshow">
+            {% if banners %}
+            {% for banner in banners %}
+            	<div class="slide">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload" data-src="{{banner.banner_image.url}}" src="{{banner.banner_image.url}}" alt="Banner Image" title="Banner Image" style="max-height:100vh;" />
+                        <div class="slideshow__text-wrap slideshow__overlay {{banner.content_align}}">
+                            <div class="slideshow__text-content">
+                                <div class="wrap-caption anim-tru left style1">
+                                  {% if banner.title %}
+                                    <h2 class="h1 mega-title slideshow__title">{{banner.title}}</h2>
+                                  {% endif %}
+                                  {% if banner.sub_title %}
+                                    <span class="mega-subtitle slideshow__subtitle">{{banner.sub_title}}</span>
+                                  {% endif %}
+                                  {% if banner.button_name %}
+                                  <a href="{% if banner.button_link == None %}#{% else %}{{banner.button_link}}{% endif %}" class="btn" style="background-color:{{banner.button_color}};">{{banner.button_name}}</a>
+
+                                  {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+
+                <div class="slide">
+                    <div class="blur-up lazyload">
+                          <img class="blur-up lazyload" data-src="{% static 'images/default-images/site-banner.jpg' %}" src="{% static 'images/default-images/site-banner-01.jpg' %}" alt="Default Banner Image" title="Default Banner Image" style="max-height:100vh;" />
+                          <div class="slideshow__text-wrap slideshow__overlay left">
+                              <div class="slideshow__text-content">
+                                  <div class="wrap-caption anim-tru left style1">
+                                      <h2 class="h1 mega-title slideshow__title">{% trans 'Your title goes here' %}</h2>
+
+                                      <span class="mega-subtitle slideshow__subtitle">{% trans 'Your subtitle goes here' %}</span>
+
+                                    <a href="#" class="btn">{% trans 'BUTTON' %}</a>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="slide">
+                      <div class="blur-up lazyload">
+                            <img class="blur-up lazyload" data-src="{% static 'images/default-images/site-banner.jpg' %}" src="{% static 'images/default-images/site-banner-01.jpg' %}" alt="Default Banner Image" title="Default Banner Image" style="max-height:100vh;" />
+                            <div class="slideshow__text-wrap slideshow__overlay right">
+                                <div class="slideshow__text-content">
+                                    <div class="wrap-caption anim-tru left style1">
+                                        <h2 class="h1 mega-title slideshow__title">{% trans 'Your title goes here' %}</h2>
+
+                                        <span class="mega-subtitle slideshow__subtitle">{% trans 'Your subtitle goes here' %}</span>
+
+                                      <a href="#" class="btn">{% trans 'BUTTON' %}</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endif %}
+            </div>
+        </div>
+        <!--End Home slider-->
+
+        <div class="store-info style2 store-info-section small-pd d-none d-sm-none d-md-block d-lg-block" style="margin-top:-5px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <ul class="display-table store-info style2">
+                          {% if features %}
+                            {% for feature in features %}
+                              <li class="display-table-cell">
+                                <div style="display:flex;">
+                                  <img src="{{feature.icon.url}}" alt="Feature Icon" width="35" style="margin-right:10px;">
+                                  {% if feature.feature_url %}
+                                   <a href="{{feature.feature_url}}"><h5>{{ feature.title }}</h5> <span class="sub-text"> <span>{{ feature.sub_title }}</span></span></a>
+                                  {% else %}
+                                   <a><h5>{{ feature.title }}</h5> <span class="sub-text"> <span>{{ feature.sub_title }}</span></span></a>
+                                  {% endif %}
+
+                                </div>
+
+                              </li>
+                            {% endfor %}
+                            {% else %}
+                            <li class="display-table-cell">
+                              <div style="display:flex;">
+                                <img src="{% static 'images/default-images/feature-phone-alt-solid.png' %}" alt="Feature Icon" width="35" style="margin-right:10px;">
+                                <a><h5>{% trans 'Call Us Anytime' %}</h5> <span class="sub-text"> <span>{% trans '+1 (555) 555-5555' %}</span></span></a>
+                              </div>
+
+                            </li>
+                            <li class="display-table-cell">
+                              <div style="display:flex;">
+                                <img src="{% static 'images/default-images/feature-truck-solid.png' %}" alt="Feature Icon" width="35" style="margin-right:10px;">
+                                <a><h5>{% trans 'Free Shipping' %}</h5> <span class="sub-text"> <span>{% trans 'When you spend $100+' %}</span></span></a>
+                              </div>
+
+                            </li>
+                            <li class="display-table-cell">
+                              <div style="display:flex;">
+                                <img src="{% static 'images/default-images/feature-check-circle-solid.png' %}" alt="Feature Icon" width="35" style="margin-right:10px;">
+                                <a><h5>{% trans 'Genuine Quality' %}</h5> <span class="sub-text"> <span>{% trans 'All our products are Genuine' %}</span></span></a>
+                              </div>
+
+                            </li>
+                            <li class="display-table-cell">
+                              <div style="display:flex;">
+                                <img src="{% static 'images/default-images/feature-lock-solid.png' %}" alt="Feature Icon" width="35" style="margin-right:10px;">
+                                <a><h5>{% trans 'Secure Payments' %}</h5> <span class="sub-text"> <span>{% trans 'We accept all major credit cards.' %}</span></span></a>
+                              </div>
+
+                            </li>
+                          {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if product_activation.is_enabled %}
+        <!--Body Container-->
+        <div class="container">
+
+            <!--New Arrivals-->
+            <div class="section product-slider">
+                <div class="section-header">
+                    <h2>{% trans 'New Arrivals' %}</h2>
+                    <p>{% trans 'Shop our new arrivals from established brands' %}</p>
+                </div>
+                <div class="productSlider grid-products">
+                  {% if new_arrival_products %}
+                  {% for product in new_arrival_products %}
+                    <div class="col-12 item">
+                        <!-- start product image -->
+                        <div class="product-image">
+                            <!-- start product image -->
+                            <a href="{{ product.get_url }}" class="product-img">
+                                <!-- image -->
+                                <img class="primary blur-up lazyload" data-src="{{ product.image.url }}" src="{{ product.image.url }}" alt="{{ product.product_name }}" title="">
+                                <!-- End image -->
+                                <!-- Hover image -->
+                                <img class="hover blur-up lazyload" data-src="{{ product.image_2.url }}" src="{{ product.image_2.url }}" alt="{{ product.product_name }}" title="">
+                                <!-- End hover image -->
+                                <!-- product label -->
+                                <div class="product-labels"><span class="lbl on-sale">{% trans 'New Arrival' %}</span></div>
+                                <!-- End product label -->
+                            </a>
+                            <!-- end product image -->
+
+                        </div>
+                        <!-- end product image -->
+                        <!--start product details -->
+                        <div class="product-details text-center">
+                            <!-- product name -->
+                            <div class="product-name">
+                                <a href="{{ product.get_url }}">{{ product.product_name }}</a>
+                            </div>
+                            <!-- End product name -->
+                            <!-- product price -->
+                            <div class="product-price">
+                                <span class="price">${{ product.price }}</span>
+                            </div>
+                            <!-- End product price -->
+                            <!--Product Review-->
+                            <div class="product-review">
+                              <i class="font-13 fa fa-star{% if product.avaregereview < 0.5 %}-o{% elif product.avaregereview >= 0.5 and product.avaregereview < 1 %}-half-o {% else %} {% endif %}"></i>
+                              <i class="font-13 fa fa-star{% if product.avaregereview < 1.5 %}-o{% elif product.avaregereview >= 1.5 and product.avaregereview < 2 %}-half-o {% else %} {% endif %}"></i>
+                              <i class="font-13 fa fa-star{% if product.avaregereview < 2.5 %}-o{% elif product.avaregereview >= 2.5 and product.avaregereview < 3 %}-half-o {% else %} {% endif %}"></i>
+                              <i class="font-13 fa fa-star{% if product.avaregereview < 3.5 %}-o{% elif product.avaregereview >= 3.5 and product.avaregereview < 4 %}-half-o {% else %} {% endif %}"></i>
+                              <i class="font-13 fa fa-star{% if product.avaregereview < 4.5 %}-o{% elif product.avaregereview >= 4.5 and product.avaregereview < 5 %}-half-o {% else %} {% endif %}"></i>
+                            </div>
+                            <!--End Product Review-->
+
+                        </div>
+                        <!-- End product details -->
+                    </div>
+                    {% endfor %}
+                    {% else %}
+
+<div class="section-header">
+    <h2>{% trans 'No products found' %}</h2>
+</div>
+                    {% endif %}
+                </div>
+            </div>
+            <!--End New Arrivals-->
+
+
+
+
+            <!--Collection Box slider-->
+            <div class="collection-banners style1 section no-pt-section">
+            	<div class="row">
+                {% for i in categories %}
+                	<div class="col-12 col-sm-12 col-md-4 col-lg-4 banner-item">
+		                <div class="imgBanner-grid-item">
+                            <div class="img">
+                                <a href="/shop/category/{{i.slug}}" class="collection-grid-item__link">
+                                    <img data-src="{{i.cat_image.url}}" src="{{i.cat_image.url}}" alt="Category {{i.category_name}}" class="blur-up lazyload"/>
+                                </a>
+                            </div>
+                            <div class="details center w-50">
+                                <div class="inner">
+                                    <h3 class="title">{{i.category_name}}</h3>
+                                    <a href="/shop/category/{{i.slug}}" class="btn">{% trans 'Shop Now' %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  {% endfor %}
+                    </div>
+                </div>
+        	</div>
+        	<!--End Collection Box slider-->
+          {% endif %}
+
+          <!--Parallax Banner-->
+          {% if background.parallax_image %}
+        <div class="section parallax-banner-style1" style="padding-bottom:0px;padding-top:0px !important;">
+            <div class="hero hero--exlarge hero__overlay bg-size">
+                <img class="bg-img" src="{{ background.parallax_image.url }}" alt="Background Image">
+                <div class="hero__inner">
+                    <div class="container">
+                        <div class="wrap-text {{background.content_align}} text-small font-bold">
+                            <h2 class="h2 mega-title">{{ background.title }}</h2>
+                            <div class="rte-setting mega-subtitle">{{background.description | safe}}</div>
+                            <a href="{% if background.button_link %}{{background.button_link}}{% else %}#{% endif %}" class="btn" style="background-color:{{background.button_color}}">{{background.button_name}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="section parallax-banner-style1" style="padding-bottom:0px;">
+            <div class="hero hero--exlarge hero__overlay bg-size">
+                <img class="bg-img" src="{% static 'images/default-images/parallax-banner.jpg' %}" alt="Background Image">
+                <div class="hero__inner">
+                    <div class="container">
+                        <div class="wrap-text center text-small font-bold">
+                            <h2 class="h2 mega-title">{% trans 'About your business' %}</h2>
+                            <div class="rte-setting mega-subtitle">{% trans 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                              molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                              numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium' %}
+optio, eaque rerum! Provident similique accusantium nemo autem.</div>
+                            <a href="#" class="btn">{% trans 'About Us' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <!--End Parallax Banner-->
+
+     </div><!--End Body Container-->
+
+
+    </div><!--End Page Wrapper-->
+
+    <!-- <script>
+      $(document).ready(function() {
+        $(".slick-initialized .slick-slide").css("display", "block");
+    });
+    </script> -->
+
+{% endblock %}

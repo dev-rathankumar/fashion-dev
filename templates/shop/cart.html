@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Your Shopping Cart' %} {% endblock %}
+{% block content %}
+{% load static %}
+{% load humanize %}
+
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'Your Cart' %}</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  <!--Page Title with Image-->
+  <div class="container">
+    {% include 'includes/_alerts.html' %}
+  </div>
+  <div class="page-title">
+    <h1>{% trans 'Your Cart' %}</h1>
+  </div>
+  <!--End Page Title with Image-->
+
+  <div class="container">
+
+
+    {% if not shopcart %}
+      <h2 class="text-center">{% trans 'Your Shopping Cart is Empty' %}</h2>
+    	<br>
+    	<div class="text-center">
+    		<a href="{% url 'shop' %}" class="btn btn-primary">{% trans 'Continue Shopping' %}</a>
+    	</div>
+    {% else %}
+
+    <div class="row">
+      <!--Main Content-->
+      <div class="col-12 col-sm-12 col-md-8 col-lg-8 main-col">
+
+        <table>
+          <thead class="cart__row cart__header">
+            <tr>
+              <th colspan="2" class="text-center">{% trans 'Product' %}</th>
+              <th class="text-center">{% trans 'Price' %}</th>
+              <th class="text-center">{% trans 'Quantity' %}</th>
+              <th class="text-right">{% trans 'Total' %}</th>
+              <th class="action">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for i in shopcart %}
+            <tr class="cart__row border-bottom line1 cart-flex border-top">
+
+              <td class="cart__image-wrapper cart-flex-item">
+                {% if i.variant.image_id  > 0 %}
+                  <a href="#">
+                    <img class="cart__image" src="{{i.variant.image }}" alt="">
+                  </a>
+                {% else %}
+                  <a href="#">
+                    <img class="cart__image" src="{{i.product.image.url}}" alt="">
+                  </a>
+                {% endif %}
+              </td>
+
+              <td class="cart__meta small--text-left cart-flex-item" style="width: 300px;">
+                <div class="list-view-item__title">
+                  <a href="{{ i.product.get_url }}">
+                    {% if i.product.variant != 'None' %}
+                    {{ i.variant.title }}
+                    {% else %}
+                    {{ i.product.product_name }}
+                    {% endif %}
+                  </a>
+                </div>
+
+                <div class="cart__meta-text">
+                  {% if i.product.variant != 'None' %}
+                    {% if i.variant.product.variant == 'Size' %}
+                      Size: {{ i.variant.size }}
+                      {% elif i.variant.product.variant == 'Color' %}
+                      Color: {{ i.variant.color }}
+                      {% elif i.product.variant == 'Custom' %}
+                        {% for key, value in i.variant.variant_data.items %}
+                          <p class="mb-0">{{key}} : {{value}}</p>
+                        {% endfor %}
+                      {% else %}
+                      Color: {{ i.variant.color }}<br>Size: {{ i.variant.size }}
+                    {% endif %}
+                  {% endif %}
+                  <br>
+                </div>
+              </td>
+              <td class="cart__price-wrapper cart-flex-item">
+                <span class="money">$ {% if i.product.variant != 'None' %}
+                  {{ i.variant.price | intcomma }}
+                {% else %}
+                {{ i.product.price | intcomma }}
+                {% endif %}
+              </span>
+              </td>
+
+              <td class="cart__update-wrapper cart-flex-item text-right">
+                <div class="cart__qty text-center">
+                  <div class="qtyField" style="display:inline;">
+
+                    <!-- Decrement product quantity -->
+                    <form action="{% url 'delete_itemfromcart' i.product.id %}" method="POST">
+                      {% csrf_token %}
+                      <input type="hidden" name="command" id="command" value="update">
+                      <input type="hidden" name="variantid" id="variantid" value="{{ i.variant.id }}">
+                      <input class="input" name="size" type="hidden" value="{{ i.variant.size }}">
+                      <input class="input" name="color" type="hidden" value="{{ i.variant.color }}">
+                      <input class="input" name="quantity" type="hidden" value="1">
+                      <button type="submit" class="qtyBtn minus" style="background-color:#eee;">-</button>
+                    </form>
+
+                    <input class="cart__qty-input qty" type="text" name="quantity" id="quantity" value="{{ i.quantity }}" readonly>
+
+                    <!-- Increment product quantity -->
+                    <form action="{% url 'addtoshopcart' i.product.id %}" method="POST">
+                      {% csrf_token %}
+                      <input type="hidden" name="command" id="command" value="update">
+                      <input type="hidden" name="variantid" id="variantid" value="{{ i.variant.id }}">
+                      <input class="input" name="size" type="hidden" value="{{ i.variant.size }}">
+                      <input class="input" name="color" type="hidden" value="{{ i.variant.color }}">
+                      <input class="input" name="quantity" type="hidden" value="1" min="1" max="{{ i.quantity }}">
+                      <button type="submit" class="qtyBtn plus" style="background-color:#eee;">+</button>
+                    </form>
+                  </div>
+                </div>
+              </td>
+
+              <td class="text-right small--hide cart-price">
+                <div><span class="money">$ {{ i.varamount | intcomma }}</span></div>
+              </td>
+              <td class="text-center small--hide"><a href="{% url 'deletefromcart' i.id %}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3" class="text-left"><a href="{% url 'shop' %}" class="btn--link cart-continue"><i class="icon icon-arrow-circle-left"></i> {% trans 'Continue shopping' %}</a></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+
+
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
+        <form action="{% url 'checkout' %}" method="POST">
+          {% csrf_token %}
+
+          <!-- <input type="hidden" name="subtotal" value="{{total}}">
+          <input type="hidden" name="tax" value="{{tax}}">
+          <input type="hidden" name="grand_total" value="{{grand_total}}"> -->
+        <div class="solid-border">
+          <!-- <div class="row">
+            <span class="col-12 col-sm-6 cart__subtotal-title">Subtotal</span>
+            <span class="col-12 col-sm-6 cart__subtotal-title text-right"><span class="money">${{total | intcomma}}</span></span>
+          </div> -->
+          <!-- Tax -->
+
+          <!-- <div class="row">
+            {% for key, value in tax_dict.items %}
+            {% for i, j in value.items %}
+            <label class="col-12 col-sm-6 cart__subtotal-title">{{key}} ({{i}}%)</label>
+            <span class="col-12 col-sm-6 cart__subtotal-title text-right">${{j | intcomma}}</span>
+            {% endfor %}
+            {% endfor %}
+          </div> -->
+          <!-- Grand Total -->
+          <div class="row">
+            <span class="col-12 col-sm-6 cart__subtotal-title"><strong>{% trans 'Total' %}</strong></span>
+            <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money">${{total | intcomma}}</span></span>
+          </div>
+          
+          <!-- <div class="cart__shipping">Shipping &amp; taxes calculated at checkout</div> -->
+          <!-- <p class="cart_tearm">
+            <label>
+              <input type="checkbox" name="termsCheckbox" class="checkbox" required>
+              I agree with the terms and conditions</label>
+          </p> -->
+          <br>
+          <p class="text-muted">{% trans 'Tax (if any) will be calculated in the checkout page.' %}</p>
+          <input type="submit" name="checkout" id="cartCheckout" class="btn btn--small-wide checkout" value="{% trans 'Proceed To Checkout' %}">
+          <div class="paymnet-img"><img src="{% static 'images/payment-img.jpg' %}" alt="Payment"></div>
+        </div>
+      </form>
+      </div>
+      <!--End Main Content-->
+    </div>
+    {% endif %}
+
+  </div>
+  <!--End Body Container-->
+
+</div>
+<!--End Page Wrapper-->
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'business/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} {% trans 'Topbar Settings' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Topbar' %}</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-2 col-lg-2 col-sm-6">
+                  <h4 class="card-title">{% trans 'Topbar' %}</h4>
+                </div>
+                <div class="col-md-2 col-lg-2 col-sm-6">
+                  <span>
+                    <h5 id="topbarStatus">{% if topbar.is_enabled %}{% trans 'Enabled' %}{% else %}{% trans 'Disabled' %}{% endif %}</h5>
+                    <label class="switch">
+                      <input type="checkbox" id="topbarSwitch" {% if topbar.is_enabled %} checked {% else %} {% endif %} onclick="topbarSwitch()">
+                      <span class="slider round"></span>
+                    </label>
+                  </span>
+                </div>
+                
+                
+              </div>
+              
+              
+
+              <form method="POST" action="{% url 'topbarEdit' %}" enctype="multipart/form-data" id="topbarForm" style="display: {% if topbar.is_enabled %} block {% else %} none {% endif %};">
+                {% csrf_token %}
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      {{ form.as_p }}
+                    </div>
+                  </div>
+                </div>
+
+              <br>
+                <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-save"></i> {% trans 'SAVE' %}</button>
+              </form>
+              <br>
+              <div>
+                {% include 'includes/_alerts.html' %}
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

@@ -1,0 +1,398 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Make Payment' %} {% endblock %}
+{% block content %}
+{% load static %}
+{% load humanize %}
+
+
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="{% url 'shopcart' %}" title="Back to cart page">{% trans 'Cart' %}</a> <span aria-hidden="true">|</span> <a href="{% url 'checkout' %}" title="Back to checkout page">{% trans 'Checkout' %}</a><span aria-hidden="true">|</span> <span aria-hidden="true">{% trans 'Complete Order' %}</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  <!--Page Title with Image-->
+  <div class="page-title">
+    <h1>{% trans 'complete order' %}</h1>
+  </div>
+  <!--End Page Title with Image-->
+  <div class="container">
+
+    <form method="POST" id="checkout_billing_form" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row billing-fields">
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 sm-margin-30px-bottom">
+          <div class="create-ac-content bg-light-gray padding-20px-all">
+
+            <div class="your-order">
+              <h2 class="order-title mb-4">{% trans 'Review Your Order and Pay' %}</h2>
+
+              <div class="table-responsive-sm order-table">
+
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col-8">
+                        <h5 class="m-0">{% trans 'Shipping Address' %}</h5>
+                      </div>
+                      <div class="col-4">
+                        <a href="{% url 'checkout' %}" class="float-right"><i class="fa fa-edit"></i>{% trans 'Edit' %} </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="card-body">
+                        <p class="card-text mb-0" style="font-weight:600;">{{order.name}}</p>
+                        <p class="card-text mb-0">{{order.address}}</p>
+                        <p class="card-text mb-0">{{order.city}} - {{order.pin_code}}</p>
+                        <p class="card-text mb-0">{{order.state}}, {{order.country}}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="card-body">
+                        <p class="card-text mb-0">{{order.email}}</p>
+                        <p class="card-text mb-0">{{order.phone}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col-8">
+                        <h5 class="m-0">{% trans 'Payment method' %}</h5>
+                      </div>
+                      <div class="col-4">
+                        <a href="{% url 'checkout' %}" class="float-right"><i class="fa fa-edit"></i> {% trans 'Edit' %}</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                      <div class="card-body">
+                        {% if payment_method == 'PayPal' %}
+                        <img src="{% static 'images/payment_gateways/paypal.png' %}" width="150" style="padding: 0 10px 0 10px;border: 1px solid #d2d2d2;">
+                        {% elif payment_method == 'Direct Deposit' %}
+                        <img src="{% static 'images/payment_gateways/direct.png' %}" width="150" style="padding: 0 10px 0 10px;border: 1px solid #d2d2d2;">
+                        {% elif payment_method == 'Cash On Delivery' %}
+                        <img src="{% static 'images/payment_gateways/cod.png' %}" width="150" style="padding: 9px 10px 9px 10px;border: 1px solid #d2d2d2;">
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col-8">
+                        <h5 class="m-0">{% trans 'Review Products' %}</h5>
+                      </div>
+                      <div class="col-4">
+                        <a href="{% url 'shopcart' %}" class="float-right"><i class="fa fa-edit"></i> {% trans 'Edit' %}</a>
+                      </div>
+                    </div>
+                  </div>
+                {% for i in shopcart %}
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="card-body">
+                        {% if i.variant.image_id  > 0 %}
+                          <img src="{{i.variant.image }}" alt="Product Variant Image" width="50">
+                        {% else %}
+                        <img src="{{i.product.image.url}}" alt="Product Image" width="50">
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="col-md-7">
+                      <div class="card-body">
+                        <a class="card-text mb-0" href="{{ i.product.get_url }}" style="font-weight:600;">
+                          {% if i.product.variant != 'None' %}
+                          {{ i.variant.title }}
+                          {% else %}
+                          {{ i.product.product_name }}
+                          {% endif %}
+                        </a>
+                        <div class="cart__meta-text">
+                          {% if i.product.variant != 'None' %}
+                          {% if i.variant.product.variant == 'Size'  %}
+                            {{ i.variant.size }}
+                          {% elif i.variant.product.variant == 'Color' %}
+                            {{ i.variant.color }}
+                            {% elif i.product.variant == 'Custom' %}
+                            {% for key, value in i.variant.variant_data.items %}
+                              {{value}} {% if not forloop.last %}|{% endif %}
+                            {% endfor %}
+                          {% else %}
+                            {{ i.variant.color }} | {{ i.variant.size }}
+                          {% endif %}
+                        {% endif %}
+                        </div>
+                        <div class="cart__meta-text">
+                          {% trans 'Qty' %}: {{ i.quantity }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="card-body">
+                        <p class="card-text mb-0" style="font-weight:600;">${{ i.varamount | intcomma }}</p>
+                        <div class="cart__meta-text">
+                          ({% if i.product.variant != 'None' %}
+                      ${{ i.variant.price | intcomma }}
+                      {% else %}
+                      ${{i.product.price | intcomma}}
+                      {% endif %} each)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+          <div class="your-order-payment">
+
+            <div class="your-payment">
+              <h2 class="payment-title mb-3">{% trans 'make payment' %}</h2>
+              <div class="payment-method">
+                <div class="payment-accordion">
+                  <div id="accordion" class="payment-section">
+                    <div class="card mb-2">
+                      <div class="card-header">
+                        <div class="row">
+                          <span class="col-12 col-sm-6 cart__subtotal-title">{% trans 'Subtotal' %}</span>
+                          <span class="col-12 col-sm-6 cart__subtotal-title text-right"><span class="money">${{total | intcomma}}</span></span>
+                        </div>
+                        <!-- <div class="row">
+                          {% for key, value in tax_dict.items %}
+                          {% for i, j in value.items %}
+                          <label class="col-12 col-sm-6 cart__subtotal-title">{{key}} ({{i}}%)</label>
+                          <span class="col-12 col-sm-6 cart__subtotal-title text-right">${{j | intcomma}}</span>
+                          {% endfor %}
+                          {% endfor %}
+                        </div> -->
+                        <div class="row">
+                          <span class="col-12 col-sm-6 cart__subtotal-title">{% trans 'Tax' %}</span>
+                          <span class="col-12 col-sm-6 cart__subtotal-title text-right"><span class="money">${{order.tax | intcomma}}</span></span>
+                        </div>
+                        <div class="row">
+                          <span class="col-12 col-sm-6 cart__subtotal-title"><strong>{% trans 'Grand Total' %}</strong></span>
+                          <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money">${{order.total | intcomma}}</span></span>
+                        </div>
+                      </div>
+
+                      {% if payment_method == 'Direct Deposit' or payment_method == 'Cash On Delivery' %}
+                      </form>
+                      {% endif %}
+
+                      {% if payment_method == 'PayPal' %}
+                      <div id="payPal-payment">
+                        <div id="paypal-button-container"></div>
+                      </div>
+                      {% elif payment_method == 'Direct Deposit' %}
+                      <br>
+                        <h5>{% trans 'Please make payment to below email address and submit the transaction details.' %}</h5>
+
+                        <div class="jumbotron jumbotron-fluid" style="padding: 1rem;">
+                          <div class="container">
+                            <p class="lead" style="font-size: 1rem;">{{ddEmail}}</p>
+                          </div>
+                        </div>
+
+                        <div class="container">
+
+                            <div class="form-group">
+                              <label for="exampleFormControlFile1">{% trans 'Amount Paid' %}</label>
+
+                              <input type="text" name="amount" maxlength="100" value="{{order.total}}" required id="id_amount" readonly style="background-color:#F7F7F7;cursor: not-allowed;">
+                             </div>
+                            <div class="form-group">
+                              <label for="exampleFormControlFile1">{% trans 'Transaction Detail' %}</label>
+                              {{dd_paymentForm.payment_id}}
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleFormControlFile1">{% trans 'Date of Payment' %}</label>
+                              {{dd_paymentForm.date_of_dd_payment}}
+                            </div>
+                            <div class="form-group rm_upload">
+                              <label for="exampleFormControlFile1">{% trans 'Attachment' %} <span class="text-muted">{% trans '(Optional)' %}</span></label>
+                              {{dd_paymentForm.dd_attachment}}
+                            </div>
+                            <input type="hidden" name="url" id="url" value="{% url 'saveDDPayment' %}">
+                            <i class="text-muted" style="font-size: 12px;">{% trans 'Order will be confirmed after the payment is recieved.' %}</i>
+                            <div class="form-group">
+                              <input type="submit" name="submit" id="submitTrans" formaction="{% url 'saveDDPayment' %}" value="Submit Transaction Details" class="btn w-100">
+                            </div>
+
+                        </div>
+
+                      {% elif payment_method == 'Cash On Delivery' %}
+                      <br>
+                        <h2 class="payment-title mb-3">{% trans 'Choose store location' %}</h2>
+                        <div class="jumbotron jumbotron-fluid payment_options_dd_paypal" style="padding: 1rem;">
+                          <div class="container">
+                            {% for loc in store_locations %}
+                            <div class="row">
+                                <label style="width:100% !important;">
+                                  <input type="radio" name="store_location" value="{{loc.id}}" {% if location_count == 1 %}checked{% endif %}>
+                                    <div class="col-md-12 location" style="padding: 10px 10px 10px 10px; border: 1px solid #ccc;cursor: pointer;">
+                                      <p class="mb-0">{{loc.store_name}}</p>
+                                      <p class="mb-0">{{loc.phone_number}}</p>
+                                      <p class="mb-0">{{loc.email}}</p>
+                                      <p class="mb-0">{{loc.address}}</p>
+                                      <p class="mb-0">{{loc.city}}, {{loc.pin_code}}</p>
+                                      <p class="mb-0">{{loc.state}}, {{loc.country}}</p>
+                                    </div>
+                                </label>
+                            </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                        <p id="errorMessage" class="text-danger"></p>
+                        <div class="form-group">
+                          <input type="submit" name="submit" id="codPlaceOrder" onclick="return chkLocation();" formaction="{% url 'codPlaceOrder' %}" value="Place Order" class="btn w-100">
+                        </div>
+                      {% endif %}
+                      
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div id="payment-processing-message" style="margin-top:20px;">
+              <h4 class="text-center">
+                <i class="fa fa-spinner fa-spin" style="font-size:20px;"></i>
+                <span>{% trans 'Please wait' %}...</span>
+              </h4>
+              <p class="mb-0 text-center" style="font-weight:600;">{% trans 'We are processing your payment.' %}</p>
+              <p class="mb-0 text-center">{% trans 'This may take a few seconds, please be patient' %}...</p>
+            </div>
+
+          </div>
+
+        </div>
+
+    </form>
+    <!--End Main Content-->
+  </div>
+  <!--End Body Container-->
+
+</div>
+<!--End Page Wrapper-->
+<!--End Page Wrapper-->
+
+<script>
+  $(document).ready(function(){
+  $("#payPal-payment").click(function(){
+    // $("#payment-processing-message").css('display':'block');
+    // $('#payment-processing-message').css('display','block');
+    $('#payment-processing-message').attr("style", "display: block !important");
+  });
+});
+</script>
+
+<script>
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  var csrftoken = getCookie('csrftoken');
+  var orderID = "{{ order.order_number }}";
+  var amount = "{{order.total}}";
+  var url = "{% url 'payments' %}";
+  var payment_method = "paypal"
+  var redirect_url = "{% url 'order_complete' %}";
+
+  // Render the PayPal button into #paypal-button-container
+  paypal.Buttons({
+
+      style: {
+        color: 'blue',
+        shape: 'rect',
+        label: 'pay',
+        height: 40
+      },
+
+      // Set up the transaction
+      createOrder: function(data, actions) {
+        // $('#payment-processing-message').attr("style", "display: block !important");
+        document.getElementById("payment-processing-message").style.display = "block";
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: amount,
+            }
+          }]
+        });
+      },
+
+      // Finalize the transaction
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          console.log(details);
+          sendData();
+
+          function sendData() {
+            fetch(url, {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json",
+                "X-CSRFToken": csrftoken,
+              },
+              // body: JSON.stringify({ orderID: orderID, payID: details.id }),
+              body: JSON.stringify({
+                orderID: orderID,
+                payID: details.id,
+                paymentMethod: payment_method,
+                status: details.status,
+              }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log('Success:', data); // Just for testing, you can delete
+              console.log('Transaction completed'); // Just for testing, you can delete
+              window.location.href = redirect_url + '?order_number='+data.order_number+'&payment_id='+data.payment_id;
+            });
+
+          }
+
+        });
+      },
+    })
+    .render("#paypal-button-container");
+
+    function chkLocation(){
+      if (!$("input[name='store_location']:checked").val()) {
+        document.getElementById("errorMessage").innerHTML = "Please choose your preferred store location!";
+        return false;
+      }
+    }
+</script>
+
+{% endblock %}

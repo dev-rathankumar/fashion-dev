@@ -1,0 +1,70 @@
+{% extends 'business/base.html' %}
+{% block title %} Site Settings {% endblock %}
+{% block content %}
+
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Site Settings</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Set your site identity</h4>
+              <p class="card-title-desc">Provide information about your website.</p>
+              <form id="save_setting_form" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn btn-primary" id="save_setting" type="submit" value="Submit" />
+              </form>
+              <div id="site_settings"></div>
+
+            </div>
+          </div>
+          <!-- end card -->
+        </div> <!-- end col -->
+
+
+      </div>
+      <!-- end row -->
+
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+
+  <footer class="footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <script>
+            document.write(new Date().getFullYear())
+          </script> © Skote.
+        </div>
+        <div class="col-sm-6">
+          <div class="text-sm-right d-none d-sm-block">
+            Design & Develop by Themesbrand
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+<!-- end main content-->
+{% endblock %}

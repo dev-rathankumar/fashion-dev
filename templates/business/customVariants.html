@@ -1,0 +1,165 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Custom Variants' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Custom Variants' %}</h4>
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+      {% include 'includes/_alerts.html' %}
+      <div class="row">
+        <div class="col-5">
+          <div class="card">
+            {% if not product_attr %}
+            <h2 class="text-center" style="padding:25px;">{% trans 'Add your first custom variant.' %}</h2>
+            <div class="text-sm-center" style="padding-bottom:25px;">
+              <a href="{% url 'addVariant' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i>{% trans 'Add Variant' %} </a>
+            </div>
+            {% else %}
+            <div class="card-body">
+              <h4 class="text-center">Add product variants</h4>
+              <div class="row mb-2">
+                <div class="col-sm-4">
+                  <div class="search-box mr-2 mb-2 d-inline-block">
+                    <div class="position-relative">
+                      <input type="text" id="myInput" class="form-control" id="myInput" placeholder="{% trans 'Search' %}...">
+                      <i class="bx bx-search-alt search-icon"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="text-sm-right">
+                    <a href="{% url 'addVariant' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> {% trans 'Add Variant' %}</a>
+                  </div>
+                </div><!-- end col-->
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-centered table-hover">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>{% trans 'Variant' %}</th>
+                      <th>{% trans 'Action' %}</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+                    {% for attr in product_attr %}
+                    <tr>
+
+                      <td>
+                        {{attr.attribute_name}}
+                      </td>
+
+                      <td>
+                        <a href="{% url 'editVariant' attr.id %}" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
+                        <a href="{% url 'deleteVariant' attr.id %}" onclick="return confirm('Are you sure you want to delete this variant?')" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i
+                            class="mdi mdi-close font-size-18"></i></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-7">
+          <div class="card">
+            {% if not attr_values %}
+            <h2 class="text-center" style="padding:25px;">{% trans 'Assign a value to your custom variant.' %}</h2>
+            <div class="text-sm-center" style="padding-bottom:25px;">
+              <a href="{% url 'addVariantValue' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i>{% trans 'Add Variant Value' %} </a>
+            </div>
+            {% else %}
+            <div class="card-body">
+              <h4 class="text-center">Assign a value to product variants</h4>
+              <div class="row mb-2">
+                <div class="col-sm-4">
+                  <div class="search-box mr-2 mb-2 d-inline-block">
+                    <div class="position-relative">
+                      <input type="text" id="myInput2" class="form-control" id="myInput2" placeholder="{% trans 'Search' %}...">
+                      <i class="bx bx-search-alt search-icon"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="text-sm-right">
+                    <a href="{% url 'addVariantValue' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> {% trans 'Add Variant Value' %}</a>
+                  </div>
+                </div><!-- end col-->
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-centered table-hover">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>{% trans 'Variant Value' %}</th>
+                      <th>{% trans 'Variant' %}</th>
+                      <th>{% trans 'Action' %}</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable2">
+                    {% for value in attr_values %}
+                    <tr>
+
+                      <td>
+                        {{value.attribute_value}}
+                      </td>
+                      <td>
+                        {{value.product_attribute}}
+                      </td>
+
+                      <td>
+                        <a href="{% url 'editVariantValue' value.id %}" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
+                        <a href="{% url 'deleteVariantValue' value.id %}" onclick="return confirm('Are you sure you want to delete this variant value?')" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i
+                            class="mdi mdi-close font-size-18"></i></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+
+      <!-- end row -->
+    </div> <!-- container-fluid -->
+  </div>
+
+
+  <script>
+    $(document).ready(function(){
+      $("#myInput2").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable2 tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+        });
+      });
+    });
+  </script>
+  {% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'About Us' %} {% endblock %}
+{% block content %}
+{% load static %}
+<div id="page-content">
+        <!--Body Container-->
+        <!--Breadcrumbs-->
+        <div class="breadcrumbs-wrapper">
+        	<div class="container">
+            	<div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'About Us' %}</span></div>
+            </div>
+        </div>
+        <!--End Breadcrumbs-->
+        <div class="container">
+        	<div class="page-title"><h1>{{about_page.heading}}</h1></div>
+			<div class="top-text-block">
+        {% if about_page.sub_heading %}
+            	<p class="mb-4">{{about_page.sub_heading | safe }}</p>
+            {% else %}
+            {% trans 'Your sub heading content goes here' %}
+            {% endif %}
+            </div>
+
+            {% for content in aboutContents %}
+                {% if forloop.counter|divisibleby:2 %}
+                    {% if content.image %}
+                        <div class="row d-flex align-items-center pt-2 pb-2">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 pl-5 pr-5">
+                                <h3><b>{{content.header}}</b></h3>
+                                <p>{{content.header_text | safe }}</p>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-4 pb-4">
+                                <img src="{{ content.image.url }}" alt=""/>
+                            </div>
+                        </div>
+                    {% else %}
+                    <div class="row align-items-center pt-2 pb-2">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 pl-5 pr-5">
+                            <h3><b>{{content.header}}</b></h3>
+                            <p>{{content.header_text | safe }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% else %}
+                    {% if content.image %}
+                        <div class="row d-flex align-items-center">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 pt-2 pb-4">
+                                <img src="{{ content.image.url }}" alt=""/>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 pl-5 pr-5">
+                                <h3><b>{{content.header}}</b></h3>
+                                <p class="mb-4">{{content.header_text | safe }}</p>
+                            </div>
+                        </div>
+                    {% else %}
+                    <div class="row align-items-center pt-2 pb-2">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 pl-5 pr-5">
+                            <h3><b>{{content.header}}</b></h3>
+                            <p>{{content.header_text | safe }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+           
+        	
+           
+
+        </div><!--End Body Container-->
+    </div><!--End Page Wrapper-->
+{% endblock %}

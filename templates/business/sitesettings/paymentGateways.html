@@ -1,0 +1,148 @@
+{% extends 'business/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} {% trans 'Payment Gateways Settings' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Payment Gateways' %}</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="container">
+            
+              
+              
+              <div class="row">
+                <!-- P A Y P A L -->
+                <div class="col-md-6 col-lg-6 col-sm-12 bg-light">
+                <div class="row p-3">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                      <h5>{% trans 'PAYPAL' %}</h5>
+                  </div>
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                      <label class="switch">
+                        <input type="checkbox" id="ppSwitch" {% if pp.is_enabled %} checked {% else %} {% endif %} onclick="ppSwitch()">
+                        <span class="slider round"></span>
+                      </label>
+                      <span id="ppStatus" style="position:relative;top:3px;">{% if dd.is_enabled %}{% trans 'Enabled' %}{% else %}{% trans 'Disabled' %}{% endif %}</span>
+                  </div>
+                </div>
+
+                <form method="POST" action="{% url 'paymentGateways' %}" enctype="multipart/form-data" id="ppForm" style="display: {% if pp.is_enabled %}block{% else %}none{% endif %};">
+                  {% csrf_token %}
+                  <input type="hidden" name="url" id="ppurl" value="{% url 'ppToggleEnable' %}">
+                  <input type="hidden" name="gateway" value="paypal">
+                  <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                      <div class="form-group">
+                        {{ ppform.as_p }}
+                        <span class="text-muted">{% trans 'Client ID is a combination of long strings and numbers that is used to connect your application with PayPal Payment gateway.' %} <span><a href="https://developer.paypal.com/docs/api-basics/manage-apps/" target="_blank">Read about how to get the Client ID</a></span>.</span>
+                      </div>
+                    </div>
+                  </div>
+  
+                <br>
+                  <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-save"></i>{% trans 'SAVE' %} </button>
+                </form>
+                </div>
+                 <!-- P A Y P A L -->
+
+                <!-- D I R E  C T  D E P O S I T -->
+                <div class="col-md-6 col-lg-6 col-sm-12 bg-white">
+                  <div class="row p-3">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <h5>{% trans 'DIRECT DEPOSIT' %}</h5>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <label class="switch">
+                          <input type="checkbox" id="ddSwitch" {% if dd.is_enabled %} checked {% else %} {% endif %} onclick="ddSwitch()">
+                          <span class="slider round"></span>
+                          
+                        </label>
+                        <span id="ddStatus" style="position:relative;top:3px;">{% if dd.is_enabled %}{% trans 'Enabled' %}{% else %}{% trans 'Disabled' %}{% endif %}</span>
+                    </div>
+                  </div>
+                  <div class="row p-3">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                  <form method="POST" action="{% url 'paymentGateways' %}" enctype="multipart/form-data" id="ddForm" style="display: {% if dd.is_enabled %}block{% else %}none{% endif %};">
+                    {% csrf_token %}
+                    <input type="hidden" name="url" id="ddurl" value="{% url 'ddToggleEnable' %}">
+                    <input type="hidden" name="gateway" value="directdeposit">
+                    <div class="row">
+                      <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                          {{ ddform.as_p }}
+                          <span class="text-muted">{% trans 'Your customers will make a direct deposit payment to this email address.' %}</span>
+                        </div>
+                      </div>
+                    </div>
+                  <br>
+                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-save"></i> {% trans 'SAVE' %}</button>
+                  </form>
+                </div>
+                </div>
+                </div>
+                <!-- D I R E  C T  D E P O S I T -->
+              </div>
+<br>
+              <div class="row">
+                <!-- C A S H   O N   D E L I V E R Y -->
+                <div class="col-md-6 col-lg-6 col-sm-12 bg-light" style="border-top: 1px solid #cfcfcf;">
+                <div class="row p-3">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                      <h5>{% trans 'CASH ON DELIVERY' %}</h5>
+                  </div>
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <label class="switch">
+                      <input type="checkbox" id="codSwitch" {% if cod.is_enabled %} checked {% else %} {% endif %} onclick="codSwitch()">
+                      <span class="slider round"></span>
+                      
+                    </label>
+                    <span id="codStatus" style="position:relative;top:3px;">{% if cod.is_enabled %}{% trans 'Enabled' %}{% else %}{% trans 'Disabled' %}{% endif %}</span>
+                </div>
+                  <input type="hidden" name="url" id="codurl" value="{% url 'codToggleEnable' %}">
+                  <a href="{% url 'store_locations' %}" class="btn btn-primary" style="margin-left: 10px;margin-top: 10px;"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; MANAGE YOUR STORE LOCATIONS</a>
+                </div>
+
+                </div>
+                 <!-- C A S H   O N   D E L I V E R Y -->
+              </div>
+              
+         <div class="row">
+          {% include 'includes/_alerts.html' %}
+         </div>
+              
+            
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

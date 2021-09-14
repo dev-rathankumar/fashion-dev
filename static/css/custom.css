@@ -1,0 +1,299 @@
+/* Custom CSS */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 0px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #303030;
+}
+
+a.active{color: red !important;}
+
+ul.color-option{
+	list-style-type: none;
+  margin-bottom: 0;
+}
+.color-option>li>a{
+	display: block;
+	height: 40px;
+}
+.color-option>li{
+	display: inline-block;
+    vertical-align: top;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+.var_color input#variantid{
+	display: none;
+}
+[type=radio]:checked + li img{
+	outline: 2px solid #000;
+}
+label.var_color{
+	margin-left: 10px;
+	cursor: pointer;
+}
+.dashboard-list a.active{
+	color: white !important;
+}
+
+/* Password Strength Validation */
+.Short {
+	width: 100%;
+	background-color: #dc3545;
+	margin-top: 5px;
+	height: 3px;
+	color: #dc3545;
+	font-weight: 500;
+	font-size: 12px;
+ }
+ .Weak {
+	width: 100%;
+	background-color: #ffc107;
+	margin-top: 5px;
+	height: 3px;
+	color: #ffc107;
+	font-weight: 500;
+	font-size: 12px;
+ }
+ .Good {
+	width: 100%;
+	background-color: #d39e00;
+	margin-top: 5px;
+	height: 3px;
+	color: #d39e00;
+	font-weight: 500;
+	font-size: 12px;
+ }
+ .Strong {
+	width: 100%;
+	background-color: #28a745;
+	margin-top: 5px;
+	height: 3px;
+	color: #28a745;
+	font-weight: 500;
+	font-size: 12px;
+ }
+
+ #strengthMessage{
+   position: relative;
+ }
+ .wishlist-table .product-thumbnail a img{
+	max-width: 60px !important;
+}
+[type=checkbox]:checked + .filter_color{
+        box-shadow: 2px 2px 2px 2px black;
+        border-radius: 50px !important;
+}
+.var_color input.filter_color_input{
+    display:none;
+}
+
+[type=checkbox]:checked + .filter_size{
+        box-shadow: 2px 2px 2px 2px black;
+
+}
+.var_color input.filter_color_input{
+    display:none;
+}
+
+
+/* Rating system */
+
+/* Ratings widget */
+.rate {
+    display: inline-block;
+    border: 0;
+}
+/* Hide radio */
+.rate > input {
+    display: none;
+}
+/* Order correctly by floating highest to the right */
+.rate > label {
+    float: right;
+}
+/* The star of the show */
+.rate > label:before {
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: .3rem .2rem;
+    margin: 0;
+    cursor: pointer;
+    font-family: FontAwesome;
+    content: "\f005 "; /* full star */
+}
+/* Zero stars rating */
+/* Half star trick */
+.rate .half:before {
+    content: "\f089 "; /* half star no outline */
+    position: absolute;
+    padding-right: 0;
+}
+/* Click + hover color */
+.new-review-form input:checked ~ label, /* color current and previous stars on checked */
+.new-review-form label:hover, .new-review-form label:hover ~ label { color: #ffb503;  } /* color previous stars on hover */
+
+/* Hover highlights */
+input:checked + label:hover, input:checked ~ label:hover, /* highlight current and previous stars */
+input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
+label:hover ~ input:checked ~ label /* highlight previous selected stars */ { color: #cc9000;  }
+
+
+
+/* Average review */
+.reviewLink .star {
+  display: inline-block;
+  position: relative;
+  font-size: 100px;
+  color: #ddd;
+}
+
+.reviewLink .star:after {
+  font-family: FontAwesome;
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80%;
+  overflow: hidden;
+  color: #f80;
+}
+
+.grid-products .item .product-image img{
+	height: 250px !important;
+}
+
+@media (min-width: 576px){
+	.modal-dialog.quickViewModal {
+	    max-width: 800px;
+	    margin: 1.75rem auto;
+	}
+}
+
+.otp_form{
+	display: none;
+	margin-top:30px;
+	margin-bottom:30px;
+	padding: 30px 0 30px 0;
+}
+
+.fade:not(.show){
+	opacity: unset !important;
+}
+.tab-content>.tab-pane{
+	display: unset !important;
+}
+/* input:checked ~ label, label:hover, label:hover ~ label{
+	    color: unset !important;
+} */
+.form-control{
+	padding: 0rem 0.75rem !important;
+}
+
+.checkout-table td{
+  vertical-align: middle !important;
+}
+.card-header:before{
+  content: unset !important;
+}
+.order-button-payment .btn{
+  font-size: 14px;
+  width: 100%
+}
+#payment-processing-message{
+  display: none;
+}
+
+.btn-danger:disabled{
+  cursor: not-allowed !important;
+}
+
+.footer-bottom .copytext{
+  float: unset;
+  text-align: center;
+}
+#site-scroll{
+  background-color: #000 !important;
+}
+.social-icons a:hover{
+  color: #000000 !important;
+}
+
+.filter-widget .widget-title:after{
+  content: unset !important;
+}
+.fa{
+  font: normal normal normal 14px/1 FontAwesome !important;
+}
+
+ul.pagination.mb-2.shop-page{
+  display: block !important;
+}
+.page-item.active .page-link{
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  border-radius: 50px !important;
+}
+a.page-link{
+  border-radius: 50px !important;
+}
+.pagination li a{
+  line-height: 12px;
+  padding: 8px;
+}
+.comments-list__item{list-style-type: none!important;}
+
+.list-sidebar-products{margin-top: 15px;}
+
+input.inputNumber::-webkit-outer-spin-button,
+input.inputNumber::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number]{
+  -moz-appearance: textfield !important;
+}
+#message.container{
+  padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* HIDE RADIO */
+.payment_options_dd_paypal [type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+.payment_options_dd_paypal [type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+.payment_options_dd_paypal [type=radio]:checked + img {
+  outline: 2px solid #000;
+}
+.rm_upload .btn.btn-default.btn-secondary.fileinput-remove.fileinput-remove-button,
+.btn.btn-default.btn-secondary.fileinput-upload.fileinput-upload-button{
+  display: none !important;
+}
+#siteNav a, select#select_lang{
+  font-size: 12px !important;
+}

@@ -1,0 +1,121 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Edit Blog' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Edit Blog' %}</h4>
+
+            <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">{{blog.title}}</a></li>
+                <li class="breadcrumb-item active">{% trans 'Edit Blog' %}</li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+              <h4 class="card-title">{% trans 'Blog Information' %}</h4>
+              <p class="card-title-desc">{% trans 'Fill all information below' %}</p>
+              {% include 'includes/_alerts.html' %}
+
+              <form method="POST" action="{% url 'editBlog' blog.id %}" enctype="multipart/form-data">
+                {% csrf_token %}          <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="form-group">
+                                <label for="productname">{% trans 'Title' %}</label>
+                                {{ blogInfo_form.title }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="form-group">
+                                <label for="productname">{% trans 'Category' %} <span><small><a href="{% url 'addBlogCategories'%}">&nbsp;&nbsp;{% trans 'Add New Category' %}</a></small></span></label>
+                                {{ blogInfo_form.category }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="form-group">
+                                <label for="productname">{% trans 'Short Description' %} </label>
+                                {{ blogInfo_form.short_description }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="form-group">
+                                <label for="productname">{% trans 'Full Description' %}</label>
+                                {{ blogInfo_form.blog_body }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="form-group">
+                                <label for="productname">{% trans 'Status' %}</label>
+                                {{ blogInfo_form.status }}
+                              </div>
+                            </div>
+                            </div>
+                          <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="form-group">
+                                <img src="{{ blog.featured_image.url }}" alt="" width="300"><br><br>
+                                <label for="productname">{% trans 'Blog Image' %} <span class="text-muted">&nbsp; 1900 x 900px</span></label>
+                                {{ blogInfo_form.featured_image }}
+                              </div>
+                            </div>
+                          </div>
+                          <p class="text-danger" id="descError"></p>
+                          <a onclick="goBack();" class="btn btn-secondary"><i class="fas fa-arrow-left"></i>&nbsp; {% trans 'Go back' %}</a>
+                          
+                <button type="submit" onclick="return checkforFields();" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-check"></i> {% trans 'SAVE' %}</button>
+              
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- end row -->
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+  <script>
+    // Check for fields
+    function checkforFields(){
+      var desc = $("#cke_id_blog_body iframe").contents().find("body").text();
+      if(desc === ''){
+        document.getElementById("descError").innerHTML = "Description cannot be blank.";
+        return false;
+      }
+      else{
+        document.getElementById("descError").innerHTML = "";
+        return true;
+      }
+    }
+  </script>
+  {% endblock %}

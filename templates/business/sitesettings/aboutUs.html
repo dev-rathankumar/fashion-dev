@@ -1,0 +1,151 @@
+{% extends 'business/base.html' %} {% load static %} {% block title %} 
+{% load i18n %}
+{% trans 'Edit About Us Page' %} {% endblock %} {% block content %} {{ form.media.js }}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+  <div class="page-content">
+    <div class="container-fluid">
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div
+            class="
+              page-title-box
+              d-flex
+              align-items-center
+              justify-content-between
+            "
+          >
+            <h4 class="mb-0 font-size-18">{% trans 'Edit About Us Page' %}</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+              <h4 class="card-title">{% trans 'Edit About Us Page' %}</h4>
+
+              <form
+                method="POST"
+                action="{% url 'aboutUs' %}"
+                enctype="multipart/form-data"
+              >
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="logo">{% trans 'Heading' %}</label>
+                      {{ about_form.heading }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label>{% trans 'Sub Heading' %}</label>
+                      {{ about_form.sub_heading }}
+                    </div>
+                  </div>
+                </div>
+                <br />
+
+                <!-- <a onclick="goBack()" class="btn margin-15px-top btn-secondary"
+                  ><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a
+                > -->
+                <button
+                  type="submit"
+                  class="btn btn-primary mr-1 waves-effect waves-light"
+                  style="letter-spacing: 2px"
+                >
+                  <i class="fas fa-save"></i> {% trans 'SAVE' %}
+                </button>
+              </form>
+              <br />
+
+              <!-- Add more content -->
+              <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                  <div class="form-group">
+                    <h2>{% trans 'About Us Page' %}</h2>
+                  </div>
+                </div>
+              </div>
+
+              
+              <form action="{% url 'aboutContent' %}" enctype="multipart/form-data" id="add_more_about" method="POST" >
+                {% csrf_token %}
+
+                
+                {{ formset.management_form }}
+
+                {% for form in formset.forms %}
+                <table class="aboutTable">
+                  {{ form.as_table }}
+                  
+                    {% if forloop.counter != 1 %}
+                      <hr style="margin-top: 0rem; margin-bottom: 3rem;border-top: 1px solid #556EE6;">
+                    {% endif %}
+                  {{ field.errors.as_ul }}
+                    {% if form.image.value %}
+                    
+                    <img src="{{ form.image.value.url }}" alt="" width="200" class="aboutImage">
+                    
+                    {% endif %}
+                   
+              </table>
+              
+
+                <tr class="{% cycle row1 row2 %} formset_row">
+                  
+                  
+                 
+                  
+                </tr>
+               <br><br>
+                {% endfor %}
+              
+
+               
+                <button
+                type="submit"
+                  name="add_another" value="true"
+                  class="btn btn-primary mr-1 waves-effect waves-light"
+                  style="letter-spacing: 2px"
+                >
+                  <i class="fas fa-save"></i> {% trans 'SAVE' %}
+                </button>
+                <button
+                type="submit"
+                  name="add_another" value="true"
+                  class="btn btn-success mr-1 waves-effect waves-light"
+                  style="letter-spacing: 2px"
+                >
+                  <i class="fas fa-plus"></i> {% trans 'ADD ANOTHER SECTION' %}
+                </button>
+            
+                
+              </form>
+            
+              
+              <div style="width: 300px">
+                {% include 'includes/_alerts.html' %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}
+</div>

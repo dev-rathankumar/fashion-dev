@@ -1,0 +1,17 @@
+{% load i18n %}
+<div class="col-xl-3 col-lg-3 col-md-12 md-margin-20px-bottom">
+  <!-- Nav tabs -->
+  <ul class="nav flex-column dashboard-list" role="tablist">
+    <li><a {% if request.path == '/userDashboard/' %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{% url 'userDashboard' %}">{% trans 'Dashboard' %}</a></li>
+    <li><a {% if 'myOrders' in request.path or 'orderDetail' in request.path %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{% url 'myOrders' %}">{% trans 'My Orders' %}</a></li>
+    <li><a {% if 'userInquiry' in request.path %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{% url 'userInquiry' %}">{% trans 'Inquiries' %}</a></li>
+    <li><a {% if 'edit' in request.path %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{% url 'editUser' user.id %}">{% trans 'Edit profile' %}</a></li>
+    <li><a {% if 'changeuserPassword' in request.path %} class="nav-link active" {% else %} class="nav-link" {% endif %} href="{% url 'changeuserPassword' %}">{% trans 'Change Password' %}</a></li>
+    <li><a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">{% trans 'logout' %}</a></li>
+    <form action="{% url 'logout' %}" id="logout" method="POST">
+      {% csrf_token %}
+      <input type="hidden">
+    </form>
+  </ul>
+  <!-- End Nav tabs -->
+</div>

@@ -1,0 +1,94 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Email Settings' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Email Settings' %}</h4>
+          </div>
+        </div>
+
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+              <h4 class="card-title">{% trans 'Email Settings' %}</h4>
+<br>
+<div>
+  {% include 'includes/_alerts.html' %}
+</div>
+{% if email_settings.is_settings_verified == False %}
+<p class="text-danger"><i class="fa fa-times" aria-hidden="true"></i> {% trans 'Your email configuration is invalid.' %}</p>
+{% elif email_settings.is_settings_verified == True %}
+<p class="text-success"><i class="fa fa-check" aria-hidden="true"></i>{% trans 'Your email configuration is verified.' %} </p>
+{% endif %}
+              <form method="POST" name=Myform action="{% url 'email_settings' %}" enctype="multipart/form-data">
+                <input type="hidden" autocomplete="false">
+                {% csrf_token %}
+                
+  {{form.as_p}}
+  
+  
+  <h5 id ="error" class="text-danger"></h5>
+                <br>
+                <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"
+                onclick ="return validateForm()" > <i class="fa fa-check" aria-hidden="true"></i> {% trans 'Save and Test Connection' %}</button>
+              </form>
+              <br>
+              {% if email_settings.is_settings_verified == False %}
+              <div>
+              
+                <p>{% trans 'Troubleshooting steps' %}:</p>
+                <ul>
+                  <li>{% trans 'Make sure your email address and password are correct.' %}</li>
+                  <li>{% trans 'Make sure your host is correct.' %}</li>
+                  <li>{% trans 'Make sure the Port number is correct.' %}</li>
+                  <li>{% trans 'If you are using Gmail, please turn ON' %} <span><a href="https://myaccount.google.com/lesssecureapps" target="_blank">less secure apps.</a></span></li>
+                </ul>
+              </div>
+              {% endif %}
+              
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+  <script>
+    function validateForm() {
+  var x = document.forms["Myform"]["email_host_password"].value;
+  if (x == "") {
+    document.getElementById("error").innerHTML = "Please enter the password";
+    return false;
+  }
+}
+
+  </script>
+
+
+
+  {% endblock %}

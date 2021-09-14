@@ -1,0 +1,141 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE  %}
+<!DOCTYPE html>
+<html class="no-js" lang="{{LANGUAGE_CODE}}" {% if LANGUAGE_CODE == 'ar' %}dir="rtl"{% endif %}>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>{% block title %}    {% endblock %} | {% if header.site_title %}{{header.site_title}} {% else %}eCommerce Website{% endif %}</title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% if header.favicon %} {{header.favicon.url}}{% endif %}" />
+<!-- Plugins CSS -->
+
+<link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+<link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="{% static 'css/style.css'%}">
+<link rel="stylesheet" href="{% static 'css/custom.css'%}">
+<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<!-- File Input Plugin -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+
+<!-- PayPal Payments -->
+{% if paypal_config %}
+<script src="https://www.paypal.com/sdk/js?client-id={{paypal_config.paypal_client_id}}&currency=USD"></script>
+{% endif %}
+<!-- faicons -->
+<link href="{% static 'faicon/css/faicon.css' %}" rel="stylesheet" />
+<script type="text/javascript" src="{% static 'faicon/js/list.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'faicon/js/faicon.js' %}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var visited = $.cookie("visited")
+        if (visited == null) {
+            $.cookie('visited', 'yes', { expires: 1, path: '/' });
+            var timer = 10000;
+            // var ids = $(".notification-box").map(function () {
+            //     return this.id;
+            //     }).get();
+        }else if(visited == 'yes'){
+            var timer = 15000;
+        }
+        var counter = $("#salespopup").find(".notification-box").length;
+        var intervalId = window.setInterval(function(){
+            showNotification(counter);
+            }, timer);
+        var getCooki = $.cookie("loopid")
+        if(getCooki == null){
+            i = 1;
+        }else if(getCooki > counter){
+            i = 1;
+        }else{
+            i = getCooki;
+        }
+        
+        $(window).bind('beforeunload',function(){
+            $.cookie('loopid', i, { expires: 1, path: '/' });
+        });
+        var myFuncCalls = 0;
+        function showNotification(counter){
+            if(i>counter){
+                i = 1;
+            }
+            var notification_box = '#notification-box-'+i;
+            $(notification_box).delay(1000).fadeIn().delay(8000).fadeOut();
+            i++;
+            console.log('function ran '+myFuncCalls+' times')
+            myFuncCalls++;
+        };
+        
+        // $(window).blur(function(){
+        //         console.log('window is closing')
+        //     });
+        //     $(window).focus(function(){
+        //         console.log('window is opening')
+        //     });
+        
+        });
+    
+</script>
+
+<style type="text/css">
+	.notification-box{
+        padding: 10px;
+		min-width: 400px;
+        box-shadow: 1px 1px 10px 1px #8e8d8d;
+	}
+</style>
+</head>
+<body class="template-index index-demo1" onload="DrawCaptcha(), DrawCaptchaRating();">
+
+
+<!--  S A L E S  P O P U P  -->
+<div id="salespopup" class="salespopup">
+    {% for popup in popups %}
+    <div id="notification-box-{{forloop.counter}}" class="notification-box" style="background-color: {{popupsettings.background_color}}; display: none;position: fixed;
+        {% if popupsettings.notification_position == 'Left Bottom Corner' %}bottom: 50px; left:100px;
+        {% elif popupsettings.notification_position == 'Right Bottom Corner' %}bottom: 50px; right:100px;
+        {% elif popupsettings.notification_position == 'Left Top Corner' %}top: 80px; left:100px;
+        {% elif popupsettings.notification_position == 'Right Top Corner' %}top: 80px; right:100px;
+        {% else %}bottom: 50px; left:100px;{% endif %}z-index:5;{% if popupsettings.notification_style == 'Rounded' %}border-radius:15px;{% endif %}">
+
+        <div class="row" style="padding-left: 15px; color: {{popupsettings.text_color}};">
+            <div class="col-2 p-0">
+                <img src="{{popup.product.image.url}}" style="max-width: 50px;{% if popupsettings.notification_style == 'Rounded' %}border-radius:5px;{% endif %}">
+            </div>
+            <div class="col-9 p-0">
+                <p style="margin:0;font-size: 12px;">{{popup.name}} in {{popup.location}} purchased</p>
+                <p style="margin:0;font-size: 12px;"><span><a href="{{popup.product.get_url}}" style="color: {{popupsettings.text_color}};"><b>{{popup.product.product_name}}</b></a></span></p>
+                <span style="font-size: 10px;">{{popup.time}} {{popup.interval}} ago</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!--  S A L E S  P O P U P  -->
+<div class="page-wrapper">
+    <!--Promotion Bar-->
+    {% if topbar.is_enabled %}
+	<div class="notification-bar mobilehide">
+    	<span class="notification-bar__message">{{ topbar.topbar_text | safe }}</span>
+        <span class="close-announcement"><i class="anm anm-times-l" aria-hidden="true"></i></span>
+    </div>
+    {% endif %}
+    <!--End Promotion Bar-->
+
+    {% include 'includes/_navbar.html' %}
+
+
+  {% block content %}
+
+
+  {% endblock %}
+
+  {% include 'includes/_footer.html' %}

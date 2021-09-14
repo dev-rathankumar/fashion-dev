@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'My Account' %} {% endblock %}
+{% block content %}
+
+<div id="page-content">
+        <!--Body Container-->
+        <!--Breadcrumbs-->
+        <div class="breadcrumbs-wrapper">
+        	<div class="container">
+            	<div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'My Account' %}</span></div>
+            </div>
+        </div>
+        <!--End Breadcrumbs-->
+        
+        <div class="container">
+            {% include 'includes/_alerts.html' %}
+        	{% include 'accounts/includes/_navbar.html' %}
+            <div class="row mb-5">
+                {% include 'accounts/includes/_sidebar.html' %}
+
+                <div class="col-xs-9 col-lg-9 col-md-12">
+                    <!-- Tab panes -->
+                    <div class="tab-content dashboard-content padding-30px-all md-padding-15px-all">
+                        <!-- Dashboard -->
+                        <div class="tab-pane fade active show">
+                            <h3>{% trans 'Dashboard' %} </h3>
+                            <div class="dashboard-upper-info">
+                              <div class="row align-items-center no-gutters">
+                                <div class="col-xl-3 col-lg-3 col-md-12">
+                                    <a href="{% url 'myOrders' %}">
+                                    <div class="d-single-info text-center">
+                                        <h4>{% trans 'Your Orders' %}</h4>
+                                        <h2>{{orders_count}}</h2>
+                                    </div>
+                                </a>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12">
+                                  <a href="{% url 'userInquiry' %}">
+                                    <div class="d-single-info text-center">
+                                        <h4>{% trans 'Your Inquiries' %}</h4>
+                                        <h2>{{inquiry_count}}</h2>
+                                    </div>
+                                  </a>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-12">
+                                  <div class="d-single-info text-lg-center">
+                                      <a href="{% url 'editUser' user.id %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {% trans 'Edit Profile' %}</a>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Dashboard -->
+                    </div>
+                    <!-- End Tab panes -->
+                </div>
+            </div>
+        </div><!--End Body Container-->
+    </div><!--End Page Wrapper-->
+
+{% endblock %}

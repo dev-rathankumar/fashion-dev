@@ -1,0 +1,262 @@
+{% extends 'business/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} {% trans 'Dashboard' %} {% endblock %}
+
+{% block content %}
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h4 class="mb-0 font-size-18">{% trans 'Dashboard' %}</h4>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="dropdown float-right">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="letter-spacing: 2px;">
+                                        <i class="bx bxs-cog align-middle mr-1"></i> {% trans 'QUICK LINKS' %}
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="text-muted dropdown-item disabled">{% trans 'YOUR STORE' %}</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="{% url 'allCategories' %}" class="dropdown-item" key="t-products" {% if '/categories/' == request.path %} class="waves-effect active" {% else %} class="waves-effect" {% endif %}>{% trans 'Categories' %}</a>
+                                        <a href="{% url 'allProducts' %}" class="dropdown-item" key="t-products" {% if '/products/' == request.path %} class="waves-effect active" {% else %} class="waves-effect" {% endif %}>{% trans 'Products' %}</a>
+                                        <a href="/business/orders" class="dropdown-item" {% if 'orders' in request.path or 'editOrder' in request.path %} class="waves-effect active" {% else %} class="waves-effect" {% endif %}>{% trans 'Orders' %}</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="text-muted dropdown-item disabled">{% trans 'SETTINGS' %}</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="{% url 'topbarEdit' %}" class="dropdown-item" key="t-products" {% if '/site_settings/topbarEdit/' in request.path %} class="waves-effect active" {% else %} class="waves-effect" {% endif %}>{% trans 'Topbar' %}</a>
+                                        <a href="{% url 'header' %}" class="dropdown-item" key="t-products" {% if '/site_settings/header/' in request.path %} class="waves-effect active" {% else %} class="waves-effect" {% endif %}>{% trans 'Header' %}</a>
+                                        <a href="{% url 'footerEdit' %}" class="dropdown-item" key="t-products" {% if '/site_settings/footerEdit/' in request.path %} class="waves-effect active" {% else %} class="waves-effect" {% endif %}>{% trans 'Footer' %}</a>
+                                        <a href="{% url 'banners' %}" class="dropdown-item" key="t-products" {% if '/site_settings/banners/' in request.path or '/site_settings/banners/editBanner' in request.path %} class="waves-effect active" {% else %} class="waves-effect"{% endif %}>{% trans 'Banners' %}</a>
+                                        <a href="{% url 'paymentGateways' %}" class="dropdown-item" key="t-products" {% if '/site_settings/paymentGateways/' in request.path %} class="waves-effect active" {% else %} class="waves-effect" {% endif %}>{% trans 'Payment Gateways' %}</a>
+                                    </div>
+                                </div>
+                            </div>
+                               
+                            
+                        </div>
+                        <!-- end page title -->
+                      {% include 'includes/_alerts.html' %}
+                        <div class="row">
+                            <div class="col-xl-8 mx-auto">
+                                <div class="card overflow-hidden">
+                                    <div class="bg-soft-primary" style="background-image: url('{{dashboardimage.business_landing_image.url}}');background-size: cover;height: 300px;">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="text-primary p-3">
+                                                    <h5 class="text-primary text-light">{% trans 'Hi' %}, {{ user.name }}</h5>
+                                                    <p class="text-light">{% trans 'Welcome back!' %}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="avatar-md profile-user-wid mb-4">
+                                                    <img src="{{ user.profile_picture.url }}" alt="" class="img-thumbnail rounded-circle">
+                                                </div>
+                                                <h5 class="font-size-15 text-truncate">{{ user.name }}</h5>
+                                                <p class="text-muted mb-0 text-truncate">{% trans 'Business Account' %}</p>
+                                            </div>
+
+                                            <div class="col-sm-8">
+                                                <div class="pt-4">
+
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <h5 class="font-size-15"><a href="{% url 'allOrders' %}">{{orders_count}}</a></h5>
+                                                            <p class="text-muted mb-0"><a href="{% url 'allOrders' %}">{% trans 'Orders' %}</a></p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <h5 class="font-size-15">${{revenue}}</h5>
+                                                            <p class="text-muted mb-0">{% trans 'Revenue' %}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-4">
+                                                        <a href="{% url 'biz_profile' %}" class="btn btn-primary waves-effect waves-light btn-sm">{% trans 'View Profile' %} <i class="mdi mdi-arrow-right ml-1"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-8 mx-auto">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium"><a href="{% url 'allProducts' %}">{% trans 'Products' %}</a></p>
+                                                        <h4 class="mb-0"><a href="{% url 'allProducts' %}">{{products_count}}</a></h4>
+                                                    </div>
+
+                                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                                        <span class="avatar-title">
+                                                            <i class="bx bx-store font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium"><a href="{% url 'allCustomers' %}">{% trans 'Customers' %}</a></p>
+                                                        <h4 class="mb-0"><a href="{% url 'allCustomers' %}">{{customers_count}}</a></h4>
+                                                    </div>
+
+                                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                        <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="bx bx-user font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="text-muted font-weight-medium"><a href="{% url 'allInquiries' %}">{% trans 'Inquiries' %}</a></p>
+                                                        <h4 class="mb-0"><a href="{% url 'allInquiries' %}">{{inquiries_count}}</a></h4>
+                                                    </div>
+
+                                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                        <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="bx bx-phone font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end row -->
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+
+
+
+                        <!-- end row -->
+                    </div>
+                    <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                <!-- Modal -->
+                <div class="modal fade exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="mb-2">Product id: <span class="text-primary">#SK2540</span></p>
+                                <p class="mb-4">Billing Name: <span class="text-primary">Neal Matthews</span></p>
+
+                                <div class="table-responsive">
+                                    <table class="table table-centered table-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">
+                                                    <div>
+                                                        <img src="business/images/product/img-7.png" alt="" class="avatar-sm">
+                                                    </div>
+                                                </th>
+                                                <td>
+                                                    <div>
+                                                        <h5 class="text-truncate font-size-14">Wireless Headphone (Black)</h5>
+                                                        <p class="text-muted mb-0">$ 225 x 1</p>
+                                                    </div>
+                                                </td>
+                                                <td>$ 255</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <div>
+                                                        <img src="business/images/product/img-4.png" alt="" class="avatar-sm">
+                                                    </div>
+                                                </th>
+                                                <td>
+                                                    <div>
+                                                        <h5 class="text-truncate font-size-14">Phone patterned cases</h5>
+                                                        <p class="text-muted mb-0">$ 145 x 1</p>
+                                                    </div>
+                                                </td>
+                                                <td>$ 145</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <h6 class="m-0 text-right">Sub Total:</h6>
+                                                </td>
+                                                <td>
+                                                    $ 400
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <h6 class="m-0 text-right">Shipping:</h6>
+                                                </td>
+                                                <td>
+                                                    Free
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <h6 class="m-0 text-right">Total:</h6>
+                                                </td>
+                                                <td>
+                                                    $ 400
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal -->
+
+
+        <!-- footer -->
+{% endblock %}

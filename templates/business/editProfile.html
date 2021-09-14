@@ -1,0 +1,178 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Edit Profile {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0 font-size-18">Edit Your Profile</h4>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xl-8" style="margin:auto;">
+                  {% include 'includes/_alerts.html' %}
+                    <div class="card overflow-hidden">
+                      <div class="card overflow-hidden">
+                        <div class="bg-soft-primary" style="background-image: url('{{dashboardimage.business_landing_image.url}}');background-size: cover;height: 300px;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text-primary p-3">
+                                        <h5 class="text-primary text-light">Hi, {{ user.name }}</h5>
+                                        <p class="text-light">Welcome back!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="avatar-md profile-user-wid mb-4">
+                                        <img src="{{ user.profile_picture.url }}" alt="" class="img-thumbnail rounded-circle">
+                                    </div>
+                                    <h5 class="font-size-15 text-truncate">{{ user.name }}</h5>
+                                    <p class="text-muted mb-0 text-truncate">Business Account</p>
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <div class="pt-4">
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h5 class="font-size-15">{{orders_count}}</h5>
+                                                <p class="text-muted mb-0">Orders</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <h5 class="font-size-15">${{revenue}}</h5>
+                                                <p class="text-muted mb-0">Revenue</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <a href="{% url 'biz_dashboard' %}" class="btn btn-primary waves-effect waves-light btn-sm"><i class="mdi mdi-arrow-left ml-1"></i> Dashboard</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end card -->
+
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title mb-4">Edit Your Profile</h4>
+
+                        <div class="table-responsive" style="overflow-x: hidden;">
+                          <form action="{% url 'editProfile' user.pk %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="row">
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-lastname">First Name <span class="required-f">*</span></label>
+                                {{ user_form.first_name }}
+                              </div>
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-lastname">Last Name <span class="required-f">*</span></label>
+                                {{ user_form.last_name }}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-4 col-lg-4 col-xl-4 required">
+                                <label for="input-lastname">Company Name <span class="required-f">*</span></label>
+                                {{ business_form.company_name }}
+                              </div>
+                              <div class="form-group col-md-4 col-lg-4 col-xl-4 required">
+                                <label for="input-lastname">Email Address <span class="required-f">*</span></label>
+                                {{ user_form.email }}
+                              </div>
+                              <div class="form-group col-md-4 col-lg-4 col-xl-4 required">
+                                <label for="input-lastname">Phone Number <span class="required-f">*</span></label>
+                                {{ user_form.phone_number }}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-lastname">Gender <span class="required-f">*</span></label>
+                                {{ user_form.gender }}
+                              </div>
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                  <label for="input-lastname">Profile Picture<span class="text-muted">&nbsp; 500 x 500px</span></label>
+                                  {{ user_form.profile_picture }}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-lastname">Address Line 1 <span class="required-f">*</span></label>
+                                {{ business_form.address_line_1 }}
+                              </div>
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-lastname">Address Line 2</label>
+                                {{ business_form.address_line_2 }}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-lastname">City <span class="required-f">*</span></label>
+                                {{ business_form.city }}
+                              </div>
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-lastname">Pin Code</label>
+                                {{ business_form.pin_code }}
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-state">State <span class="required-f">*</span></label>
+                                {{ business_form.state }}
+                              </div>
+                              <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                <label for="input-country">Country</label>
+                                {{ business_form.country }}
+                              </div>
+                            </div>
+
+
+                            <button type="submit" class="btn margin-15px-top btn-primary"><i class="fas fa-check"></i> Save</button>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                    <!-- end card -->
+                </div>
+
+                <div class="col-xl-8">
+
+
+                    <!-- <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Revenue</h4>
+                            <div id="revenue-chart" class="apex-charts"></div>
+                        </div>
+                    </div> -->
+
+
+                </div>
+            </div>
+            <!-- end row -->
+
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}

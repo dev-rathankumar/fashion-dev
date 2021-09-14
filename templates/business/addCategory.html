@@ -1,0 +1,91 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Add Category' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Add Category' %}</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+
+
+            <div class="card-body">
+              <div class="text-sm-right">
+                <a href="{% url 'addProduct' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> {% trans 'Add New Product' %}</a>
+              </div>
+              {% include 'includes/_alerts.html' %}
+
+              <form method="POST" action="{% url 'addCategory' %}" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="productname">{% trans 'Category Name' %}</label>
+                      {{ form.category_name }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="parent">{% trans 'Subcategory' %} <small>{% trans '(Optional)' %}</small> <span><small>{% trans 'By default, this will be added as a main category.' %}</small></span></label>
+                      {{ form.parent }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="productname">{% trans 'Category Image' %}<span class="text-muted">&nbsp; 30 x 30px</span></label>
+                      {{ form.cat_image }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="productname">{% trans 'Category Description' %} <small>{% trans '(Optional)' %}</small></label>
+                      {{ form.description }}
+                    </div>
+                  </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="float: left;letter-spacing: 2px;"><i class="fas fa-check"></i> {% trans 'SAVE' %}</button>
+              </form>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Tax {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Set Tax</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+              {% include 'includes/_alerts.html' %}
+
+              <form method="POST" action="{% url 'setTax' request.user.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="productname">Category Name</label>
+
+                    </div>
+                  </div>
+                </div>
+
+                <table class="table">
+                  {{ formset.management_form }}
+
+                  {% for form in formset.forms %}
+                  {% if forloop.first %}
+                  <thead>
+                    <tr>
+                      {% for field in form.visible_fields %}
+                      <th>{{ field.label|capfirst }}</th>
+                      {% endfor %}
+                    </tr>
+                  </thead>
+                  {% endif %}
+                  <tr class="{% cycle row1 row2 %} formset_row">
+                    {% for field in form.visible_fields %}
+                    <td>
+                      {# Include the hidden fields in the form #}
+                      {% if forloop.first %}
+                      {% for hidden in form.hidden_fields %}
+                      {{ hidden }}
+                      {% endfor %}
+                      {% endif %}
+                      {{ field.errors.as_ul }}
+
+                      {{ field }}
+                    </td>
+                    {% endfor %}
+                  </tr>
+                  {% endfor %}
+                </table>
+
+<div style="display:flex;">
+  <button type="submit" name="add_another" value="true" class="btn btn-success mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-plus"></i>
+                    SAVE &amp; ADD ANOTHER</button>
+  <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" name="add_another" value="false" style="letter-spacing: 2px;float:right;"><i class="fas fa-check"></i> SAVE</button>
+
+
+</div>
+
+                </form>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

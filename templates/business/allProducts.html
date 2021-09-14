@@ -1,0 +1,211 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'All Products' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'All Products' %}</h4>
+
+            <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">{% trans 'Products' %}</a></li>
+                <li class="breadcrumb-item active">{% trans 'All Products' %}</li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+      {% include 'includes/_alerts.html' %}
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="row" style="margin-right: 0px;margin-left: 0px;">
+              <div id="feature" class="col-md-12 col-lg-12 col-sm-12 alert {% if product_activation.is_enabled %}alert-success{% else %}alert-danger{% endif %}" role="alert">
+                {% if product_activation.is_enabled %}Product selling feature is <span id="enabledisable">enabled</span> in your website. {% else %}Product selling feature is <span id="enabledisable">disabled</span> in your website. {% endif %} &emsp;
+                <span>
+                  <label class="switch" style="margin-bottom: -0.5rem;">
+                    <input type="hidden" name="productToggleUrl" id="productToggleUrl" value="{% url 'productEnableToggle' %}">
+                    <input type="checkbox" id="productSwitch" {% if product_activation.is_enabled %} checked {% else %} {% endif %} onclick="productSwitch()">
+                    <span class="slider round"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            {% if not products %}
+            <h2 class="text-center" style="padding:25px;">{% trans 'You do not have any products' %}</h2>
+            <div class="text-sm-center" style="padding-bottom:25px;">
+              <a href="{% url 'addProduct' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i>{% trans 'Add New Product' %} </a>
+            </div>
+            {% else %}
+            <div class="card-body">
+              <div class="row mb-2">
+                <div class="col-sm-4">
+                  <div class="search-box mr-2 mb-2 d-inline-block">
+                    <div class="position-relative">
+                      <input type="text" id="myInput" class="form-control" placeholder="{% trans 'Search' %}...">
+                      <i class="bx bx-search-alt search-icon"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="text-sm-right">
+                    <a href="{% url 'addProduct' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> {% trans 'Add New Product' %}</a>
+                  </div>
+                </div><!-- end col-->
+              </div>
+
+              <div class="table-responsive">
+
+                <table class="table table-centered table-nowrap table-hover">
+                  <thead class="thead-light">
+                    <tr>
+                      <!-- <th style="width: 20px;">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1">
+                          <label class="custom-control-label" for="customCheck1">&nbsp;</label>
+                        </div>
+                      </th> -->
+                      <th>{% trans 'Image' %}</th>
+                      <th>{% trans 'Product Name' %}</th>
+                      <th>{% trans 'Price' %}</th>
+                      <th>{% trans 'Stock' %}</th>
+                      <th>{% trans 'Variants' %}</th>
+                      <th>{% trans 'Category' %}</th>
+                      <th>{% trans 'Availability' %}</th>
+                      <th>{% trans 'Status' %}</th>
+                      <th>{% trans 'Preview' %}</th>
+                      <th>{% trans 'Action' %}</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+
+
+
+                    {% for product in products %}
+                    <tr>
+                      <td>
+                        <img src="{{ product.image.url }}" alt="Product Image" width="30" style="border-radius:50px;">
+                      </td>
+                      <td style="max-width: 300px;white-space: unset;">{{product.product_name}}</td>
+                      <td>
+                        ${{product.price}}
+                      </td>
+                      <td>
+                        {{product.stock}}
+                      </td>
+                      <td>{% if product.variant == 'Size-Color' %}{% trans 'Size' %}, {% trans 'Color' %}{% elif product.variant == 'None' %}NA{% else %}{{product.variant}}{% endif %}</td>
+                      <td>
+                        {{product.category}}
+                      </td>
+                      <td>
+
+                        {% if product.stock <= 0 %}
+                        <span class="badge badge-pill badge-soft-danger font-size-12">{% trans 'Out of Stock' %}</span>
+                        {% else %}
+                        <span class="badge badge-pill badge-soft-success font-size-12">{% trans 'Available' %}</span>
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if product.is_active == True %}
+                        <span class="badge badge-pill badge-soft-success font-size-12">{% trans 'Active' %}</span>
+                        {% else %}
+                        <span class="badge badge-pill badge-soft-danger font-size-12">{% trans 'Inactive' %}</span>
+                        {% endif %}
+                      </td>
+                      <td>
+                        <!-- Button trigger modal -->
+                        {% if product.is_active == True %}
+                        <a href="{{ product.get_url }}" target="_blank" class="btn btn-primary btn-sm btn-rounded">
+                          {% trans 'Preview' %}
+                        </a>
+                        {% else %}
+                        <a class="btn btn-primary btn-sm btn-rounded disabled">
+                          {% trans 'Preview' %}
+                        </a>
+                        {% endif %}
+                      </td>
+                      <td>
+                        <a href="{% url 'editProduct' product.id %}" class="mr-3 text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="mdi mdi-pencil font-size-18"></i></a>
+                        <a href="{% url 'deleteProduct' product.id %}" onclick="return confirm('Are you sure you want to delete this product?')" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i
+                            class="mdi mdi-close font-size-18"></i></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+
+
+
+
+
+
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Paginator Start -->
+              {% if products.has_other_pages %}
+              <ul class="pagination pagination-rounded justify-content-end mb-2">
+                {% if products.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{products.previous_page_number}}" aria-label="Previous">
+                    <i class="mdi mdi-chevron-left"></i>
+                  </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" aria-label="Previous">
+                    <i class="mdi mdi-chevron-left"></i>
+                  </a>
+                </li>
+                {% endif %}
+                {% for i in products.paginator.page_range %}
+                {% if products.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                {% endif %}
+                {% endfor %}
+
+                {% if products.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{products.next_page_number}}" aria-label="Next">
+                    <i class="mdi mdi-chevron-right"></i>
+                  </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" aria-label="Next">
+                    <i class="mdi mdi-chevron-right"></i>
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+              {% endif %}
+              <!-- Paginator End -->
+
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div> <!-- container-fluid -->
+  </div>
+
+
+  {% endblock %}

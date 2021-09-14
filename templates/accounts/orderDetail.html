@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load i18n %}
+{% load static %}
+{% block title %} {% trans 'Order Details' %} {% endblock %}
+{% block content %}
+
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="index.html" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'My Account' %}</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  {% include 'includes/_alerts.html' %}
+  <div class="container">
+    {% include 'accounts/includes/_navbar.html' %}
+    <div class="row mb-5">
+      {% include 'accounts/includes/_sidebar.html' %}
+
+      <div class="col-xs-9 col-lg-9 col-md-12">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sm-margin-30px-bottom">
+          <div class="create-ac-content bg-light-gray padding-20px-all">
+
+            <div class="your-order">
+              <h2 class="order-title mb-4">{% trans 'Thank you for your order' %}, {{order.user.first_name}}</h2>
+
+              <p style="font-size:24px;text-align:right;">{% trans 'Order' %} # <span style="font-size:48px;">{{order.order_number}}</span></p>
+              <p class="text-muted">{% trans 'Date' %}: {{order.created_at}}</p>
+              {% if order.payment_method == 'Cash On Delivery' %}
+              <div class="alert alert-primary" role="alert">
+                {% trans 'You have choose to pay Cash On Delivery. Please visit our store to pick up your products.' %}
+              </div>
+              {% endif %}
+              {% if order.status == 'Cancelled' %}
+              <div class="alert alert-danger" role="alert">
+                This order was cancelled
+              </div>
+              {% elif order.status == 'On Hold' %}
+              <div class="alert alert-primary" role="alert">
+                {% trans 'This order is on hold. Please wait until we verify your payment.' %}
+              </div>
+              {% endif %}
+              <div class="table-responsive-sm order-table">
+                {% if order.payment_method == 'Cash On Delivery' %}
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col-8">
+                        <h5 class="m-0">{% trans 'Store Address' %}</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="card-body">
+                        <p class="card-text mb-0" style="font-weight:600;">{{order.store_location.store_name}}</p>
+                        <p class="card-text mb-0">{{order.store_location.address}}</p>
+                        <p class="card-text mb-0">{{order.store_location.city}} - {{order.store_location.pin_code}}</p>
+                        <p class="card-text mb-0">{{order.store_location.state}}, {{order.store_location.country}}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="card-body">
+                        <p class="card-text mb-0">{{order.store_location.email}}</p>
+                        <p class="card-text mb-0">{{order.store_location.phone_number}}</p>
+                        {% if order.store_location.geolocation %}
+                        <i class="fas fa-directions" style="font-size: 20px;color: #1A73E8;"></i> <a href="{{order.store_location.geolocation}}" target="_blank" style="font-size: 16px;color: #1A73E8;">Get Direction</a>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% else %}
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col-8">
+                        <h5 class="m-0">{% trans 'Shipping Address' %}</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="card-body">
+                        <p class="card-text mb-0" style="font-weight:600;">{{order.name}}</p>
+                        <p class="card-text mb-0">{{order.address}}</p>
+                        <p class="card-text mb-0">{{order.city}} - {{order.pin_code}}</p>
+                        <p class="card-text mb-0">{{order.state}}, {{order.country}}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                      <div class="card-body">
+                        <p class="card-text mb-0">{{order.email}}</p>
+                        <p class="card-text mb-0">{{order.phone}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col-8">
+                        <h5 class="m-0">{% trans 'Transaction Details' %}</h5>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                      <div class="card-body">
+                        <p class="card-text mb-0">{% trans 'Transaction No.' %}</p>
+                        <p style="font-weight:600;">{{ order.payment }}</p>
+                        <p class="card-text mb-0">{% trans 'Payment Method' %}</p>
+                        <p style="font-weight:600;">{{ order.payment.payment_method | upper }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col-8">
+                        <h5 class="m-0">{% trans 'Purchased Products' %}</h5>
+                      </div>
+
+                    </div>
+                  </div>
+                  {% for i in order_detail %}
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="card-body">
+                        {% if i.variant.image_id  > 0 %}
+                        <img src="{{i.variant.image }}" alt="Product Variant Image" width="50">
+                        {% else %}
+                        <img src="{{i.product.image.url}}" alt="Product Image" width="50">
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card-body">
+                        <a class="card-text mb-0" href="{{ i.product.get_url }}" style="font-weight:600;">
+                          {% if i.product.variant != 'None' %}
+                          {{ i.variant.title }}
+                          {% else %}
+                          {{ i.product.product_name }}
+                          {% endif %}
+                        </a>
+                        <div class="cart__meta-text">
+                          {% if i.product.variant != 'None' %}
+                          {% if i.variant.product.variant == 'Size'  %}
+                            {{ i.variant.size }}
+                          {% elif i.variant.product.variant == 'Color' %}
+                            {{ i.variant.color }}
+                          {% elif i.variant.product.variant == 'Custom' %}
+                          {% for key, value in i.variant.variant_data.items %}
+                            {{value}} {% if not forloop.last %}|{% endif %}
+                          {% endfor %}
+                          {% else %}
+                            {{ i.variant.color }} | {{ i.variant.size }}
+                          {% endif %}
+                        {% endif %}
+                        </div>
+                        <div class="cart__meta-text">
+                          Qty: {{ i.quantity }}
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-2">
+                      <div class="card-body">
+                        <p class="card-text alert alert-{% if i.status == 'New' %}warning {% elif i.status == 'Accepted' %}primary {% elif i.status == 'Cancelled' %}danger {% elif i.status == 'Completed' %}success  {% endif %}" role="success"
+                          style="font-weight:600;padding:5px;text-align: center;width:100px;">{{ i.status }}</p>
+                      </div>
+                    </div> -->
+                    <div class="col-md-4">
+                      <div class="card-body">
+                        <p class="card-text mb-0" style="font-weight:600;">${{ i.amount | intcomma }}</p>
+                        <div class="cart__meta-text">
+                          ({% if i.product.variant != 'None' %}
+                          ${{ i.variant.price | intcomma }}
+                          {% else %}
+                          ${{i.product.price | intcomma}}
+                          {% endif %} each)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col text-right">
+                        {% if order.status == 'New' or order.status == 'Accepted' or order.status == 'Completed' %}
+                        <img src="{% static 'business/images/paid.png' %}" alt="Paid" width="200">
+                        {% endif %}
+                      </div>
+
+                     
+                        <div class="col-md-12">
+                          <div class="solid-border">
+                            <!-- <div class="row">
+                              <span class="col-12 col-sm-6 cart__subtotal-title">Subtotal</span>
+                              <span class="col-12 col-sm-6 cart__subtotal-title text-right"><span class="money" style="font-size:20px;">${{order.total}}</span></span>
+                            </div> -->
+                            <!-- Tax -->
+                            <div class="row">
+                              <span class="col-12 col-sm-6 cart__subtotal-title">{% trans 'Tax' %} &emsp; ${{order.tax}}</span>
+                            </div>
+                            <!-- Grand Total -->
+                            <div class="row">
+                              <span class="col-12 col-sm-6 cart__subtotal-title"><strong>{% trans 'Grand Total' %} &emsp; <span class="money" style="font-size:32px;">${{order.payment.amount}}</span></strong></span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      
+
+                    </div>
+                    {% if order.status == 'Cancelled' %}
+                    <div class="alert alert-danger" role="alert">
+                      This order was cancelled
+                    </div>
+                    {% elif order.status == 'On Hold' %}
+                    <div class="alert alert-primary" role="alert">
+                      {% trans 'This order is on hold. Please wait until we verify your payment.' %}
+                    </div>
+                    {% endif %}
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Account Details -->
+
+
+        <!-- End Tab panes -->
+      </div>
+    </div>
+  </div>
+  <!--End Body Container-->
+</div>
+<!--End Page Wrapper-->
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Login' %} {% endblock %}
+{% block content %}
+
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'Login' %}</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  <!--Page Title with Image-->
+  <div class="page-title">
+    <h1>{% trans 'Login' %}</h1>
+  </div>
+  <!--End Page Title with Image-->
+  <div class="container">
+    <div class="row">
+      <!--Main Content-->
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 box">
+        <h3>{% trans 'New Customers' %}</h3>
+        <p>{% trans 'By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.' %}</p>
+        <a href="{% url 'userRegister' %}" class="btn">{% trans 'Create an account' %}</a>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 box">
+        <div class="mb-4">
+
+          {% include 'includes/_alerts.html' %}
+          <form action="{% url 'userLogin' %}" method="POST" action="" id="CustomerLoginForm" class="login-form">
+            {% csrf_token %}
+            <p>{% trans 'If you have an account with us, please log in.' %}</p>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label for="CustomerEmail">{% trans 'Email' %} <span class="required">*</span></label>
+                  <input type="email" name="email" placeholder="{% trans 'Your Email Address' %}" required>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                  <label for="CustomerPassword">{% trans 'Password' %} <span class="required">*</span></label>
+                  <input type="password" value="" name="password" placeholder="{% trans 'Your password' %}" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-left col-12 col-sm-12 col-md-12 col-lg-12">
+                <input type="submit" class="btn mb-3" value="{% trans 'Sign In' %}">
+                <p class="mb-4">
+                  <a href="{% url 'forgotPassword' %}">{% trans 'Forgot your password?' %}</a> &nbsp; | &nbsp;
+                  <a href="{% url 'userRegister' %}" id="customer_register_link">{% trans 'Create account' %}</a>
+                </p>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+      <!--End Main Content-->
+    </div>
+
+  </div>
+  <!--End Body Container-->
+
+</div>
+<!--End Page Wrapper-->
+
+{% endblock %}

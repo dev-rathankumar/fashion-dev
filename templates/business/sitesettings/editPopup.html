@@ -1,0 +1,112 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Edit Sales Popup {% endblock %}
+{% load i18n %}
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Edit Sales Popup</h4>
+          </div>
+        </div>
+
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container" style="max-width: 800px;">
+            <div class="card-body">
+              
+
+              <form method="POST" action="{% url 'editPopup' popup.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+
+                <div class="row">
+                  <div class="col-md-5 col-lg-5 col-sm-12">
+                    <div class="form-group">
+                      {{ form.name }}
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-lg-2 col-sm-12">
+                    <div class="form-group text-right" style="margin-top: 8px;">
+                      in
+                    </div>
+                  </div>
+                  <div class="col-md-5 col-lg-5 col-sm-12">
+                    <div class="form-group d-flex">
+                      {{ form.location }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2 col-lg-2 col-sm-12">
+                    <div class="form-group" style="margin-top: 8px;">
+                      purchased
+                    </div>
+                  </div>
+                  <div class="col-md-10 col-lg-10 col-sm-12">
+                    <div class="form-group">
+                      {{ form.product }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2 col-lg-2 col-sm-12">
+                    <div class="form-group" >
+                      {{ form.time }}
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-lg-3 col-sm-12">
+                    <div class="form-group">
+                      {{ form.interval }}
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-lg-3 col-sm-12">
+                    <div class="form-group" style="margin-top: 8px;">
+                      ago
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group d-flex">
+                      <span>{{form.is_active}}</span> <span style="margin-top: 2px;">&emsp; Activate this popup?</span>
+                    </div>
+                  </div>
+                </div>
+                  <br>
+                  <a onclick="goBack()" class="btn margin-15px-top btn-secondary"><i class="fa fa-arrow-left" aria-hidden="true"></i> {% trans 'Back' %} </a>
+                  <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-save"></i> SAVE</button>
+              </form>
+              <br>
+              <div>
+                {% include 'includes/_alerts.html' %}
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

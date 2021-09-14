@@ -1,0 +1,99 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Send an Email' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Send An Email' %}</h4>
+          </div>
+        </div>
+
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="row">
+              <div class="col-sm-12 col-md-8 col-lg-8">
+                <div class="card-body">
+                  <h4 class="card-title">{% trans 'Send An Email' %}</h4>
+                  <br>
+                  <form method="POST" action="{% url 'send_email' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                          <label for="logo">{% trans 'Subject' %}</label>
+                          {{ form.subject }}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                          <label for="logo">{% trans 'Email Body' %}</label>
+                          {{ form.email_body }}
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;">{% trans 'SEND' %}  <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                  </form>
+                  <br>
+                  <div style="width:300px;">
+                    {% include 'includes/_alerts.html' %}
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                      <h4>{% trans 'Subscribers' %}</h4>
+                      <div class="form-group" style="max-height:515px;overflow:scroll;background-color:#F1F1F1;">
+
+                        <!-- {{ form.to_address }} -->
+                        {% for i in subscribers %}
+                        <!-- <p>{{i}}</p> -->
+                        <ol style="margin-top: 1rem !important;">
+                          <li value="{{ forloop.counter }}">{{i}}</li>
+                        </ol>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

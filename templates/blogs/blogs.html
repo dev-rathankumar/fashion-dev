@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Blogs' %} {% endblock %}
+
+{% block content %}
+{% load static %}
+{% load mptt_tags %}
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="index.html" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'Blogs' %}</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  <div class="page-title">
+    <h1>{% trans 'Blogs' %}</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <!--Sidebar-->
+      <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar">
+        <div class="sidebar_widget">
+          <div class="widget-title">
+            <h2>{% trans 'Search' %}</h2>
+          </div>
+
+          <div class="custom-search">
+            <form action="{% url 'blog' %}" class="form minisearch" id="header-search" method="GET">
+
+                <div class="input-group searchField">
+    <input type="text" class="form-control" name="keyword" value="{{values.keyword}}" placeholder="{% trans 'Search for blogs...' %}"  class="input-text">
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="submit">
+        <i class="icon anm anm-search-l"></i>
+      </button>
+    </div>
+  </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="sidebar_tags">
+          <div class="sidebar_widget categories">
+            <div class="widget-title">
+              <h2>{% trans 'Blog Category' %}</h2>
+            </div>
+            <div class="widget-content">
+              <ul class="sidebar_categories">
+                <ul class="dropdown">
+                  <li class="site-nav"><a href="{% url 'blog' %}">{% trans 'All Blogs' %}</a></li>
+                  <ul>
+              {% for i in category %}
+              <li><a href="{{i.get_url}}">{{i}}</a></li>
+              {% endfor %}
+            </ul>
+              </ul>
+            </div>
+          </div>
+          <div class="sidebar_widget">
+            <div class="widget-title">
+              <h2>{% trans 'Recent Blog Posts' %}</h2>
+            </div>
+
+            {% for blog in recent_blogs %}
+
+            <div class="widget-content">
+              <div class="list list-sidebar-products">
+                <div class="grid">
+                  <div class="grid__item">
+                    <div class="mini-list-item">
+                      <div class="mini-view_image"> <a class="grid-view-item__link" href="#"><img class="grid-view-item__image blur-up ls-is-cached lazyloaded" data-src="assets/images/blog/post-img6.jpg" src="assets/images/blog/post-img6.jpg"
+                            alt=""></a> </div>
+
+                      <div class="details pl-0"> <a  href="{{blog.get_url}}">{{blog.title}}</a>
+                        <div ><span class="article__date">{{blog.created_on}}</span></div>
+
+
+
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+
+        </div>
+      </div>
+      <!--End Sidebar-->
+
+      <!--Main Content-->
+      <div class="col-12 col-sm-12 col-md-9 col-lg-9 main-col">
+        <div class="blog--list-view blog--grid-load-more blog-list-view">
+
+          <div>
+            {% if blogs %}
+
+            {% for blog in blogs %}
+            <div class="row">
+              <!-- Article Image -->
+              <div class="col-12 col-sm-6 col-md-6 col-lg-6 post-img">
+                <a class="article_featured-image" href="{{blog.get_url}}">
+                  <img class="blur-up ls-is-cached lazyloaded" data-src="{{ blog.featured_image.url }}"
+                    src="{{ blog.featured_image.url }}" alt=""></a>
+                  </div>
+              <div class="col-12 col-sm-6 col-md-6 col-lg-6 post-content">
+                <h2 class="h3"><a href="{{blog.get_url}}">{{blog.title}}</a></h2>
+                <ul class="publish-detail">
+                  <li><i>{{blog.author}}</i</li>
+                  <li><i class="icon anm anm-clock-r"></i>{{blog.updated_on}}</li>
+                  <!--<li><i class="icon anm anm-comments-l"></i> <a href="#">  comments</a></li>-->
+                </ul>
+                <div class="rte">
+                  <p>{{blog.short_description}}</p>
+                </div>
+                <p><a href="{{blog.get_url}}" class="btn btn-primary btn--small">{% trans 'Read more' %}</a></p>
+              </div>
+            </div>
+          <br><br>
+        {% endfor %}
+        {% else %}
+<h3>{% trans 'No blogs' %}</h3>
+        {% endif %}
+      </div>
+
+        </div>
+        <!-- Make the pagination here -->
+        {% if blogs.has_other_pages %}
+        <ul class="pagination mb-2 shop-page">
+          {% if blogs.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{blogs.previous_page_number}}" aria-label="Previous">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" aria-label="Previous">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+          </li>
+          {% endif %}
+          {% for i in blogs.paginator.page_range %}
+          {% if blogs.number == i %}
+          <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+          {% else %}
+          <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+          {% endif %}
+          {% endfor %}
+
+          {% if blogs.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{blogs.next_page_number}}" aria-label="Next">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" aria-label="Next">
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </div>
+      <!--End Main Content-->
+    </div>
+  </div>
+</div>
+<!--End Page Wrapper-->
+
+{% endblock %}

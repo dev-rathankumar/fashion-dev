@@ -1,0 +1,780 @@
+[
+{
+    "model": "sessions.session",
+    "pk": "1nluhi4cer7ds1omm8d1hupzhx8a4485",
+    "fields": {
+        "session_data": ".eJxVjMEOwiAQRP-FsyFQLLt49O43kF3YStWUpLQn47_bJj3obTLvzbxVpHUpcW0yxzGri-rU6bdjSk-ZdpAfNN2rTnVa5pH1ruiDNn2rWV7Xw_07KNTKtuYBIVgSYABPfEYWMBIwoDXJyRaz98H0g2EHLnecAiCkjq1gj4Tq8wXoXjfI:1mQ5aq:soYXrL1EdM-HfLUMBSbzQT39871EdLaxODqVO6OKdhI",
+        "expire_date": "2021-09-28T10:23:12.037Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "p8d3nlcswc72x3t7yckznw4hm7g9kcb1",
+    "fields": {
+        "session_data": ".eJxtjDsOwyAQRO9CHSHWmI9Tps8Z0MJCcD5YMqaKcvdgyU2kVCPNvHlv1mZiZybZiTlsW3atxtX96zyGRyz7QHcst4WHpWzr7PmO8GOt_LpQfF4O9keQseb-9gEBBUpFaHtaTzZZGCdphmQEDCH4KBKNJPQo9aQAvbA46GQU2EjQpXVbXWmvLgOjpAL2-QIzzD-m:1mQ5lW:WjMsXWbuIs8vDqTs7t2BTgyTGtlWiHG88s4zSAFKSFs",
+        "expire_date": "2021-09-28T10:34:14.044Z"
+    }
+},
+{
+    "model": "category.category",
+    "pk": 1,
+    "fields": {
+        "parent": null,
+        "category_name": "Men",
+        "slug": "men",
+        "description": "",
+        "cat_image": "store/categories/2021/09/14/men-category.jpg",
+        "is_active": true,
+        "created_date": "2021-09-14T10:29:16.586Z",
+        "lft": 1,
+        "rght": 2,
+        "tree_id": 1,
+        "level": 0
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$tM1p3cemjaMC$S5zVdHKQfNsNpWKHjCjOZadYki920jFiY2zdIIXG33I=",
+        "is_customer": false,
+        "is_business": false,
+        "is_regional_manager": false,
+        "first_name": "AppZone",
+        "last_name": "Biz",
+        "username": "appzoneadmin",
+        "email": "appzone.biz@gmail.com",
+        "phone_number": "",
+        "gender": "",
+        "profile_picture": "default/default-user.png",
+        "date_joined": "2021-09-14T10:22:35.762Z",
+        "last_login": "2021-09-14T10:23:12.033Z",
+        "created_date": "2021-09-14T10:22:35.762Z",
+        "modified_date": "2021-09-14T10:22:35.773Z",
+        "is_admin": true,
+        "is_staff": true,
+        "is_active": true,
+        "is_superadmin": true
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$1XhVzrVgtF5l$PrH06aRVVMY/QOWPehM7xcTe1bAGrxBjt8MKPN8W0vE=",
+        "is_customer": false,
+        "is_business": true,
+        "is_regional_manager": false,
+        "first_name": "AppZone",
+        "last_name": "Biz",
+        "username": "businessappzone",
+        "email": "business@appzoneit.com",
+        "phone_number": "1234567897",
+        "gender": "male",
+        "profile_picture": "default/default-user.png",
+        "date_joined": "2021-09-14T10:24:17.606Z",
+        "last_login": "2021-09-14T10:28:48.672Z",
+        "created_date": "2021-09-14T10:24:17.606Z",
+        "modified_date": "2021-09-14T10:28:11.395Z",
+        "is_admin": false,
+        "is_staff": false,
+        "is_active": true,
+        "is_superadmin": false
+    }
+},
+{
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$216000$rZaFfkwchpYX$+D6TIT3Ss9zoV8aMpe16fDXtrNRQtlmDlULnRamEx48=",
+        "is_customer": false,
+        "is_business": false,
+        "is_regional_manager": true,
+        "first_name": "Manager",
+        "last_name": "Account",
+        "username": "accountmanager",
+        "email": "accountmanager@appzoneit.com",
+        "phone_number": "1234567899",
+        "gender": "male",
+        "profile_picture": "default/default-user.png",
+        "date_joined": "2021-09-14T10:25:17.726Z",
+        "last_login": "2021-09-14T10:25:17.726Z",
+        "created_date": "2021-09-14T10:25:17.726Z",
+        "modified_date": "2021-09-14T10:26:53.812Z",
+        "is_admin": false,
+        "is_staff": false,
+        "is_active": true,
+        "is_superadmin": false
+    }
+},
+{
+    "model": "accounts.country",
+    "pk": 1,
+    "fields": {
+        "country_name": "Canada"
+    }
+},
+{
+    "model": "accounts.state",
+    "pk": 1,
+    "fields": {
+        "country": 1,
+        "state_name": "Ontario (ON)"
+    }
+},
+{
+    "model": "accounts.state",
+    "pk": 2,
+    "fields": {
+        "country": 1,
+        "state_name": "British Columbia (BC)"
+    }
+},
+{
+    "model": "accounts.regionalmanager",
+    "pk": 4,
+    "fields": {
+        "regional_manager_id": "1730344",
+        "country": 1,
+        "state": 1,
+        "city": "Mississauga",
+        "pin_code": "12345",
+        "address_line_1": "Mississauga lane2",
+        "address_line_2": "12 Ruxton",
+        "date_of_joining": "2021-09-14",
+        "account_expiry_date": "2021-09-30",
+        "commission_percentage": 10.0,
+        "is_editing": false,
+        "is_verification_email_sent": true,
+        "is_account_verified": true
+    }
+},
+{
+    "model": "accounts.business",
+    "pk": 3,
+    "fields": {
+        "business_id": "2247133",
+        "regional_manager": 4,
+        "company_name": "Altocan Corp",
+        "domain_name": "127.0.0.1:8000",
+        "country": 1,
+        "state": 2,
+        "city": "MS",
+        "pin_code": "12345",
+        "address_line_1": "Vashi, Navi Mumbai",
+        "address_line_2": "Sector 6",
+        "plan": 1,
+        "account_activation_date": "2021-09-14",
+        "account_expiry_date": "2021-09-30",
+        "is_verification_email_sent": true,
+        "is_editing": false,
+        "is_account_verified": true,
+        "created_date": "2021-09-14T10:27:44.927Z",
+        "modified_date": "2021-09-14T10:28:11.402Z"
+    }
+},
+{
+    "model": "accounts.taxonplan",
+    "pk": 1,
+    "fields": {
+        "user": 3,
+        "tax_type": "CGST",
+        "tax_value": "8.00"
+    }
+},
+{
+    "model": "accounts.dashboardimage",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "business_landing_image": "default/dashboard-landing-image.jpg",
+        "account_manager_landing_image": "default/dashboard-landing-image.jpg",
+        "created_date": "2021-09-14T10:28:11.443Z",
+        "modified_date": "2021-09-14T10:28:11.443Z"
+    }
+},
+{
+    "model": "business.paymentsetting",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "business@appzoneit.com"
+        ],
+        "business": 3,
+        "payment_method": "",
+        "paypal_address": "",
+        "bank_name": "",
+        "bank_account_name": "",
+        "bank_account_number": "",
+        "bank_code": "",
+        "created_date": "2021-09-14T10:28:11.408Z",
+        "modified_date": "2021-09-14T10:28:11.408Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "product_name": "Wrangler T-shirt",
+        "slug": "wrangler-t-shirt1",
+        "description": "<ul>\r\n\t<li>Ribbed trims</li>\r\n\t<li>Regular Fit</li>\r\n\t<li>Machine wash</li>\r\n\t<li>100% Cotton</li>\r\n</ul>",
+        "full_specification": "<p>About Levi&#39;s</p>\r\n\r\n<p>Flaunt the modern-day classics with intrinsically American Levi&rsquo;s clothing. AJIO brings the ever-stylish 511 Levi&rsquo;s jeans, rugged denim trucker jackets, figure flattering&nbsp;<a href=\"https://www.ajio.com/women-jeans-jeggings/c/830316001\">women&rsquo;s skinny jeans</a>, charming&nbsp;<a href=\"https://www.ajio.com/women-shirts/c/830316016\">printed shirts</a>&nbsp;and more from Levi&rsquo;s online!</p>",
+        "price": "25.00",
+        "image": "store/products/2021/09/14/TM76V22UGRY_M_12.jpg",
+        "image_2": "store/products/2021/09/14/TM76V22UGRY_M_1.jpg",
+        "stock": 150,
+        "is_available": true,
+        "category": 1,
+        "variant": "Size",
+        "is_new_arrival": false,
+        "is_popular": false,
+        "is_active": true,
+        "created_date": "2021-09-14T10:31:55.193Z",
+        "modified_date": "2021-09-14T10:33:48.222Z"
+    }
+},
+{
+    "model": "products.productgallery",
+    "pk": 1,
+    "fields": {
+        "product": 1,
+        "image": "store/products/2021/09/14/TM76V22UGRY_B_1.jpg"
+    }
+},
+{
+    "model": "products.productgallery",
+    "pk": 2,
+    "fields": {
+        "product": 1,
+        "image": "store/products/2021/09/14/TM76V22UGRY_D_1.jpg"
+    }
+},
+{
+    "model": "products.productgallery",
+    "pk": 3,
+    "fields": {
+        "product": 1,
+        "image": "store/products/2021/09/14/TM76V22UGRY_M_12_UDE2lFx.jpg"
+    }
+},
+{
+    "model": "products.size",
+    "pk": 1,
+    "fields": {
+        "name": "Small"
+    }
+},
+{
+    "model": "products.size",
+    "pk": 2,
+    "fields": {
+        "name": "Large"
+    }
+},
+{
+    "model": "products.variants",
+    "pk": 1,
+    "fields": {
+        "title": "Levi's T shirt Small",
+        "product": 1,
+        "color": null,
+        "size": 1,
+        "variant_data": {
+            "variant_data": 0
+        },
+        "image_id": 2,
+        "quantity": 100,
+        "price": "25.00"
+    }
+},
+{
+    "model": "products.variants",
+    "pk": 2,
+    "fields": {
+        "title": "Levi's T shirt Large",
+        "product": 1,
+        "color": null,
+        "size": 2,
+        "variant_data": {
+            "variant_data": 0
+        },
+        "image_id": 1,
+        "quantity": 50,
+        "price": "32.00"
+    }
+},
+{
+    "model": "products.productactivation",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "is_enabled": true,
+        "created_on": "2021-09-14T10:28:11.455Z",
+        "updated_on": "2021-09-14T10:29:00.913Z"
+    }
+},
+{
+    "model": "products.salespopupsetting",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "background_color": "#37384E",
+        "text_color": "#FFFFFF",
+        "notification_position": "Left Bottom Corner",
+        "notification_style": "Rectangled"
+    }
+},
+{
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+        "domain": "127.0.0.1:8000",
+        "name": "127.0.0.1:8000"
+    }
+},
+{
+    "model": "orders.storelocation",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "store_name": "Altocan Corp",
+        "phone_number": "1234567897",
+        "email": "business@appzoneit.com",
+        "address_line_1": "Vashi, Navi Mumbai",
+        "address_line_2": "Sector 6",
+        "city": "MS",
+        "pin_code": "12345",
+        "country": 1,
+        "state": 2,
+        "geolocation": "",
+        "created_at": "2021-09-14T10:28:11.476Z",
+        "updated_at": "2021-09-14T10:28:11.477Z"
+    }
+},
+{
+    "model": "sitesettings.header",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "site_title": "Your Website Title Here",
+        "site_logo": "",
+        "favicon": "",
+        "created_date": "2021-09-14T10:28:11.412Z",
+        "modified_date": "2021-09-14T10:28:11.412Z"
+    }
+},
+{
+    "model": "sitesettings.homepage",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "created_date": "2021-09-14T10:28:11.404Z",
+        "modified_date": "2021-09-14T10:28:11.404Z"
+    }
+},
+{
+    "model": "sitesettings.parallaxbackground",
+    "pk": 1,
+    "fields": {
+        "homepage": 1,
+        "parallax_image": "",
+        "title": null,
+        "description": null,
+        "button_name": null,
+        "button_link": null,
+        "button_color": "#000000",
+        "content_align": "center"
+    }
+},
+{
+    "model": "sitesettings.footer",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "footer_text": "",
+        "hard_code_footer": "Provided by",
+        "hard_code_branding": "Altocan",
+        "hard_code_url": "https://www.altocan.com/",
+        "footer_align": "center",
+        "created_date": "2021-09-14T10:28:11.414Z",
+        "modified_date": "2021-09-14T10:28:11.414Z"
+    }
+},
+{
+    "model": "sitesettings.contactpage",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "address_line_1": "Vashi, Navi Mumbai",
+        "address_line_2": "Sector 6",
+        "city": "MS",
+        "pin_code": "12345",
+        "country": 1,
+        "state": 2,
+        "phone_number": "1234567897",
+        "email": "business@appzoneit.com",
+        "embed_google_map": "",
+        "created_date": "2021-09-14T10:28:11.431Z",
+        "modified_date": "2021-09-14T10:28:11.431Z"
+    }
+},
+{
+    "model": "sitesettings.aboutpage",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "heading": "About Us",
+        "sub_heading": null
+    }
+},
+{
+    "model": "sitesettings.policy",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "heading": "Privacy Policy",
+        "content": null,
+        "created_date": "2021-09-14T10:28:11.435Z",
+        "updated_date": "2021-09-14T10:28:11.435Z"
+    }
+},
+{
+    "model": "sitesettings.termsandcondition",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "heading": "Terms & Conditions",
+        "content": null,
+        "created_date": "2021-09-14T10:28:11.438Z",
+        "updated_date": "2021-09-14T10:28:11.438Z"
+    }
+},
+{
+    "model": "sitesettings.topbar",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "topbar_text": "",
+        "is_enabled": false,
+        "created_date": "2021-09-14T10:28:11.417Z",
+        "modified_date": "2021-09-14T10:28:11.417Z"
+    }
+},
+{
+    "model": "sitesettings.directdepositemail",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "direct_deposit_email": "",
+        "is_enabled": false,
+        "created_date": "2021-09-14T10:28:11.442Z",
+        "modified_date": "2021-09-14T10:28:11.442Z"
+    }
+},
+{
+    "model": "sitesettings.paypalconfig",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "paypal_client_id": "",
+        "is_enabled": false,
+        "created_date": "2021-09-14T10:28:11.448Z",
+        "modified_date": "2021-09-14T10:28:11.448Z"
+    }
+},
+{
+    "model": "sitesettings.serviceactivation",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "is_enabled": false,
+        "created_on": "2021-09-14T10:28:11.458Z",
+        "updated_on": "2021-09-14T10:28:11.458Z"
+    }
+},
+{
+    "model": "sitesettings.cashondelivery",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "is_enabled": false,
+        "created_date": "2021-09-14T10:28:11.473Z",
+        "modified_date": "2021-09-14T10:28:11.473Z"
+    }
+},
+{
+    "model": "plans.plan",
+    "pk": 1,
+    "fields": {
+        "plan_name": "Monthly",
+        "plan_frequency": "monthly",
+        "plan_price": 101.0,
+        "plan_description": "",
+        "created_date": "2021-09-14T10:27:27.088Z",
+        "modified_date": "2021-09-14T10:27:27.088Z"
+    }
+},
+{
+    "model": "emails.businessemailsetting",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "email_host": "",
+        "email_host_user": "",
+        "email_host_password": "",
+        "port": null,
+        "email_use_tls": "True",
+        "is_settings_verified": false,
+        "created_at": "2021-09-14T10:28:11.410Z",
+        "updated_at": "2021-09-14T10:28:11.410Z"
+    }
+},
+{
+    "model": "blogs.blogactivation",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "is_enabled": false,
+        "created_on": "2021-09-14T10:28:11.451Z",
+        "updated_on": "2021-09-14T10:28:11.451Z"
+    }
+},
+{
+    "model": "portfolio.portfolioheader",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "heading": "Our Portfolio",
+        "sub_heading": "",
+        "created_date": "2021-09-14T10:28:11.462Z",
+        "modified_date": "2021-09-14T10:28:11.462Z"
+    }
+},
+{
+    "model": "portfolio.portfolioactivation",
+    "pk": 1,
+    "fields": {
+        "business": 3,
+        "is_enabled": false,
+        "created_on": "2021-09-14T10:28:11.469Z",
+        "updated_on": "2021-09-14T10:28:11.469Z"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2021-09-14T10:23:46.976Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "sites",
+            "site"
+        ],
+        "object_id": "1",
+        "object_repr": "127.0.0.1:8000",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Domain name\", \"Display name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2021-09-14T10:24:17.606Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2021-09-14T10:24:43.003Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "business@appzoneit.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email\", \"Phone number\", \"Gender\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2021-09-14T10:24:56.243Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "user"
+        ],
+        "object_id": "1",
+        "object_repr": "developer.rathan@gmail.com",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2021-09-14T10:25:17.728Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "user"
+        ],
+        "object_id": "4",
+        "object_repr": "",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2021-09-14T10:25:35.202Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "user"
+        ],
+        "object_id": "4",
+        "object_repr": "accountmanager@appzoneit.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email\", \"Phone number\", \"Gender\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2021-09-14T10:25:49.907Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "country"
+        ],
+        "object_id": "1",
+        "object_repr": "Canada",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2021-09-14T10:25:55.955Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "state"
+        ],
+        "object_id": "1",
+        "object_repr": "Ontario (ON)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2021-09-14T10:26:01.114Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "state"
+        ],
+        "object_id": "2",
+        "object_repr": "British Columbia (BC)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2021-09-14T10:26:20.512Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "regionalmanager"
+        ],
+        "object_id": "4",
+        "object_repr": "Manager Account",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2021-09-14T10:27:27.092Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "plans",
+            "plan"
+        ],
+        "object_id": "1",
+        "object_repr": "Monthly",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2021-09-14T10:27:44.940Z",
+        "user": [
+            "appzone.biz@gmail.com"
+        ],
+        "content_type": [
+            "accounts",
+            "business"
+        ],
+        "object_id": "3",
+        "object_repr": "Altocan Corp",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"tax on plan\", \"object\": \"CGST\"}}]"
+    }
+}
+]

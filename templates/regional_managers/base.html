@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <title>{% block title %}    {% endblock %} | {% if header is not None %}{{header.site_title}}{% else %}{{company_name}}{% endif %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% if header.favicon %} {{header.favicon.url}}{% endif %}">
+
+        <!-- Bootstrap Css -->
+        <link rel="stylesheet" href="{% static 'business/css/bootstrap.min.css' %}" id="bootstrap-style" />
+        <!-- Icons Css -->
+
+        <link rel="stylesheet" href="{% static 'business/css/icons.min.css' %}">
+        <!-- App Css-->
+        <link rel="stylesheet" href="{% static 'business/css/app.min.css' %}" id="app-style" />
+
+        <!-- Custom Css-->
+        <link rel="stylesheet" href="{% static 'business/css/custom-css.css' %}" id="app-style" />
+
+        <!-- Dropzone -->
+        <link href="{% static 'business/libs/dropzone/min/dropzone.min.css' %}" rel="stylesheet" />
+
+        <script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+        <script src="{% static 'business/js/ajax.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+
+        <!-- File Input Plugin -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+    </head>
+
+
+    <body data-sidebar="dark">
+
+    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+        {% include './includes/_navbar.html' %}
+        {% include './includes/_sidebar.html' %}
+
+        {% block content %}
+
+        {% endblock %}
+
+        {% include './includes/_footer.html' %}

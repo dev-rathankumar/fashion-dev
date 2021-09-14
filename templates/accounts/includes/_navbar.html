@@ -1,0 +1,32 @@
+{% load i18n %}
+<div class="page-title"><h1>{% trans 'My Account' %}</h1></div>
+  <div class="dashboard-upper-info">
+    <div class="row align-items-center no-gutters">
+      <div class="col-xl-3 col-lg-3 col-md-12">
+          <div class="d-single-info">
+              <p class="user-name">{% trans 'Hello' %} <span class="font-weight-600">{{ user.name }}</span></p>
+              <p>({% trans 'not' %} {{ user.name }}? <a class="font-weight-600" href="javascript:{document.getElementById('logout').submit()}">{% trans 'Log Out' %}</a>)</p>
+              <form action="{% url 'logout' %}" id="logout" method="POST">
+                {% csrf_token %}
+                <input type="hidden">
+              </form>
+          </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-12">
+          <div class="d-single-info">
+              <p>{% trans 'Need Assistance? Customer service at.' %}</p>
+              <p>{{ business.user.email }}</p>
+          </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-12">
+        <div class="d-single-info text-lg-center">
+            <p class="user-name">{% trans 'Registered on' %}: <span class="font-weight-600">{{ user.date_joined|date:"M d, Y" }}</span></p>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-2 col-md-12">
+        <div class="d-single-info text-lg-center">
+            <img src="{{ user.profile_picture.url }}" alt="" width="75" height="75" style="border-radius:50px;">
+        </div>
+      </div>
+  </div>
+</div>

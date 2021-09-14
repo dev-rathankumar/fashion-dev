@@ -1,0 +1,123 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Purchase Plan {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Purchase Plan</h4>
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-xl-10" style="margin:auto;">
+          {% include 'includes/_alerts.html' %}
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Plan selected: <span class="text-success">{{plan.plan_name}}</span></h4>
+
+              <div class="table-responsive" style="overflow-x: hidden;">
+                <form action="{% url 'planOrder' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="row">
+
+                    <table class="table table-hover col-md-6 col-lg-6 col-xl-6">
+                      <tbody>
+                        <tr>
+                          <th style="width:200px;">Plan</th>
+                          <td>{{plan.plan_name}}</td>
+                        </tr>
+                        <tr>
+                          <th style="width:200px;">Description</th>
+                          <td>{{plan.plan_description}}</td>
+                        </tr>
+                        <tr>
+                          <th style="width:200px;">Price</th>
+                          <td>$ {{plan.plan_price}}</td>
+                        </tr>
+                        {% for key, value in tax_dict.items %}
+                        {% for i, j in value.items %}
+                        <tr>
+                          <th style="width:200px;">{{key}} ({{i}})</th>
+                          <td>$ {{j}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% endfor %}
+                        <tr style="font-size:22px;">
+                          <th style="width:200px;">Grand Total</th>
+                          <td>$ {{grand_total}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                  <input type="hidden" name="plan_id" value="{{plan.id}}">
+                  <input type="hidden" name="total" value="{{grand_total}}">
+                  <input type="hidden" name="tax_data" value="{{tax_dict}}">
+                  <input type="hidden" name="tax" value="{{tax}}">
+                  <input type="hidden" name="plan_price" value="{{plan.plan_price}}">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <h4>Select Payment Method</h4>
+                      <select name="payment_method" class="form-control" required>
+                        <option value="">Choose One</option>
+                        <option value="paypal">PayPal</option>
+                      </select>
+                    </div>
+                  </div>
+                  <br>
+                  <a onclick="goBack()" class="btn margin-15px-top btn-secondary"><i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp Back To Plans</a>
+                  <button type="submit" class="btn margin-15px-top btn-primary"><i class="fa fa-check" aria-hidden="true"></i> &nbspConfirm & Pay</button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+
+  <div class="modal fade" id="customRequest" tabindex="-1" role="dialog" aria-labelledby="customRequestTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Request a Quote</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page-content -->
+
+
+
+  {% endblock %}

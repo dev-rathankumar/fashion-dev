@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Contact' %} {% endblock %}
+
+{% block content %}
+{% load faicon %}
+{% load static %}
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'Contact Us' %}</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  <div class="container">
+    <div class="page-title">
+      <h1>{% trans 'Contact Us' %}</h1>
+    </div>
+    <div class="row">
+      {% include 'includes/_alerts.html' %}
+      <div class="col-12 col-sm-12 col-md-8 col-lg-8 mb-4">
+        <h2>{% trans 'Drop Us A Line' %}</h2>
+        <p>{% trans ' If you any query or feedback, please feel free to contact us' %} </p>
+        <div class="formFeilds contact-form form-vertical">
+          <form method="post" action="{% url 'contact' %}" class="contact-form">
+            {% csrf_token %}
+            <input type="hidden" name="business_id" id="business_id" value="{{business.business_id}}">
+            {% if user.is_authenticated %}
+            <input type="hidden" name="user_id" id="user_id" value="{{user.id}}">
+            {% else %}
+            <input type="hidden" name="user_id" id="user_id" value="0">
+            {% endif %}
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                  <input type="text" id="name" name="name" placeholder="{% trans 'Name' %}" value="" required>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                  <input type="email" name="email" placeholder="{% trans 'Email' %}" value="" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                  <input required class="inputNumber" type="number" maxlength="12"
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                   id="phone" name="phone" placeholder="{% trans 'Phone Number' %}" value="">
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                  <input required type="text" id="subject" name="subject" placeholder="{% trans 'Subject' %}" value="">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                  <textarea required rows="10" id="contact_message" name="contact_message" placeholder="{% trans 'Your Message' %}"></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- C O N T A C T  C A P T C H A -->
+            <div class="container">
+              <div class="row">
+                <div class="col pl-0">
+                    <input type="text" id="txtInputContact" placeholder="{% trans 'Enter Captcha' %}" class="form-control"/>
+
+                </div>
+                <div class="col pr-0">
+                  <input type="text" id="txtCaptchaContact" style="background-image:url({% static 'images/default-images/captcha-bg.jpg' %}); text-align:center; font-size:20px; border:none;
+  font-weight:bold; font-family:Modern"/>
+                  <i class="fa fa-refresh" aria-hidden="true" onclick="DrawCaptchaContact();" style="font-size:24px;cursor:pointer;float:right;"></i>
+                </div>
+              </div>
+              <p id="invalidCodeContact" style="color: #e95144;"></p>
+              <p id="blankCaptchaErrorContact" style="color: #e95144;"></p>
+            </div>
+            <!-- C O N T A C T  C A P T C H A -->
+           
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <input type="submit" id='submit' class="btn" value="{% trans 'Send Message' %}" onclick="return ValidCaptchaContact();">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <p id="contactMessage"></p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      
+
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="contact-details">
+          <ul class="addressFooter">
+            <li><i class="icon anm anm-map-marker-al"></i>
+              <p>{{contact_page.full_address}}</p>
+            </li>
+            <li class="phone"><i class="icon anm anm-phone-s"></i>
+              <p><a href="tel:{{contact_page.phone_number}}">{{contact_page.phone_number}}</a></p>
+            </li>
+            <li class="email"><i class="icon anm anm-envelope-l"></i>
+              <p><a href="mailto:{{contact_page.email}}">{{contact_page.email}}</a></p>
+            </li>
+          </ul>
+
+          <hr>
+          <ul class="list--inline site-footer__social-icons social-icons">
+            {% for icon in social_icons %}
+            <li><a class="social-icons__link" href="{{ icon.link }}" target="_blank"><i class="{{icon.icon.style}} fa-{{icon.icon.icon}} {{icon.icon.extra}}" aria-hidden="true" style="font-size:20px;"></i></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="map-section map">
+          {% if contact_page.embed_google_map %}
+          {{contact_page.embed_google_map | safe}}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End Body Container-->
+</div>
+<!--End Page Wrapper-->
+<script>
+$(document).ready(function() {
+  DrawCaptchaContact();
+});
+</script>
+{% endblock %}

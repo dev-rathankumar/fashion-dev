@@ -1,0 +1,105 @@
+{% extends 'regional_managers/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} Purchase Details {% endblock %}
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Purchase Details</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+
+
+              <div class="row billing-fields">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sm-margin-30px-bottom">
+                  <div class="create-ac-content bg-light-gray padding-20px-all">
+
+                    <div class="your-order">
+                      <div style="display:flex;">
+
+                        <h2 class="order-title" style="vertical-align:middle;margin:auto;">{{bizPlanHistoryDetail.plan.plan_name}}</h2>
+
+                        <!-- <p style="float:right;">{{customer.user.created_date}}</p> -->
+                      </div><br>
+
+
+                      <p style="margin-bottom:0;">Purchased on: {{bizPlanHistoryDetail.created_at}}</p>
+                      <div class="table-responsive-sm order-table">
+
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="row">
+                              <div class="col-12">
+                                <h5 class="m-0">Order # <strong style="letter-spacing: 2px;">{{bizPlanHistoryDetail.order_number }}</strong> </h5>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                              <div class="card-body">
+                                <p class="card-text mb-0">Plan <b>{{bizPlanHistoryDetail.plan.plan_name}}</b></p>
+                                <p class="card-text mb-0">Transaction ID <b>{{bizPlanHistoryDetail.plan_payment.payment_id}}</b></p>
+                                <p class="card-text mb-0">Payment method <b>{{bizPlanHistoryDetail.plan_payment.payment_method | capfirst}}</b></p>
+                                <p class="card-text mb-0">Status <b>{{bizPlanHistoryDetail.plan_payment.status | capfirst}}</b></p>
+
+
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                              <div class="card-body">
+                                <p class="card-text mb-0">Subtotal $ {{subtotal}}</p>
+                                <p class="card-text mb-0">Tax $ {{bizPlanHistoryDetail.tax}}</p>
+                                <h5 class="card-text mb-0">Total <b>$ {{bizPlanHistoryDetail.total}}</b></h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <button onclick="goBack();" class="btn btn-primary"><i class="fas fa-arrow-left"></i>&nbsp Go back</button>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

@@ -1,0 +1,285 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% block title %} {% trans 'Order Details' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Order Detail' %}</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+
+              <h4 class="card-title">{% trans 'Order Information' %}</h4>
+
+              <div class="row billing-fields">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 sm-margin-30px-bottom">
+                  <div class="create-ac-content bg-light-gray padding-20px-all">
+
+                    <div class="your-order">
+                      <div>
+                        <h2 class="order-title mb-4">{% trans 'Order' %} # <span>{{order.order_number}}</span></h2>
+                        <p style="float:right;">{{order.created_at}}</p>
+                      </div>
+
+                      <p style="margin-bottom:0;">{% trans 'Name' %}: {{order.user.name}}</p>
+                      <p style="margin-bottom:0;">{% trans 'Customer ID' %}: {{order.user.customer_id}}</p>
+                      <p style="margin-bottom:0;">{% trans 'Transaction ID' %}: <span>{{order.payment.payment_id}}</span></p>
+                      <p style="margin-bottom:0;">{% trans 'Payment Method' %}: <span>{{order.payment_method}}</span></p>
+                      <p>{% trans 'Order Status' %}: <span>
+                          {% if order.status == 'New' %}
+                          <span class="badge badge-pill badge-soft-success font-size-12">{% trans 'New' %}</span>
+                          {% elif order.status == 'Accepted' %}
+                          <span class="badge badge-pill badge-soft-primary font-size-12">{% trans 'Accepted' %}</span>
+                          {% elif order.status == 'Completed' %}
+                          <span class="badge badge-pill badge-soft-warning font-size-12">{% trans 'Completed' %}</span>
+                          {% elif order.status == 'Cancelled' %}
+                          <span class="badge badge-pill badge-soft-danger font-size-12">{% trans 'Cancelled' %}</span>
+                          {% else %} <span class="badge badge-pill badge-soft-success font-size-12">{{order.status}}</span>
+                          {% endif %}
+                        </span></p>
+                        
+
+
+
+                      <div class="table-responsive-sm order-table">
+
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="row">
+                              <div class="col-12">
+                                <h5 class="m-0">{% trans 'Shipping Address' %}</h5>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                              <div class="card-body">
+                                <p class="card-text mb-0" style="font-weight:600;">{{order.name}}</p>
+                                <p class="card-text mb-0">{{order.address}}</p>
+                                <p class="card-text mb-0">{{order.city}} - {{order.pin_code}}</p>
+                                <p class="card-text mb-0">{{order.state}}, {{order.country}}</p>
+                              </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12">
+                              <div class="card-body">
+                                <p class="card-text mb-0">{{order.email}}</p>
+                                <p class="card-text mb-0">{{order.phone}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="row">
+                              <div class="col-12">
+                                <h5 class="m-0">{% trans 'Payment method' %}</h5>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="card-body">
+                                {% if order.payment_method == 'Direct Deposit' %}
+                                <img src="{% static 'images/payment_gateways/direct.png' %}" width="120" style="padding: 0 10px 0 10px;border: 1px solid #d2d2d2;">
+                                {% elif order.payment_method == 'Cash On Delivery' %}
+                                <img src="{% static 'images/payment_gateways/cod.png' %}" width="120" style="padding: 9px 10px 9px 10px;border: 1px solid #d2d2d2;">
+                                {% else %}
+                                <img src="{% static 'images/payment_gateways/paypal.png' %}" width="120" style="padding: 0 10px 0 10px;border: 1px solid #d2d2d2;">
+                                {% endif %}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {% if order.payment_method == 'Direct Deposit' %}
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="row">
+                              <div class="col-12">
+                                <h5 class="m-0">{% trans 'Direct Deposit Payment Details' %}</h5>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="card-body">
+                                <p class="card-text mb-0">{% trans 'Amount Paid' %}: ${{order.payment.amount}}</p>
+                                <p class="card-text mb-0">{% trans 'Transaction Detail' %}: {{order.payment.payment_id}}</p>
+                                <p class="card-text mb-0">{% trans 'Date of Payment' %}: {{order.payment.date_of_dd_payment}}</p>
+                                <p class="card-text mb-0">{% trans 'Attachment' %}: <br> {% if order.payment.dd_attachment %}
+                                  <div >
+                                    <img src ="{{ order.payment.dd_attachment.url }}" width="100" data-toggle="modal" class="ddAttachmentModel" data-target="#ddAttachmentModel" /> <br>
+                                    <small class="text-muted"><i class="fa fa-search" aria-hidden="true"></i> {% trans 'Click to open' %}</small>
+                                  </div>
+                                  <div class="modal fade" id="ddAttachmentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLongTitle">{% trans 'Direct Deposit Payment Attachment' %}</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <img src ="{{ order.payment.dd_attachment.url }}" style="width:100%" />
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'Close' %}</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                {% else %}NA{% endif %}</p>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {% elif order.payment_method == 'Cash On Delivery' %}
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="row">
+                              <div class="col-12">
+                                <h5 class="m-0">{% trans 'Store Location' %}</h5>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12">
+                              <div class="card-body">
+                                <p>{{order.store_location.store_name}}<br>{{order.store_location.address}}<br>{{order.store_location.city}} - {{order.store_location.pin_code}}<br>{{order.store_location.state}}, {{order.store_location.country}}<br>{{order.store_location.phone_number}}<br>{{order.store_location.email}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {% endif %}
+
+
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="row">
+                              <div class="col-12">
+                                <h5 class="m-0">{% trans 'Ordered Products' %}</h5>
+                              </div>
+                            </div>
+                          </div>
+                          {% for i in ordered_products %}
+                          <div class="row">
+                            <div class="col-md-2">
+                              <div class="card-body">
+                                {% if i.variant.image_id  > 0 %}
+                                <img src="{{i.variant.image }}" alt="Product Variant Image" width="50">
+                                {% else %}
+                                <img src="{{i.product.image.url}}" alt="Product Image" width="50">
+                                {% endif %}
+                              </div>
+                            </div>
+                            <div class="col-md-7">
+                              <div class="card-body">
+                                <a class="card-text mb-0" href="{{ i.product.get_url }}" target="_blank" style="font-weight:600;">
+                                  {% if i.product.variant != 'None' %}
+                                  {{ i.variant.title }}
+                                  {% else %}
+                                  {{ i.product.product_name }}
+                                  {% endif %}</a>
+                                <div class="cart__meta-text text-muted">
+                                  {% if i.product.variant != 'None' %}
+                                  {% if i.variant.product.variant == 'Size'  %}
+                                    {{ i.variant.size }}
+                                  {% elif i.variant.product.variant == 'Color' %}
+                                    {{ i.variant.color }}
+                                  {% elif i.variant.product.variant == 'Custom' %}
+                                  {% for key, value in i.variant.variant_data.items %}
+                                    {{value}} {% if not forloop.last %}|{% endif %}
+                                  {% endfor %}
+                                  {% else %}
+                                    {{ i.variant.color }} | {{ i.variant.size }}
+                                  {% endif %}
+                                {% endif %}
+                                </div>
+                                <div class="cart__meta-text text-muted">
+                                  Qty: {{ i.quantity }}
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="card-body">
+                                <p class="card-text mb-0" style="font-weight:600;">${{ i.amount | intcomma }}</p>
+                                <div class="cart__meta-text">
+                                  ({% if i.product.variant != 'None' %}
+                                  ${{ i.variant.price | intcomma }}
+                                  {% else %}
+                                  ${{i.product.price | intcomma}}
+                                  {% endif %} each)
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {% endfor %}
+                          <hr>
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="card-body">
+                                <h6>Subtotal: ${{subtotal}}</h6>
+                                <!-- <h6>
+                                  {% for key, value in order.tax_data.items %}
+                                  {% for i, j in value.items %}
+                                  {{key}} ({{i}}%) : ${{j}} <br>
+                                  {% endfor %}
+                                  {% endfor %}
+                                </h6> -->
+                                <h6>Tax: ${{order.tax}}</h6>
+
+                                <h4>Grand Total: ${{order.total}}</h4>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <button onclick="goBack();" class="btn btn-secondary"><i class="fas fa-arrow-left"></i>&nbsp {% trans 'Go back' %}</button>
+              <a href="{% url 'editOrder' order.id %}" class="btn btn-primary mr-3" ><i class="mdi mdi-pencil"></i> {% trans 'Edit Order' %}</a>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

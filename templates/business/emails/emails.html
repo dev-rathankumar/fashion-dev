@@ -1,0 +1,157 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Emails' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Emails' %}</h4>
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+      {% include 'includes/_alerts.html' %}
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+
+            {% if not emails %}
+            <h2 class="text-center" style="padding:25px;">{% trans 'You have not sent any emails yet' %}</h2>
+            <div class="text-sm-center" style="padding-bottom:25px;">
+              <a href="{% url 'send_email' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-email mr-1"></i> {% trans 'Write An Email' %}</a>
+            </div>
+            {% else %}
+            <div class="card-body">
+              <div class="row mb-2">
+                <div class="col-sm-4">
+                  <div class="search-box mr-2 mb-2 d-inline-block">
+                    <div class="position-relative">
+                      <input type="text" class="form-control" id="myInput" placeholder="{% trans 'Search' %}...">
+                      <i class="bx bx-search-alt search-icon"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="text-sm-right">
+                    <a href="{% url 'send_email' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-email mr-1"></i> {% trans 'Send New Email' %}</a>
+
+                  </div>
+                </div><!-- end col-->
+              </div>
+
+              <div class="table-responsive">
+
+                <table class="table table-centered table-nowrap table-hover">
+                  <thead class="thead-light">
+                    <tr>
+                      <!-- <th style="width: 20px;">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1">
+                          <label class="custom-control-label" for="customCheck1">&nbsp;</label>
+                        </div>
+                      </th> -->
+                      <th>{% trans 'Subject' %}</th>
+                      <th>{% trans 'Status' %}</th>
+                      <th>{% trans 'Date' %}</th>
+                      <th>{% trans 'View Details' %}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+
+
+                    {% for email in emails %}
+                    <tr>
+
+                      <td>
+                        {{email.subject}}
+                      </td>
+                      <td>{% if email.is_sent == True %}<i class="fa fa-check" aria-hidden="true" style="color:#28A745;"></i> {% trans 'Sent' %}{% else %}<i class="fa fa-times" aria-hidden="true" style="color:#DC3545;"></i> {% trans 'Failed' %}{% endif %}</td>
+                      <td>{{email.sent_date}}</td>
+
+                      <td>
+                        <a href="{% url 'email_detail' email.id %}" class="btn btn-primary btn-sm btn-rounded">
+                          {% trans 'View Details' %}
+                        </a>
+                      </td>
+
+                    </tr>
+                    {% endfor %}
+
+
+
+
+
+
+
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Paginator Start -->
+              {% if emails.has_other_pages %}
+              <ul class="pagination pagination-rounded justify-content-end mb-2">
+                {% if emails.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{emails.previous_page_number}}" aria-label="Previous">
+                    <i class="mdi mdi-chevron-left"></i>
+                  </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" aria-label="Previous">
+                    <i class="mdi mdi-chevron-left"></i>
+                  </a>
+                </li>
+                {% endif %}
+                {% for i in emails.paginator.page_range %}
+                {% if emails.number == i %}
+                <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                {% endif %}
+                {% endfor %}
+
+                {% if emails.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{emails.next_page_number}}" aria-label="Next">
+                    <i class="mdi mdi-chevron-right"></i>
+                  </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" aria-label="Next">
+                    <i class="mdi mdi-chevron-right"></i>
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+              {% endif %}
+              <!-- Paginator End -->
+
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <!-- end row -->
+    </div> <!-- container-fluid -->
+  </div>
+
+
+  {% endblock %}

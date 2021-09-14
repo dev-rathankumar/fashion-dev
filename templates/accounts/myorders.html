@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'My Orders' %} {% endblock %}
+{% block content %}
+
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="index.html" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'My Account' %}</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  {% include 'includes/_alerts.html' %}
+  <div class="container">
+    {% include 'accounts/includes/_navbar.html' %}
+    <div class="row mb-5">
+      {% include 'accounts/includes/_sidebar.html' %}
+
+      <div class="col-xs-9 col-lg-9 col-md-12">
+        <!-- Tab panes -->
+        <div class="tab-content dashboard-content padding-30px-all md-padding-15px-all" style="">
+
+          <!-- Account Details -->
+          <div id="account-details" class="tab-pane fade">
+            <h3>{% trans 'Your Orders' %} </h3>
+            <div id="downloads" class="product-order tab-pane fade">
+              <div class="table-responsive">
+                {% if orders %}
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>{% trans 'Order No.' %}</th>
+                      <th>{% trans 'Billing Name' %}</th>
+                      <th>{% trans 'Total' %}</th>
+                      <th>{% trans 'Purchased On' %}</th>
+                      <th>{% trans 'Status' %}</th>
+                      <th>{% trans 'View Details' %}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for order in orders %}
+                    <tr>
+                      <td><a href="{% url 'orderDetail' order.order_number %}">{{order.order_number}}</a></td>
+                      <td>{{order.name}}</td>
+                      <td>${{order.total}}</td>
+                      <td>{{order.created_at | date:"M d, Y"}}</td>
+                      <td>{{order.status}}</td>
+                      <td><a href="{% url 'orderDetail' order.order_number %}"><b>{% trans 'VIEW DETAILS' %}</b></a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                {% else %}
+                <div class="text-center">
+                  <h4>{% trans 'You have not purchased anything yet.' %}</h4>
+                  <a href="/shop/" class="btn btn-primary"><i class="fa fa-shopping-bag" aria-hidden="true"></i> {% trans 'Go to shop' %}</a>
+                </div>
+                {% endif %}
+              </div>
+               <!-- Paginator Start -->
+               {% if orders.has_other_pages %}
+               <ul class="pagination pagination-rounded justify-content-end mb-2">
+                 {% if orders.has_previous %}
+                 <li class="page-item">
+                   <a class="page-link" href="?page={{orders.previous_page_number}}" aria-label="Previous">
+                     <i class="fa fa-angle-left"></i>
+                   </a>
+                 </li>
+                 {% else %}
+                 <li class="page-item disabled">
+                   <a class="page-link" aria-label="Previous">
+                     <i class="fa fa-angle-left"></i>
+                   </a>
+                 </li>
+                 {% endif %}
+                 {% for i in orders.paginator.page_range %}
+                 {% if orders.number == i %}
+                 <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                 {% else %}
+                 <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                 {% endif %}
+                 {% endfor %}
+ 
+                 {% if orders.has_next %}
+                 <li class="page-item">
+                   <a class="page-link" href="?page={{orders.next_page_number}}" aria-label="Next">
+                     <i class="fa fa-angle-right"></i>
+                   </a>
+                 </li>
+                 {% else %}
+                 <li class="page-item disabled">
+                   <a class="page-link" aria-label="Next">
+                     <i class="fa fa-angle-right"></i>
+                   </a>
+                 </li>
+                 {% endif %}
+               </ul>
+               {% endif %}
+               <!-- Paginator End -->
+ 
+            </div>
+                        
+           
+
+          </div>
+          <!-- End Account Details -->
+
+        </div>
+        <!-- End Tab panes -->
+      </div>
+    </div>
+  </div>
+  <!--End Body Container-->
+</div>
+<!--End Page Wrapper-->
+
+{% endblock %}

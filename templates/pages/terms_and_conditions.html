@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Terms & Conditions {% endblock %}
+{% block content %}
+{% load static %}
+<div id="page-content">
+        <!--Body Container-->
+        <!--Breadcrumbs-->
+        <div class="breadcrumbs-wrapper">
+        	<div class="container">
+            	<div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">Home</a> <span aria-hidden="true">|</span> <span>Terms & Conditions</span></div>
+            </div>
+        </div>
+        <!--End Breadcrumbs-->
+        <div class="container">
+        	<div class="page-title"><h1>{{terms.heading}}</h1></div>
+			<div>
+        {% if terms.content %}
+            	<p class="mb-4">{{terms.content | safe }}</p>
+            {% else %}
+Your sub heading content goes here
+            {% endif %}
+            </div>
+
+
+
+        </div><!--End Body Container-->
+    </div><!--End Page Wrapper-->
+{% endblock %}

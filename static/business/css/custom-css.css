@@ -1,0 +1,275 @@
+a.waves-effect.active{
+  color: #fff !important;
+}
+
+/* Password Strength Validation */
+.Short {
+	width: 100%;
+	background-color: #dc3545;
+	margin-top: 5px;
+	height: 3px;
+	color: #dc3545;
+	font-weight: 500;
+	font-size: 12px;
+ }
+ .Weak {
+	width: 100%;
+	background-color: #ffc107;
+	margin-top: 5px;
+	height: 3px;
+	color: #ffc107;
+	font-weight: 500;
+	font-size: 12px;
+ }
+ .Good {
+	width: 100%;
+	background-color: #d39e00;
+	margin-top: 5px;
+	height: 3px;
+	color: #d39e00;
+	font-weight: 500;
+	font-size: 12px;
+ }
+ .Strong {
+	width: 100%;
+	background-color: #28a745;
+	margin-top: 5px;
+	height: 3px;
+	color: #28a745;
+	font-weight: 500;
+	font-size: 12px;
+ }
+#strengthMessage{
+  position: relative;
+}
+#cke_id_description, #cke_id_full_specification{
+  width: 100% !important;
+}
+.django-ckeditor-widget{
+  display: block !important;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.var_image input#imageid{
+  display: none;
+}
+[type=radio]:checked + li img{
+  outline: 2px solid #000;
+}
+ul.var_image_list{
+  list-style-type: none;
+}
+/* label.var_image{
+  cursor: pointer;
+} */
+
+/* .varImagContainer{
+     display:none;
+     margin-top:30px;
+} */
+
+/* *:focus{
+    outline:none !important;
+} */
+
+.editGallery .file-caption-main{
+  width: 80%;
+  max_width: 80%;
+}
+
+#cke_id_email_body{
+  width: 100% !important;
+}
+
+
+
+
+/* Ratings widget */
+.rate {
+    display: inline-block;
+    border: 0;
+}
+/* Hide radio */
+.rate > input {
+    display: none;
+}
+/* Order correctly by floating highest to the right */
+.rate > label {
+    float: right;
+}
+/* The star of the show */
+.rate > label:before {
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: .3rem .2rem;
+    margin: 0;
+    cursor: pointer;
+    font-family: FontAwesome;
+    content: "\f005 "; /* full star */
+}
+/* Zero stars rating */
+/* Half star trick */
+.rate .half:before {
+    content: "\f089 "; /* half star no outline */
+    position: absolute;
+    padding-right: 0;
+}
+/* Click + hover color */
+input:checked ~ label, /* color current and previous stars on checked */
+
+
+/* Hover highlights */
+input:checked + label:hover, input:checked ~ label:hover, /* highlight current and previous stars */
+input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
+label:hover ~ input:checked ~ label /* highlight previous selected stars */ { color: #cc9000;  }
+
+
+
+/* Average review */
+.reviewLink .star {
+  display: inline-block;
+  position: relative;
+  font-size: 100px;
+  color: #ddd;
+}
+
+.reviewLink .star:after {
+  font-family: FontAwesome;
+  content: "\f005";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80%;
+  overflow: hidden;
+  color: #f80;
+}
+
+.product-review .fa{
+  font-size: 15px;
+    opacity: 1;
+    color: #ffb503;
+    margin: 0 1px;
+}
+
+/* ----------- Toggle Switch ------------ */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #ffb503;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+#cke_id_sub_heading, #cke_id_content{
+  width: 100% !important;
+}
+a.btn.disabled{
+  pointer-events: all;
+    cursor: not-allowed;
+
+}
+.fa{
+  font: normal normal normal 14px/1 FontAwesome !important;
+}
+
+#cke_id_topbar_text, #cke_id_footer_text, #cke_id_aboutcontent_set-0-header_text{
+  width: 100% !important;
+}
+
+.cke_chrome{
+  width: 100% !important;
+}
+.aboutTable tr th{
+  width: 15%;
+  padding: 15px;
+}
+.aboutImage{
+  margin-left: 15%;;
+}
+#cke_id_blog_body{
+  width: 100% !important;
+}
+p.allCategories:hover, .table-hover tbody tr:hover{
+  background-color: aliceblue !important;
+  }
+.ddAttachmentModel{
+  cursor: pointer;
+}
+
+@media only screen  and (min-width : 1224px) {
+  #ddAttachmentModel .modal-dialog-centered{
+    max-width: 65% !important;
+  }
+  }
+  .form-control.imageDimension{
+    border: none;
+    padding: 0px;
+    position: relative;
+    bottom: -15px;
+  }
+
+ .aboutTable [type="checkbox"]{
+    width: 25px;
+    height: 25px;
+  }

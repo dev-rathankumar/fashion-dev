@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Shop' %} {% endblock %}
+{% block content %}
+{% load static %}
+{% load mptt_tags %}
+
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>
+          {% if 'search' in request.path %}
+          {% trans 'Search Result' %}
+          {% else %}
+          {% trans 'Shop' %}
+          {% endif %}
+        </span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  <div class="container">
+    <div class="row">
+      <!--Sidebar-->
+      <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar filterbar">
+        <div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+        <div class="sidebar_tags">
+          <!--Price Filter-->
+          <form action="{% url 'search' %}" method="GET">
+            {% csrf_token %}
+            <div class="sidebar_widget filterBox filter-widget">
+              <div class="widget-title">
+                <h2>{% trans 'Price' %} ($)</h2>
+              </div>
+              <div id="slider-range"></div>
+              <div class="row">
+                <div class="col-12">
+                  <select name="price" class="w-100" >
+                    <option value="">{% trans 'Select Price Range' %}</option>
+                    <option value="0-200">{% trans 'Below' %} $200</option>
+                    <option value="200-400">$200 to $400</option>
+                    <option value="400-600">$400 to $600</option>
+                    <option value="600-1500">{% trans 'Above' %} $600</option>
+                 </select>
+
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-6">
+                      <input type="number" name="min-custom-price" placeholder="{% trans 'Min Price' %}" min="0">
+                    </div>
+                    <div class="col-6">
+                      <input type="number" name="max-custom-price" placeholder="{% trans 'Max Price' %}" min="0">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!--End Price Filter-->
+            <!--Size Swatches-->
+            {% if sizes %}
+            <div class="sidebar_widget filterBox filter-widget">
+              <div class="widget-title">
+                <h2>{% trans 'Size' %}</h2>
+              </div>
+              {% for size in sizes %}
+              <label class="var_color">
+                <input type="checkbox" name="size" value="{{ size }}" class="filter_color_input">
+                <div class="filter_size" style="height: 30px; width:100%;padding:0 5px 0 5px; border:1px solid #ccc;line-height: 28px;display: block;text-align: center;">{{ size }}</div>
+              </label>
+              {% endfor %}
+            </div>
+            {% endif %}
+            <!--End Size Swatches-->
+            <!--Color Swatches-->
+            {% if colors %}
+            <div class="sidebar_widget filterBox filter-widget">
+              <div class="widget-title">
+                <h2>{% trans 'Color' %}</h2>
+              </div>
+              {% for color in colors %}
+              <label class="var_color">
+                <input type="checkbox" name="color" value="{{ color }}" class="filter_color_input">
+                <div class="filter_color" style="height: 30px; width:30px; background-color:{{ color.code }}; border:1px solid #ccc;border-radius: 50px !important;"></div>
+              </label>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+            <div style="padding-bottom:20px;">
+              <button class="btn btn-secondary btn--small" style="width:100%;">{% trans 'filter' %}</button>
+            </div>
+          </form>
+          <!--End Color Swatches-->
+
+          <!--Popular Products-->
+
+          <div class="sidebar_widget sidePro">
+            {% if popular_products %}
+            <div class="widget-title">
+              <h2>{% trans 'Popular Products' %}</h2>
+            </div>
+            {% endif %}
+            <div class="widget-content">
+              <div class="sideProSlider grid-products">
+
+
+                {% for product in popular_products %}
+                <div class="item">
+                  <!-- start product image -->
+                  <div class="product-image">
+                    <!-- start product image -->
+                    <a href="{{ product.get_url }}" class="product-img">
+                      <!-- image -->
+                      <img class="primary blur-up lazyload" data-src="{{ product.image.url }}" src="{{ product.image.url }}" alt="" title="">
+                      <!-- End image -->
+                      <!-- Hover image -->
+                      <img class="hover blur-up lazyload" data-src="{{ product.image.url }}" src="{{ product.image.url }}" alt="" title="">
+                      <!-- End hover image -->
+                    </a>
+                    <!-- end product image -->
+
+                    <!--Product Button-->
+
+                    <!--End Product Button-->
+                  </div>
+                  <!-- end product image -->
+                  <!--start product details -->
+                  <div class="product-details text-center">
+                    <!-- product name -->
+                    <div class="product-name">
+                      <a href="product-layout1.html">{{ product.product_name }}</a>
+                    </div>
+                    <!-- End product name -->
+                    <!-- product price -->
+                    <div class="product-price">
+                      <span class="price">$ {{product.price}}</span>
+                    </div>
+                    <!-- End product price -->
+                    <!--Product Review-->
+                    <div class="product-review">
+                      <i class="font-13 fa fa-star{% if product.avaregereview < 0.5 %}-o{% elif product.avaregereview >= 0.5 and product.avaregereview < 1 %}-half-o {% else %} {% endif %}"></i>
+                      <i class="font-13 fa fa-star{% if product.avaregereview < 1.5 %}-o{% elif product.avaregereview >= 1.5 and product.avaregereview < 2 %}-half-o {% else %} {% endif %}"></i>
+                      <i class="font-13 fa fa-star{% if product.avaregereview < 2.5 %}-o{% elif product.avaregereview >= 2.5 and product.avaregereview < 3 %}-half-o {% else %} {% endif %}"></i>
+                      <i class="font-13 fa fa-star{% if product.avaregereview < 3.5 %}-o{% elif product.avaregereview >= 3.5 and product.avaregereview < 4 %}-half-o {% else %} {% endif %}"></i>
+                      <i class="font-13 fa fa-star{% if product.avaregereview < 4.5 %}-o{% elif product.avaregereview >= 4.5 and product.avaregereview < 5 %}-half-o {% else %} {% endif %}"></i>
+                    </div>
+                    <!--End Product Review-->
+                  </div>
+                  <!-- End product details -->
+                </div>
+                {% endfor %}
+
+
+
+              </div>
+            </div>
+          </div>
+
+          <!--End Popular Products-->
+          <!--Banner-->
+          <div class="sidebar_widget static-banner">
+            <a href="#"><img src="assets/images/collection-side-banner.png" alt=""></a>
+          </div>
+          <!--Banner-->
+
+
+        </div>
+      </div>
+      <!--End Sidebar-->
+      <!--Main Content-->
+      <div class="col-12 col-sm-12 col-md-9 col-lg-9 main-col">
+        <div class="page-title">
+          <h1>
+            {% if 'search' in request.path %}
+            {% trans 'Search Result' %}
+            {% else %}
+            {% trans 'Shop' %}
+            {% endif %}
+          </h1>
+        </div>
+
+
+        <!--Toolbar-->
+        <button type="button" class="btn btn-filter d-block d-md-none d-lg-none"> {% trans 'Product Filters' %}</button>
+        <div class="toolbar">
+          <div class="filters-toolbar-wrapper">
+            <div class="row">
+              <div class="col-4 col-md-4 col-lg-4 filters-toolbar__item collection-view-as d-flex justify-content-start align-items-center">
+
+              </div>
+              <div class="col-4 col-md-4 col-lg-4 text-center filters-toolbar__item filters-toolbar__item--count d-flex justify-content-center align-items-center">
+                <span class="filters-toolbar__product-count">{% trans 'Total' %}: {{ product_count }} {% trans 'Products' %}</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!--End Toolbar-->
+        <!--Product Grid-->
+
+        {% if product_count <= 0 %}
+        <h2 class="text-center">{% trans 'No products found' %}</h2>
+        {% else %}
+
+        <div class="product-load-more shop-page">
+          <div class="grid-products grid--view-items">
+            <div class="row">
+
+              {% for product in products %}
+              <div class="col-6 col-sm-6 col-md-3 col-lg-3 item">
+
+                <div class="product-image">
+                  <a href="{{ product.get_url }}" class="product-img">
+                    <img class="primary blur-up lazyload" data-src="{{ product.image.url }}" src="{{ product.image.url }}" alt="" title="">
+                    <img class="hover blur-up lazyload" data-src="{{ product.image.url }}" src="{{ product.image.url }}" alt="" title="">
+                    {% if product.is_popular %}<div class="product-labels"><span class="lbl on-sale">{% trans 'Popular' %}</span></div>
+                    {% endif %}
+                  </a>
+
+
+                </div>
+
+                <!-- end product image -->
+                <!--start product details -->
+                <div class="product-details text-center">
+                  <div class="product-name">
+                    <a href="{{ product.get_url }}">{{ product.product_name }}</a>
+                  </div>
+                  <div class="product-price">
+                    <span class="price">$ {{ product.price }}</span>
+                  </div>
+                  <div class="product-review">
+                    <i class="font-13 fa fa-star{% if product.avaregereview < 0.5 %}-o{% elif product.avaregereview >= 0.5 and product.avaregereview < 1 %}-half-o {% else %} {% endif %}"></i>
+                    <i class="font-13 fa fa-star{% if product.avaregereview < 1.5 %}-o{% elif product.avaregereview >= 1.5 and product.avaregereview < 2 %}-half-o {% else %} {% endif %}"></i>
+                    <i class="font-13 fa fa-star{% if product.avaregereview < 2.5 %}-o{% elif product.avaregereview >= 2.5 and product.avaregereview < 3 %}-half-o {% else %} {% endif %}"></i>
+                    <i class="font-13 fa fa-star{% if product.avaregereview < 3.5 %}-o{% elif product.avaregereview >= 3.5 and product.avaregereview < 4 %}-half-o {% else %} {% endif %}"></i>
+                    <i class="font-13 fa fa-star{% if product.avaregereview < 4.5 %}-o{% elif product.avaregereview >= 4.5 and product.avaregereview < 5 %}-half-o {% else %} {% endif %}"></i>
+                  </div>
+
+                </div>
+                <!-- End product details -->
+              </div>
+              {% endfor %}
+
+            </div>
+          </div>
+          <!--End Product Grid-->
+
+
+          <!-- Make the pagination here -->
+          {% if products.has_other_pages %}
+          <ul class="pagination mb-2 shop-page">
+            {% if products.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{products.previous_page_number}}" aria-label="Previous">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+              </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" aria-label="Previous">
+              <i class="fa fa-angle-left" aria-hidden="true"></i>
+              </a>
+            </li>
+            {% endif %}
+            {% for i in products.paginator.page_range %}
+            {% if products.number == i %}
+            <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if products.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{products.next_page_number}}" aria-label="Next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" aria-label="Next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+          {% endif %}
+        </div>
+
+        {% endif %}
+
+      </div>
+      <!--End Main Content-->
+    </div>
+
+  </div>
+  <!--End Body Container-->
+
+</div>
+<!--End Page Wrapper-->
+
+
+{% endblock %}

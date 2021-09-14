@@ -1,0 +1,135 @@
+{% extends 'regional_managers/base.html' %}
+{% load static %}
+
+{% block title %} Profile Details {% endblock %}
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0 font-size-18">Profile</h4>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-xl-8" style="margin:auto;">
+                    <div class="card overflow-hidden">
+                        <div class="bg-soft-primary" style="background-image: url('{{dashboardimage.business_landing_image.url}}');background-size: cover;height: 300px;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text-primary p-3">
+                                        <h5 class="text-primary text-light">Hi, {{ user.name }}</h5>
+                                        <p class="text-light">Welcome back!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="avatar-md profile-user-wid mb-4">
+                                        <img src="{{ user.profile_picture.url }}" alt="" class="img-thumbnail rounded-circle">
+                                    </div>
+                                    <h5 class="font-size-15 text-truncate">{{ user.name }}</h5>
+                                    <p class="text-muted mb-0 text-truncate">Regional Manager</p>
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <div class="pt-4">
+
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <h5 class="font-size-15">{{rm.commission_percentage}}%</h5>
+                                              <p class="text-muted mb-0">Commission Percentage</p>
+                                          </div>
+                                          <div class="col-6">
+                                              <h5 class="font-size-15">${{total_commission}}</h5>
+                                              <p class="text-muted mb-0">Total Commission</p>
+                                          </div>
+                                      </div>
+                                        <div class="mt-4">
+                                            <a href="{% url 'rm_dashboard' %}" class="btn btn-primary waves-effect waves-light btn-sm"><i class="mdi mdi-arrow-left ml-1"></i> Go to dashboard</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end card -->
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Personal Information</h4>
+
+                            <div class="table-responsive">
+                                <table class="table table-nowrap mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Full Name :</th>
+                                            <td>{{ user.name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Mobile :</th>
+                                            <td>{{ user.phone_number }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">E-mail :</th>
+                                            <td>{{ user.email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Location :</th>
+                                            <td>{{ rm.address_line_1 }}, {{ rm.address_line_2 }} {{ rm.city }} <br>
+                                            {{ rm.state }}, {{ rm.country }} - {{ rm.pin_code }}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Date of Join :</th>
+                                            <td>{{ user.date_joined }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Account Expiry Date :</th>
+                                            <td>{{ rm.account_expiry_date }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <a href="{% url 'rm_editProfile' user.pk %}" class="btn margin-15px-top btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div>
+
+                <div class="col-xl-8">
+
+
+                    <!-- <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Revenue</h4>
+                            <div id="revenue-chart" class="apex-charts"></div>
+                        </div>
+                    </div> -->
+
+
+                </div>
+            </div>
+            <!-- end row -->
+
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}

@@ -1,0 +1,2880 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-30 18:08+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\pages\views.py:22
+msgid "Homepage"
+msgstr "الصفحة الرئيسية"
+
+#: .\templates\accounts\acc_active_email.html:184
+msgid "ACTIVATE YOUR ACCOUNT"
+msgstr "فعل حسابك"
+
+#: .\templates\accounts\acc_active_email.html:198
+#: .\templates\accounts\biz_acc_activated_email.html:199
+#: .\templates\accounts\biz_reset_password_email.html:199
+#: .\templates\accounts\reset_password_email.html:199
+#: .\templates\accounts\rm_reset_password_email.html:199
+#: .\templates\business\dashboard.html:58 .\templates\business\profile.html:37
+#: .\templates\business\reset_password_email.html:3
+#: .\templates\orders\order_status_email.html:202
+#: .\templates\regional_managers\reset_password_email.html:3
+msgid "Hi"
+msgstr "أهلا"
+
+#: .\templates\accounts\acc_active_email.html:198
+msgid "please verify your email address to activate your account."
+msgstr "يرجى التحقق من عنوان بريدك الإلكتروني لتفعيل حسابك"
+
+#: .\templates\accounts\acc_active_email.html:215
+msgid "Verify Now"
+msgstr "تحقق الآن"
+
+#: .\templates\accounts\acc_active_email.html:226
+#: .\templates\accounts\biz_acc_activated_email.html:229
+#: .\templates\accounts\biz_reset_password_email.html:227
+#: .\templates\accounts\rm_reset_password_email.html:227
+#: .\templates\business\emails\email_template.html:202
+msgid "If you have any questions, feel free to contact"
+msgstr "إذا كان لديك أي استفسار أو تعليق ، فلا تتردد في الاتصال بنا"
+
+#: .\templates\accounts\biz_acc_activated_email.html:185
+#: .\templates\accounts\rm_acc_activated_email.html:185
+msgid "ACCOUNT ACTIVATED"
+msgstr "تم تفعيل الحساب"
+
+#: .\templates\accounts\biz_acc_activated_email.html:201
+#: .\templates\accounts\rm_acc_activated_email.html:201
+msgid "Congratulations! Your business account has been activated."
+msgstr "تهانينا! تم تنشيط حساب عملك."
+
+#: .\templates\accounts\biz_acc_activated_email.html:266
+#: .\templates\accounts\biz_reset_password_email.html:264
+#: .\templates\accounts\rm_acc_activated_email.html:266
+#: .\templates\accounts\rm_reset_password_email.html:264
+msgid "Copyright Altocan 2021. All Rights Reserved"
+msgstr "حقوق الطبع والنشر Altocan 2021. جميع الحقوق محفوظة"
+
+#: .\templates\accounts\biz_password_reset.html:3
+msgid "Password Reset"
+msgstr "إعادة تعيين كلمة المرور"
+
+#: .\templates\accounts\biz_password_reset.html:10
+#: .\templates\accounts\changeuserPassword.html:12
+#: .\templates\accounts\editUser.html:12
+#: .\templates\accounts\forgotPassword.html:11
+#: .\templates\accounts\inquiries.html:11
+#: .\templates\accounts\myorders.html:11
+#: .\templates\accounts\orderDetail.html:13
+#: .\templates\accounts\resetPassword.html:10
+#: .\templates\accounts\userDashboard.html:11
+#: .\templates\accounts\userLogin.html:11
+#: .\templates\accounts\userRegister.html:11
+#: .\templates\blogs\blog_detail.html:16 .\templates\blogs\blogs.html:13
+#: .\templates\includes\_navbar.html:40 .\templates\includes\_navbar.html:234
+#: .\templates\pages\about.html:11 .\templates\pages\contact.html:13
+#: .\templates\pages\home.html:3 .\templates\shop\cart.html:13
+#: .\templates\shop\product_detail.html:13 .\templates\shop\shop.html:13
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+#: .\templates\accounts\biz_password_reset.html:10
+#: .\templates\accounts\biz_password_reset.html:16
+#: .\templates\accounts\resetPassword.html:16
+msgid "Reset Your Password"
+msgstr "اعد ضبط كلمه السر"
+
+#: .\templates\accounts\biz_password_reset.html:30
+#: .\templates\accounts\resetPassword.html:30
+#: .\templates\accounts\userLogin.html:44
+#: .\templates\accounts\userRegister.html:61
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: .\templates\accounts\biz_password_reset.html:31
+#: .\templates\accounts\rm_password_reset.html:66
+msgid "Enter new password"
+msgstr "أدخل كلمة مرور جديدة"
+
+#: .\templates\accounts\biz_password_reset.html:38
+#: .\templates\accounts\changeuserPassword.html:46
+#: .\templates\accounts\resetPassword.html:38
+#: .\templates\accounts\rm_password_reset.html:71
+#: .\templates\accounts\userRegister.html:69
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+#: .\templates\accounts\biz_password_reset.html:39
+#: .\templates\accounts\rm_password_reset.html:72
+msgid "Confirm password"
+msgstr "تأكيد كلمة المرور"
+
+#: .\templates\accounts\biz_password_reset.html:47
+#: .\templates\accounts\forgotPassword.html:42
+#: .\templates\accounts\resetPassword.html:47
+msgid "Back To Login Page"
+msgstr "العودة إلى صفحة تسجيل الدخول"
+
+#: .\templates\accounts\biz_reset_password_email.html:185
+#: .\templates\accounts\rm_reset_password_email.html:185
+msgid "ACTIVATE YOUR ACCOUNT."
+msgstr "فعل حسابك"
+
+#: .\templates\accounts\biz_reset_password_email.html:199
+#: .\templates\accounts\rm_reset_password_email.html:199
+msgid ""
+"please click the activate button to reset your password and activate your "
+"account."
+msgstr ""
+"الرجاء النقر فوق زر التنشيط لإعادة تعيين كلمة المرور الخاصة بك وتنشيط حسابك."
+
+#: .\templates\accounts\biz_reset_password_email.html:216
+#: .\templates\accounts\rm_reset_password_email.html:216
+msgid "Activate"
+msgstr "تفعيل"
+
+#: .\templates\accounts\changeuserPassword.html:3
+msgid "Change Your Password"
+msgstr "غير كلمة المرور الخاصة بك"
+
+#: .\templates\accounts\changeuserPassword.html:12
+#: .\templates\accounts\editUser.html:12
+#: .\templates\accounts\includes\_navbar.html:2
+#: .\templates\accounts\inquiries.html:11
+#: .\templates\accounts\myorders.html:11
+#: .\templates\accounts\orderDetail.html:13
+#: .\templates\accounts\userDashboard.html:3
+#: .\templates\accounts\userDashboard.html:11
+#: .\templates\includes\_footer.html:48 .\templates\includes\_navbar.html:112
+msgid "My Account"
+msgstr "حسابي"
+
+#: .\templates\accounts\changeuserPassword.html:28
+msgid "Change your password"
+msgstr "غير كلمة المرور الخاصة بك"
+
+#: .\templates\accounts\changeuserPassword.html:32
+msgid "Current Password"
+msgstr "كلمة المرور الحالي"
+
+#: .\templates\accounts\changeuserPassword.html:34
+msgid "Enter current password"
+msgstr "إدخل كلمة السر الحالية"
+
+#: .\templates\accounts\changeuserPassword.html:38
+#: .\templates\accounts\rm_password_reset.html:65
+msgid "New Password"
+msgstr "كلمة المرور الجديدة"
+
+#: .\templates\accounts\changeuserPassword.html:40
+msgid "Create new password"
+msgstr "أنشئ كلمة مرور جديدة"
+
+#: .\templates\accounts\changeuserPassword.html:48
+msgid "Confirm new password"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+#: .\templates\accounts\changeuserPassword.html:55
+#: .\templates\business\editProduct.html:117
+msgid "Change"
+msgstr "يتغيرون"
+
+#: .\templates\accounts\editUser.html:3
+msgid "Edit User"
+msgstr "تحرير العضو"
+
+#: .\templates\accounts\editUser.html:28
+msgid "Account details"
+msgstr "تفاصيل الحساب"
+
+#: .\templates\accounts\editUser.html:35
+#: .\templates\accounts\userRegister.html:30
+#: .\templates\business\editOrder.html:89 .\templates\shop\checkout.html:34
+#: .\templates\shop\product_detail.html:410
+msgid "First Name"
+msgstr "الاسم الاول"
+
+#: .\templates\accounts\editUser.html:39
+#: .\templates\accounts\userRegister.html:36
+#: .\templates\business\editOrder.html:95 .\templates\shop\checkout.html:38
+#: .\templates\shop\product_detail.html:413
+msgid "Last Name"
+msgstr "Last Name"
+
+#: .\templates\accounts\editUser.html:45
+#: .\templates\accounts\forgotPassword.html:33
+#: .\templates\accounts\userRegister.html:51
+#: .\templates\business\editOrder.html:109
+#: .\templates\shop\product_detail.html:420
+msgid "Email Address"
+msgstr "عنوان البريد الإلكتروني"
+
+#: .\templates\accounts\editUser.html:49
+#: .\templates\business\editOrder.html:103
+#: .\templates\business\sitesettings\contactUs.html:85
+#: .\templates\pages\contact.html:52
+msgid "Phone Number"
+msgstr "رقم التليفون"
+
+#: .\templates\accounts\editUser.html:55
+#: .\templates\business\CustomerViewProfile.html:74
+#: .\templates\business\allCustomers.html:63
+msgid "Gender"
+msgstr "الجنس"
+
+#: .\templates\accounts\editUser.html:59
+#: .\templates\business\allCustomers.html:59
+msgid "Profile Picture"
+msgstr "الصوره الشخصيه"
+
+#: .\templates\accounts\editUser.html:64
+#: .\templates\business\paymentSettings.html:81
+msgid "Save"
+msgstr "يحفظ"
+
+#: .\templates\accounts\forgotPassword.html:3
+msgid "Forgot Password"
+msgstr "هل نسيت كلمة السر"
+
+#: .\templates\accounts\forgotPassword.html:11
+#: .\templates\accounts\forgotPassword.html:17
+#: .\templates\accounts\resetPassword.html:10
+msgid "Forgot Your Password"
+msgstr "نسيت رقمك السري"
+
+#: .\templates\accounts\forgotPassword.html:28
+msgid "Retrieve your password here"
+msgstr "استرد كلمة المرور هنا"
+
+#: .\templates\accounts\forgotPassword.html:29
+msgid ""
+"Please enter your email address below. You will receive a link to reset your "
+"password."
+msgstr ""
+"يرجى إدخال عنوان البريد الالكتروني أدناه. سوف تتلقى وصلة لإعادة تعيين كلمة "
+"المرور الخاصة بك."
+
+#: .\templates\accounts\forgotPassword.html:34
+msgid "Enter your email address"
+msgstr "أدخل عنوان بريدك الالكتروني"
+
+#: .\templates\accounts\forgotPassword.html:40
+#: .\templates\blogs\blog_detail.html:90
+#: .\templates\blogs\blog_detail.html:157
+msgid "Submit"
+msgstr "يقدم"
+
+#: .\templates\accounts\includes\_navbar.html:7
+#: .\templates\orders\order_placed_email.html:51
+msgid "Hello"
+msgstr "سلام"
+
+#: .\templates\accounts\includes\_navbar.html:8
+msgid "not"
+msgstr "ليس"
+
+#: .\templates\accounts\includes\_navbar.html:8
+msgid "Log Out"
+msgstr "تسجيل خروج"
+
+#: .\templates\accounts\includes\_navbar.html:17
+msgid "Need Assistance? Customer service at."
+msgstr "احتاج مساعدة؟ خدمة العملاء في."
+
+#: .\templates\accounts\includes\_navbar.html:23
+msgid "Registered on"
+msgstr "مسجلة على"
+
+#: .\templates\accounts\includes\_sidebar.html:5
+#: .\templates\accounts\userDashboard.html:27
+#: .\templates\business\dashboard.html:4
+#: .\templates\business\dashboard.html:21
+#: .\templates\business\includes\_sidebar.html:18
+#: .\templates\business\profile.html:67
+msgid "Dashboard"
+msgstr "لوحة القيادة"
+
+#: .\templates\accounts\includes\_sidebar.html:6
+#: .\templates\accounts\myorders.html:3
+msgid "My Orders"
+msgstr "طلباتي"
+
+#: .\templates\accounts\includes\_sidebar.html:7
+#: .\templates\accounts\inquiries.html:3
+#: .\templates\business\allInquiries.html:24
+#: .\templates\business\dashboard.html:144
+#: .\templates\business\includes\_sidebar.html:168
+msgid "Inquiries"
+msgstr "استفسارات"
+
+#: .\templates\accounts\includes\_sidebar.html:8
+msgid "Edit profile"
+msgstr "تعديل الملف الشخصي"
+
+#: .\templates\accounts\includes\_sidebar.html:9
+#: .\templates\business\includes\_navbar.html:93
+msgid "Change Password"
+msgstr "تغيير كلمة السر"
+
+#: .\templates\accounts\includes\_sidebar.html:10
+msgid "logout"
+msgstr "تسجيل خروج"
+
+#: .\templates\accounts\inquiries.html:27
+#: .\templates\accounts\userDashboard.html:41
+msgid "Your Inquiries"
+msgstr "استفساراتك"
+
+#: .\templates\accounts\inquiries.html:34 .\templates\shop\cart.html:44
+#: .\templates\shop\my-wishlist.html:40
+msgid "Product"
+msgstr "منتج"
+
+#: .\templates\accounts\inquiries.html:35 .\templates\pages\contact.html:64
+msgid "Your Message"
+msgstr "رسالتك"
+
+#: .\templates\accounts\inquiries.html:36
+#: .\templates\accounts\orderDetail.html:31
+#: .\templates\business\allComments.html:62
+#: .\templates\business\allContacts.html:60
+#: .\templates\business\allInquiries.html:61
+#: .\templates\business\allReviewRatings.html:61
+#: .\templates\business\commentReplies.html:61
+#: .\templates\business\emails\emails.html:70
+#: .\templates\business\planPurchaseHistory.html:63
+#: .\templates\orders\order_placed_email.html:50
+msgid "Date"
+msgstr "تاريخ"
+
+#: .\templates\accounts\inquiries.html:51
+msgid "You have not made any inquiries"
+msgstr "أنت لم تقدم أي استفسارات"
+
+#: .\templates\accounts\inquiries.html:52
+#: .\templates\accounts\myorders.html:58
+msgid "Go to shop"
+msgstr "اذهب للمتجر"
+
+#: .\templates\accounts\myorders.html:27
+#: .\templates\accounts\userDashboard.html:33
+msgid "Your Orders"
+msgstr "طلباتك"
+
+#: .\templates\accounts\myorders.html:34
+msgid "Order No."
+msgstr "رقم الطلب"
+
+#: .\templates\accounts\myorders.html:35
+msgid "Billing Name"
+msgstr "اسم الفاتورة"
+
+#: .\templates\accounts\myorders.html:36
+#: .\templates\business\allOrders.html:63
+#: .\templates\business\planHistoryDetail.html:73
+#: .\templates\business\planPurchaseHistory.html:62
+#: .\templates\shop\cart.html:47 .\templates\shop\cart.html:174
+#: .\templates\shop\shop.html:195
+msgid "Total"
+msgstr "مجموع"
+
+#: .\templates\accounts\myorders.html:37
+msgid "Purchased On"
+msgstr "تم شراؤها"
+
+#: .\templates\accounts\myorders.html:38 .\templates\business\addBlog.html:73
+#: .\templates\business\allBlogs.html:64
+#: .\templates\business\allOrders.html:65
+#: .\templates\business\allProducts.html:79
+#: .\templates\business\editBlog.html:78
+#: .\templates\business\emails\email_detail.html:40
+#: .\templates\business\emails\emails.html:69
+#: .\templates\business\planHistoryDetail.html:64
+#: .\templates\shop\my-wishlist.html:42
+msgid "Status"
+msgstr "حالة"
+
+#: .\templates\accounts\myorders.html:39
+#: .\templates\business\allContacts.html:79
+#: .\templates\business\allInquiries.html:83
+#: .\templates\business\emails\emails.html:71
+#: .\templates\business\emails\emails.html:89
+#: .\templates\business\planPurchaseHistory.html:64
+#: .\templates\business\planPurchaseHistory.html:84
+msgid "View Details"
+msgstr "عرض التفاصيل"
+
+#: .\templates\accounts\myorders.html:50
+msgid "VIEW DETAILS"
+msgstr "عرض التفاصيل"
+
+#: .\templates\accounts\myorders.html:57
+msgid "You have not purchased anything yet."
+msgstr "أنت لم تشتري أي شيء حتى الآن."
+
+#: .\templates\accounts\orderDetail.html:5
+#: .\templates\business\viewOrder.html:5
+msgid "Order Details"
+msgstr "تفاصيل الطلب"
+
+#: .\templates\accounts\orderDetail.html:28
+msgid "Thank you for your order"
+msgstr "شكرا لطلبك"
+
+#: .\templates\accounts\orderDetail.html:30
+#: .\templates\business\editOrder.html:51
+#: .\templates\business\planHistoryDetail.html:52
+#: .\templates\business\viewOrder.html:40
+#: .\templates\orders\order_placed_email.html:59
+msgid "Order"
+msgstr "طلب"
+
+#: .\templates\accounts\orderDetail.html:38
+#: .\templates\accounts\orderDetail.html:190
+msgid "This order is on hold. Please wait until we verify your payment."
+msgstr "هذا الطلب معلق. يرجى الانتظار حتى نتحقق من الدفع الخاص بك."
+
+#: .\templates\accounts\orderDetail.html:46
+#: .\templates\business\editOrder.html:79
+#: .\templates\business\viewOrder.html:70 .\templates\orders\payments.html:40
+msgid "Shipping Address"
+msgstr "عنوان الشحن"
+
+#: .\templates\accounts\orderDetail.html:72
+msgid "Transaction Details"
+msgstr "تفاصيل الصفقه"
+
+#: .\templates\accounts\orderDetail.html:80
+msgid "Transaction No."
+msgstr "رقم العملية التجارية."
+
+#: .\templates\accounts\orderDetail.html:82
+#: .\templates\business\viewOrder.html:47
+msgid "Payment Method"
+msgstr "طريقة الدفع او السداد"
+
+#: .\templates\accounts\orderDetail.html:93
+msgid "Purchased Products"
+msgstr "المنتجات المشتراة"
+
+#: .\templates\accounts\orderDetail.html:172
+#: .\templates\business\planHistoryDetail.html:72
+#: .\templates\orders\order_placed_email.html:111
+#: .\templates\orders\payments.html:182 .\templates\shop\checkout.html:181
+msgid "Tax"
+msgstr "ضريبة"
+
+#: .\templates\accounts\orderDetail.html:176
+#: .\templates\orders\payments.html:186 .\templates\shop\checkout.html:192
+msgid "Grand Total"
+msgstr "المبلغ الإجمالي"
+
+#: .\templates\accounts\resetPassword.html:3
+msgid "Reset Your Password "
+msgstr "اعد ضبط كلمه السر"
+
+#: .\templates\accounts\reset_password_email.html:185
+msgid "Please reset your password"
+msgstr "اعد ضبط كلمه السر"
+
+#: .\templates\accounts\reset_password_email.html:199
+msgid "please reset your password to recover your account."
+msgstr "يرجى إعادة تعيين كلمة المرور الخاصة بك لاستعادة حسابك."
+
+#: .\templates\accounts\reset_password_email.html:216
+msgid "Reset Password"
+msgstr "إعادة تعيين كلمة المرور"
+
+#: .\templates\accounts\reset_password_email.html:227
+#: .\templates\accounts\rm_acc_activated_email.html:229
+#: .\templates\orders\order_status_email.html:218
+msgid "If you have any questions, feel free to contact "
+msgstr "إذا كان لديك أي أسئلة ، فلا تتردد في الاتصال"
+
+#: .\templates\accounts\rm_password_reset.html:9
+msgid "Regional Manager"
+msgstr "المدير الاقليمي"
+
+#: .\templates\accounts\rm_password_reset.html:9
+msgid "Password Reset "
+msgstr "إعادة تعيين كلمة المرور"
+
+#: .\templates\accounts\rm_password_reset.html:42
+msgid "Hi Regional Manager,"
+msgstr "مرحبًا المدير الإقليمي ،"
+
+#: .\templates\accounts\rm_password_reset.html:43
+msgid "Please reset your password to activate your account."
+msgstr "يرجى إعادة تعيين كلمة المرور الخاصة بك لتفعيل حسابك"
+
+#: .\templates\accounts\rm_password_reset.html:77
+msgid "Reset"
+msgstr "إعادة ضبط"
+
+#: .\templates\accounts\userDashboard.html:48
+msgid "Edit Profile"
+msgstr "تعديل الملف الشخصي"
+
+#: .\templates\accounts\userLogin.html:3
+#: .\templates\accounts\userLogin.html:11
+#: .\templates\accounts\userLogin.html:17 .\templates\includes\_footer.html:50
+#: .\templates\includes\_navbar.html:123
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: .\templates\accounts\userLogin.html:24
+msgid "New Customers"
+msgstr "زبائن الجدد"
+
+#: .\templates\accounts\userLogin.html:25
+msgid ""
+"By creating an account with our store, you will be able to move through the "
+"checkout process faster, store multiple shipping addresses, view and track "
+"your orders in your account and more."
+msgstr ""
+"من خلال إنشاء حساب في متجرنا ، ستتمكن من التنقل خلال عملية الدفع بشكل أسرع ، "
+"وتخزين عناوين شحن متعددة ، وعرض وتتبع طلباتك في حسابك والمزيد."
+
+#: .\templates\accounts\userLogin.html:26
+msgid "Create an account"
+msgstr "انشئ حساب"
+
+#: .\templates\accounts\userLogin.html:34
+msgid "If you have an account with us, please log in."
+msgstr "إذا كان لديك حساب معنا ، يرجى تسجيل الدخول."
+
+#: .\templates\accounts\userLogin.html:38
+#: .\templates\blogs\blog_detail.html:50
+#: .\templates\business\sitesettings\contactUs.html:91
+#: .\templates\includes\_footer.html:21 .\templates\includes\_footer.html:25
+#: .\templates\pages\contact.html:43 .\templates\shop\product_detail.html:70
+msgid "Email"
+msgstr "بريد إلكتروني"
+
+#: .\templates\accounts\userLogin.html:39
+msgid "Your Email Address"
+msgstr "عنوان بريدك الإلكتروني"
+
+#: .\templates\accounts\userLogin.html:45
+msgid "Your password"
+msgstr "كلمتك السرية+"
+
+#: .\templates\accounts\userLogin.html:51
+msgid "Sign In"
+msgstr "تسجيل الدخول"
+
+#: .\templates\accounts\userLogin.html:53
+msgid "Forgot your password?"
+msgstr "نسيت رقمك السري؟"
+
+#: .\templates\accounts\userLogin.html:54
+msgid "Create account"
+msgstr "إنشاء حساب"
+
+#: .\templates\accounts\userRegister.html:3
+#: .\templates\accounts\userRegister.html:78
+msgid "Register"
+msgstr "يسجل"
+
+#: .\templates\accounts\userRegister.html:11
+#: .\templates\accounts\userRegister.html:16
+msgid "Create An Account"
+msgstr "انشئ حساب"
+
+#: .\templates\accounts\userRegister.html:24
+#: .\templates\business\profile.html:78
+msgid "Personal Information"
+msgstr "معلومات شخصية"
+
+#: .\templates\accounts\userRegister.html:45
+#: .\templates\business\allCustomers.html:62
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#: .\templates\accounts\userRegister.html:57
+msgid "Login Information"
+msgstr "معلومات تسجيل الدخول"
+
+#: .\templates\accounts\userRegister.html:81
+msgid "Back To Login"
+msgstr "العودة إلى تسجيل الدخول"
+
+#: .\templates\blogs\blog_detail.html:29
+msgid "comments"
+msgstr "تعليقات"
+
+#: .\templates\blogs\blog_detail.html:38
+#: .\templates\shop\product_detail.html:56
+msgid "Share"
+msgstr "يشارك"
+
+#: .\templates\blogs\blog_detail.html:41
+#: .\templates\shop\product_detail.html:61
+msgid "Tweet"
+msgstr "سقسقة"
+
+#: .\templates\blogs\blog_detail.html:44
+#: .\templates\shop\product_detail.html:64
+msgid "Google"
+msgstr "غوغل"
+
+#: .\templates\blogs\blog_detail.html:47
+#: .\templates\shop\product_detail.html:67
+msgid "Pin it"
+msgstr "يعلق عليه"
+
+#: .\templates\blogs\blog_detail.html:62
+msgid "Write A Comment"
+msgstr "أكتب تعليقا"
+
+#: .\templates\blogs\blog_detail.html:70
+msgid "Please note, comments must be approved before they are published"
+msgstr "يرجى ملاحظة أنه يجب الموافقة على التعليقات قبل نشرها"
+
+#: .\templates\blogs\blog_detail.html:75 .\templates\includes\_footer.html:77
+#: .\templates\pages\contact.html:72 .\templates\shop\product_detail.html:440
+#: .\templates\shop\product_detail.html:541
+msgid "Enter Captcha"
+msgstr "أدخل كلمة التحقق"
+
+#: .\templates\blogs\blog_detail.html:104
+msgid "Latest Comments"
+msgstr "أحدث تعليقات"
+
+#: .\templates\blogs\blog_detail.html:106
+msgid "Be the first to comment on this blog."
+msgstr "كن أول من يعلق على هذا بلوق."
+
+#: .\templates\blogs\blog_detail.html:119
+msgid "Posted by"
+msgstr "منشور من طرف"
+
+#: .\templates\blogs\blog_detail.html:120
+#: .\templates\business\commentReplies.html:60
+msgid "Reply"
+msgstr "رد"
+
+#: .\templates\blogs\blog_detail.html:132
+msgid "Write A Reply"
+msgstr "اكتب ردًا"
+
+#: .\templates\blogs\blogs.html:3 .\templates\blogs\blogs.html:13
+#: .\templates\blogs\blogs.html:18 .\templates\business\allBlogs.html:21
+#: .\templates\business\allComments.html:59
+#: .\templates\business\includes\_sidebar.html:103
+#: .\templates\includes\_navbar.html:58 .\templates\includes\_navbar.html:263
+msgid "Blogs"
+msgstr "المدونات"
+
+#: .\templates\blogs\blogs.html:26 .\templates\business\allBlogs.html:44
+#: .\templates\business\allColors.html:43
+#: .\templates\business\allComments.html:47
+#: .\templates\business\allContacts.html:46
+#: .\templates\business\allCustomers.html:46
+#: .\templates\business\allInquiries.html:46
+#: .\templates\business\allOrders.html:47
+#: .\templates\business\allProducts.html:49
+#: .\templates\business\allReviewRatings.html:46
+#: .\templates\business\allSizes.html:43
+#: .\templates\business\commentReplies.html:47
+#: .\templates\business\emails\emails.html:44
+#: .\templates\business\planPurchaseHistory.html:47
+#: .\templates\business\sitesettings\banners.html:44
+#: .\templates\business\sitesettings\socialIcons.html:44
+#: .\templates\business\sitesettings\store_features.html:44
+#: .\templates\includes\_navbar.html:76
+msgid "Search"
+msgstr "بحث"
+
+#: .\templates\blogs\blogs.html:33
+msgid "Search for blogs..."
+msgstr "البحث عن المدونات ..."
+
+#: .\templates\blogs\blogs.html:47
+msgid "Blog Category"
+msgstr "فئة المدونة"
+
+#: .\templates\blogs\blogs.html:52 .\templates\business\allBlogs.html:4
+#: .\templates\business\allBlogs.html:18 .\templates\business\allBlogs.html:22
+#: .\templates\business\includes\_sidebar.html:106
+msgid "All Blogs"
+msgstr "كل المدونات"
+
+#: .\templates\blogs\blogs.html:63
+msgid "Recent Blog Posts"
+msgstr "أحدث التدوينات"
+
+#: .\templates\blogs\blogs.html:122
+msgid "Read more"
+msgstr "قراءة المزيد"
+
+#: .\templates\blogs\blogs.html:128
+msgid "No blogs"
+msgstr "لا توجد مدونات"
+
+#: .\templates\business\CustomerViewProfile.html:5
+msgid "Customer Details"
+msgstr "تفاصيل العميل"
+
+#: .\templates\business\CustomerViewProfile.html:20
+msgid "Customer Profile"
+msgstr "ملف الزائر"
+
+#: .\templates\business\CustomerViewProfile.html:45
+#: .\templates\business\allCustomers.html:64
+msgid "Registered Date"
+msgstr "تاريخ التسجيل"
+
+#: .\templates\business\CustomerViewProfile.html:52
+#: .\templates\business\allCustomers.html:58
+#: .\templates\business\editOrder.html:56
+#: .\templates\business\viewOrder.html:45
+msgid "Customer ID"
+msgstr "هوية الزبون"
+
+#: .\templates\business\CustomerViewProfile.html:52
+msgid "Last login"
+msgstr "آخر تسجيل دخول"
+
+#: .\templates\business\CustomerViewProfile.html:94
+#: .\templates\business\addBlog.html:88
+#: .\templates\business\addBlogCategory.html:62
+#: .\templates\business\editBlog.html:93
+#: .\templates\business\editBlogCategory.html:54
+#: .\templates\business\editOrder.html:300
+#: .\templates\business\emails\email_detail.html:77
+#: .\templates\business\planHistoryDetail.html:91
+#: .\templates\business\viewInquiry.html:73
+#: .\templates\business\viewOrder.html:242
+msgid "Go back"
+msgstr "عد"
+
+#: .\templates\business\addBlog.html:4 .\templates\business\addBlog.html:20
+#: .\templates\business\includes\_sidebar.html:107
+msgid "Add Blog"
+msgstr "أضف مدونة"
+
+#: .\templates\business\addBlog.html:30 .\templates\business\editBlog.html:38
+msgid "Blog Information"
+msgstr "معلومات المدونة"
+
+#: .\templates\business\addBlog.html:31
+#: .\templates\business\addProduct.html:31
+#: .\templates\business\editBlog.html:39
+#: .\templates\business\editProduct.html:39
+#: .\templates\business\sitesettings\headerEdit.html:33
+msgid "Fill all information below"
+msgstr "املأ جميع المعلومات أدناه"
+
+#: .\templates\business\addBlog.html:41 .\templates\business\allBlogs.html:61
+#: .\templates\business\editBlog.html:46
+#: .\templates\business\sitesettings\banners.html:68
+#: .\templates\business\sitesettings\editBanner.html:58
+#: .\templates\business\sitesettings\editStoreFeature.html:56
+#: .\templates\business\sitesettings\headerEdit.html:41
+#: .\templates\business\sitesettings\homepage_background.html:62
+#: .\templates\business\sitesettings\store_features.html:73
+msgid "Title"
+msgstr "لقب"
+
+#: .\templates\business\addBlog.html:49
+#: .\templates\business\addProduct.html:50
+#: .\templates\business\allBlogs.html:63
+#: .\templates\business\allProducts.html:77
+#: .\templates\business\editBlog.html:54
+#: .\templates\business\editProduct.html:57
+msgid "Category"
+msgstr "فئة"
+
+#: .\templates\business\addBlog.html:49
+#: .\templates\business\addProduct.html:50
+#: .\templates\business\allBlogsCategories.html:35
+#: .\templates\business\allBlogsCategories.html:47
+#: .\templates\business\allCategories.html:42
+#: .\templates\business\allCategories.html:54
+#: .\templates\business\editBlog.html:54
+msgid "Add New Category"
+msgstr "إضافة فئة جديدة"
+
+#: .\templates\business\addBlog.html:57
+msgid "Blog Short Description"
+msgstr "وصف قصير للمدونة"
+
+#: .\templates\business\addBlog.html:65
+#: .\templates\business\sitesettings\homepage_background.html:68
+msgid "Description"
+msgstr "وصف"
+
+#: .\templates\business\addBlog.html:82 .\templates\business\allBlogs.html:60
+msgid "Featured Image"
+msgstr "صورة مميزة"
+
+#: .\templates\business\addBlog.html:89
+#: .\templates\business\addBlogCategory.html:63
+#: .\templates\business\addCategory.html:75
+#: .\templates\business\addProduct.html:126
+#: .\templates\business\editBlog.html:95
+#: .\templates\business\editBlogCategory.html:55
+#: .\templates\business\editCategory.html:76
+#: .\templates\business\editColor.html:61
+#: .\templates\business\editProduct.html:131
+#: .\templates\business\editSize.html:54
+#: .\templates\business\sitesettings\aboutUs.html:67
+#: .\templates\business\sitesettings\aboutUs.html:122
+#: .\templates\business\sitesettings\contactUs.html:106
+#: .\templates\business\sitesettings\editBanner.html:98
+#: .\templates\business\sitesettings\editIcon.html:90
+#: .\templates\business\sitesettings\editPolicy.html:56
+#: .\templates\business\sitesettings\editStoreFeature.html:74
+#: .\templates\business\sitesettings\editTermsConditions.html:59
+#: .\templates\business\sitesettings\footerEdit.html:49
+#: .\templates\business\sitesettings\headerEdit.html:71
+#: .\templates\business\sitesettings\homepage_background.html:102
+#: .\templates\business\sitesettings\paymentGateways.html:64
+#: .\templates\business\sitesettings\paymentGateways.html:99
+#: .\templates\business\sitesettings\topbarEdit.html:63
+msgid "SAVE"
+msgstr "حفظ"
+
+#: .\templates\business\addBlogCategory.html:4
+#: .\templates\business\addBlogCategory.html:18
+#: .\templates\business\addCategory.html:4
+#: .\templates\business\addCategory.html:20
+#: .\templates\business\includes\_sidebar.html:72
+#: .\templates\business\includes\_sidebar.html:121
+msgid "Add Category"
+msgstr "إضافة فئة"
+
+#: .\templates\business\addBlogCategory.html:29
+#: .\templates\business\allBlogs.html:36 .\templates\business\allBlogs.html:51
+msgid "Add New Blog"
+msgstr "أضف مدونة جديدة"
+
+#: .\templates\business\addBlogCategory.html:40
+#: .\templates\business\addCategory.html:44
+#: .\templates\business\editBlogCategory.html:33
+#: .\templates\business\editCategory.html:38
+msgid "Category Name"
+msgstr "اسم التصنيف"
+
+#: .\templates\business\addBlogCategory.html:48
+#: .\templates\business\addCategory.html:52
+#: .\templates\business\editBlogCategory.html:41
+#: .\templates\business\editCategory.html:46
+msgid "Subcategory"
+msgstr "تصنيف فرعي"
+
+#: .\templates\business\addBlogCategory.html:48
+#: .\templates\business\addBlogCategory.html:57
+#: .\templates\business\addCategory.html:52
+#: .\templates\business\addCategory.html:68
+#: .\templates\business\editBlogCategory.html:41
+#: .\templates\business\editBlogCategory.html:49
+#: .\templates\business\editCategory.html:46
+#: .\templates\business\editCategory.html:69
+#: .\templates\orders\payments.html:225
+msgid "(Optional)"
+msgstr "(خياري)"
+
+#: .\templates\business\addBlogCategory.html:49
+#: .\templates\business\addCategory.html:52
+#: .\templates\business\editBlogCategory.html:41
+msgid "By default, this will be added as a main category."
+msgstr "بشكل افتراضي ، ستتم إضافة هذا كفئة رئيسية."
+
+#: .\templates\business\addBlogCategory.html:57
+#: .\templates\business\addCategory.html:68
+#: .\templates\business\editBlogCategory.html:49
+#: .\templates\business\editCategory.html:69
+msgid "Category Description"
+msgstr "وصف التصنيف"
+
+#: .\templates\business\addCategory.html:33
+#: .\templates\business\allProducts.html:41
+#: .\templates\business\allProducts.html:56
+msgid "Add New Product"
+msgstr "اضافة منتج جديد"
+
+#: .\templates\business\addCategory.html:60
+#: .\templates\business\editCategory.html:61
+msgid "Category Image"
+msgstr "صورة الفئة"
+
+#: .\templates\business\addProduct.html:4
+#: .\templates\business\addProduct.html:20
+#: .\templates\business\editProduct.html:20
+#: .\templates\business\includes\_sidebar.html:95
+msgid "Add Product"
+msgstr "أضف منتج"
+
+#: .\templates\business\addProduct.html:30
+#: .\templates\business\editProduct.html:38
+msgid "Product Information"
+msgstr "معلومات المنتج"
+
+#: .\templates\business\addProduct.html:41
+#: .\templates\business\allInquiries.html:59
+#: .\templates\business\allProducts.html:73
+#: .\templates\business\allReviewRatings.html:59
+#: .\templates\business\editProduct.html:49
+#: .\templates\business\viewInquiry.html:50 .\templates\shop\checkout.html:104
+msgid "Product Name"
+msgstr "اسم المنتج"
+
+#: .\templates\business\addProduct.html:58
+#: .\templates\business\editProduct.html:65
+#: .\templates\shop\compare_products.html:43
+msgid "Product Description"
+msgstr "وصف المنتج"
+
+#: .\templates\business\addProduct.html:66
+#: .\templates\business\editProduct.html:73
+msgid "Full Specification"
+msgstr "المواصفات الكاملة"
+
+#: .\templates\business\addProduct.html:75
+#: .\templates\business\editProduct.html:81
+msgid "Product Variation"
+msgstr "تنوع المنتج"
+
+#: .\templates\business\addProduct.html:86
+#: .\templates\business\allProducts.html:74
+#: .\templates\business\editProduct.html:92
+#: .\templates\orders\order_placed_email.html:66 .\templates\shop\cart.html:45
+#: .\templates\shop\checkout.html:105
+#: .\templates\shop\compare_products.html:53
+#: .\templates\shop\my-wishlist.html:41 .\templates\shop\shop.html:34
+msgid "Price"
+msgstr "السعر"
+
+#: .\templates\business\addProduct.html:92
+#: .\templates\business\allProducts.html:75
+#: .\templates\business\editProduct.html:98
+msgid "Stock"
+msgstr "مخزون"
+
+#: .\templates\business\addProduct.html:103
+#: .\templates\business\editProduct.html:108
+msgid "Primary Product Image"
+msgstr "صورة المنتج الأساسية"
+
+#: .\templates\business\addProduct.html:111
+#: .\templates\business\editProduct.html:116
+msgid "Secondary Product Image"
+msgstr "صورة المنتج الثانوية"
+
+#: .\templates\business\addProduct.html:121
+#: .\templates\business\editProduct.html:126
+msgid "Set this product as Popular Product?"
+msgstr "تعيين هذا المنتج كمنتج شعبي؟"
+
+#: .\templates\business\addProduct.html:126
+#: .\templates\business\editProduct.html:131
+msgid "CONTINUE"
+msgstr "استمر"
+
+#: .\templates\business\allBlogs.html:34
+msgid "You do not have any blogs."
+msgstr "ليس لديك أي مدونات."
+
+#: .\templates\business\allBlogs.html:62
+msgid "Author"
+msgstr "مؤلف"
+
+#: .\templates\business\allBlogs.html:65 .\templates\business\allBlogs.html:91
+#: .\templates\business\allProducts.html:80
+#: .\templates\business\allProducts.html:123
+#: .\templates\business\allProducts.html:127
+#: .\templates\business\sitesettings\banners.html:73
+#: .\templates\business\sitesettings\banners.html:111
+#: .\templates\business\sitesettings\store_features.html:76
+#: .\templates\business\sitesettings\store_features.html:105
+msgid "Preview"
+msgstr "معاينة"
+
+#: .\templates\business\allBlogs.html:66
+#: .\templates\business\allColors.html:68
+#: .\templates\business\allContacts.html:62
+#: .\templates\business\allInquiries.html:63
+#: .\templates\business\allOrders.html:68
+#: .\templates\business\allProducts.html:81
+#: .\templates\business\allSizes.html:67
+#: .\templates\business\sitesettings\banners.html:74
+#: .\templates\business\sitesettings\socialIcons.html:71
+#: .\templates\business\sitesettings\store_features.html:77
+#: .\templates\shop\compare_products.html:87
+msgid "Action"
+msgstr "عمل"
+
+#: .\templates\business\allBlogs.html:84
+msgid "Published"
+msgstr "نشرت"
+
+#: .\templates\business\allBlogs.html:86
+msgid "Draft"
+msgstr "مسودة"
+
+#: .\templates\business\allBlogsCategories.html:4
+#: .\templates\business\allBlogsCategories.html:16
+#: .\templates\business\allCategories.html:4
+#: .\templates\business\allCategories.html:20
+#: .\templates\business\allCategories.html:25
+#: .\templates\business\includes\_sidebar.html:71
+#: .\templates\business\includes\_sidebar.html:120
+msgid "All Categories"
+msgstr "جميع الفئات"
+
+#: .\templates\business\allBlogsCategories.html:19
+#: .\templates\business\allCategories.html:24
+#: .\templates\business\dashboard.html:32
+#: .\templates\business\includes\_sidebar.html:68
+#: .\templates\business\includes\_sidebar.html:117
+#: .\templates\includes\_navbar.html:41 .\templates\includes\_navbar.html:236
+msgid "Categories"
+msgstr "فئات"
+
+#: .\templates\business\allBlogsCategories.html:20
+msgid "All  Categories"
+msgstr "جميع الفئات"
+
+#: .\templates\business\allBlogsCategories.html:33
+#: .\templates\business\allCategories.html:40
+msgid "You do not have any category"
+msgstr "ليس لديك أي فئة"
+
+#: .\templates\business\allColors.html:4
+#: .\templates\business\allColors.html:20
+msgid "Variant Colors"
+msgstr "ألوان متنوعة"
+
+#: .\templates\business\allColors.html:35
+#: .\templates\business\allColors.html:50
+msgid "Add Color"
+msgstr "أضف اللون"
+
+#: .\templates\business\allColors.html:66
+#: .\templates\business\allProducts.html:100
+#: .\templates\orders\order_placed_email.html:81
+#: .\templates\orders\order_placed_email.html:83 .\templates\shop\shop.html:82
+msgid "Color"
+msgstr "اللون"
+
+#: .\templates\business\allColors.html:67
+#: .\templates\business\editColor.html:51
+msgid "Color Code"
+msgstr "رمز اللون"
+
+#: .\templates\business\allComments.html:6
+#: .\templates\business\allComments.html:21
+#: .\templates\business\allComments.html:26
+msgid "All Comments"
+msgstr "كل التعليقات"
+
+#: .\templates\business\allComments.html:25
+#: .\templates\business\allComments.html:60
+#: .\templates\business\commentReplies.html:25
+#: .\templates\business\includes\_sidebar.html:110
+msgid "Comments"
+msgstr "تعليقات"
+
+#: .\templates\business\allComments.html:40
+msgid "You do not have any comments  yet"
+msgstr "ليس لديك أي تعليقات حتى الآن"
+
+#: .\templates\business\allComments.html:58
+#: .\templates\business\allCustomers.html:24
+#: .\templates\business\dashboard.html:126
+#: .\templates\business\includes\_sidebar.html:161
+msgid "Customers"
+msgstr "عملاء"
+
+#: .\templates\business\allComments.html:61
+#: .\templates\business\commentReplies.html:6
+#: .\templates\business\commentReplies.html:26
+msgid "Replies"
+msgstr "الردود"
+
+#: .\templates\business\allComments.html:63
+#: .\templates\business\allReviewRatings.html:62
+#: .\templates\business\commentReplies.html:62
+msgid "Approval"
+msgstr "موافقة"
+
+#: .\templates\business\allComments.html:82
+msgid "replies"
+msgstr "الردود"
+
+#: .\templates\business\allComments.html:87
+#: .\templates\business\allReviewRatings.html:95
+#: .\templates\business\commentReplies.html:79
+msgid "Approved"
+msgstr "وافق"
+
+#: .\templates\business\allComments.html:87
+#: .\templates\business\allReviewRatings.html:95
+#: .\templates\business\commentReplies.html:79
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#: .\templates\business\allContacts.html:5
+msgid "All Contact form inquiries"
+msgstr "جميع استفسارات نموذج الاتصال"
+
+#: .\templates\business\allContacts.html:20
+#: .\templates\business\allContacts.html:25
+msgid "All Contacts"
+msgstr "كل الاتصالات"
+
+#: .\templates\business\allContacts.html:24
+msgid "Contacts"
+msgstr "جهات الاتصال"
+
+#: .\templates\business\allContacts.html:39
+#: .\templates\business\allInquiries.html:39
+msgid "You do not have any inquiries yet"
+msgstr "ليس لديك أي استفسارات حتى الآن"
+
+#: .\templates\business\allContacts.html:58
+#: .\templates\business\allCustomers.html:60
+#: .\templates\business\allOrders.html:60
+#: .\templates\business\editOrder.html:55
+#: .\templates\business\viewOrder.html:44 .\templates\pages\contact.html:38
+msgid "Name"
+msgstr "اسم"
+
+#: .\templates\business\allContacts.html:59
+msgid "Email & Phone"
+msgstr "البريد الإلكتروني والهاتف"
+
+#: .\templates\business\allContacts.html:61
+#: .\templates\business\allInquiries.html:62
+msgid "View"
+msgstr "رأي"
+
+#: .\templates\business\allCustomers.html:5
+#: .\templates\business\allCustomers.html:20
+#: .\templates\business\allCustomers.html:25
+msgid "All Customers"
+msgstr "كل العملاء"
+
+#: .\templates\business\allCustomers.html:39
+msgid "You do not have any customers yet"
+msgstr "ليس لديك أي عملاء حتى الآن"
+
+#: .\templates\business\allCustomers.html:61
+#: .\templates\business\allInquiries.html:60
+#: .\templates\business\allOrders.html:61 .\templates\pages\contact.html:3
+msgid "Contact"
+msgstr "اتصال"
+
+#: .\templates\business\allCustomers.html:65
+#: .\templates\business\includes\_navbar.html:92
+#: .\templates\business\includes\_sidebar.html:26
+#: .\templates\business\profile.html:20
+msgid "Profile"
+msgstr "حساب تعريفي"
+
+#: .\templates\business\allCustomers.html:92
+#: .\templates\business\dashboard.html:88
+msgid "View Profile"
+msgstr "عرض الصفحة الشخصية"
+
+#: .\templates\business\allInquiries.html:5
+#: .\templates\business\allInquiries.html:20
+#: .\templates\business\allInquiries.html:25
+msgid "All Inquiries"
+msgstr "كل الاستفسارات"
+
+#: .\templates\business\allInquiries.html:58
+#: .\templates\business\allReviewRatings.html:58
+msgid "Customer Name"
+msgstr "اسم الزبون"
+
+#: .\templates\business\allOrders.html:5
+#: .\templates\business\includes\_sidebar.html:188
+msgid "Manage Orders"
+msgstr "Manage Orders"
+
+#: .\templates\business\allOrders.html:21
+#: .\templates\business\allOrders.html:26
+msgid "All Orders"
+msgstr "جميع الطلبات"
+
+#: .\templates\business\allOrders.html:25
+#: .\templates\business\dashboard.html:34
+#: .\templates\business\dashboard.html:80 .\templates\business\profile.html:59
+msgid "Orders"
+msgstr "الطلب"
+
+#: .\templates\business\allOrders.html:40
+msgid "You did not recieve any orders yet"
+msgstr "لم تستلم أي طلبات بعد"
+
+#: .\templates\business\allOrders.html:59
+#: .\templates\business\planPurchaseHistory.html:60
+msgid "Order Number"
+msgstr "رقم الأمر"
+
+#: .\templates\business\allOrders.html:62
+#: .\templates\business\sitesettings\contactUs.html:57
+#: .\templates\shop\checkout.html:67
+msgid "City"
+msgstr "مدينة"
+
+#: .\templates\business\allOrders.html:64
+msgid "Payment"
+msgstr "قسط"
+
+#: .\templates\business\allOrders.html:66
+msgid "Ordered Date"
+msgstr "تاريخ الطلب"
+
+#: .\templates\business\allOrders.html:67
+#: .\templates\business\allOrders.html:118
+msgid "View Order"
+msgstr "مشاهدة الطلب"
+
+#: .\templates\business\allOrders.html:98
+#: .\templates\business\viewOrder.html:50
+msgid "New"
+msgstr "جديد"
+
+#: .\templates\business\allOrders.html:100
+#: .\templates\business\viewOrder.html:52
+msgid "Accepted"
+msgstr "وافقت"
+
+#: .\templates\business\allOrders.html:102
+msgid "On Hold"
+msgstr "في الانتظار"
+
+#: .\templates\business\allOrders.html:104
+msgid "Pending Payment"
+msgstr "في انتظار الدفع"
+
+#: .\templates\business\allOrders.html:106
+#: .\templates\business\editOrder.html:62
+#: .\templates\business\viewOrder.html:54
+msgid "Completed"
+msgstr "مكتمل"
+
+#: .\templates\business\allOrders.html:108
+#: .\templates\business\editOrder.html:65
+#: .\templates\business\viewOrder.html:56
+msgid "Cancelled"
+msgstr "ألغيت"
+
+#: .\templates\business\allProducts.html:4
+#: .\templates\business\allProducts.html:20
+#: .\templates\business\allProducts.html:25
+#: .\templates\business\includes\_sidebar.html:94
+#: .\templates\includes\_navbar.html:43 .\templates\includes\_navbar.html:239
+msgid "All Products"
+msgstr "جميع المنتجات"
+
+#: .\templates\business\allProducts.html:24
+#: .\templates\business\dashboard.html:33
+#: .\templates\business\dashboard.html:108
+#: .\templates\business\includes\_sidebar.html:91
+#: .\templates\shop\shop.html:195
+msgid "Products"
+msgstr "منتجات"
+
+#: .\templates\business\allProducts.html:39
+msgid "You do not have any products"
+msgstr "ليس لديك أي منتجات"
+
+#: .\templates\business\allProducts.html:72
+msgid "Image"
+msgstr "صورة"
+
+#: .\templates\business\allProducts.html:76
+msgid "Variants"
+msgstr "المتغيرات"
+
+#: .\templates\business\allProducts.html:78
+#: .\templates\shop\compare_products.html:63
+msgid "Availability"
+msgstr "التوفر"
+
+#: .\templates\business\allProducts.html:100
+#: .\templates\business\allSizes.html:66 .\templates\business\editSize.html:42
+#: .\templates\orders\order_placed_email.html:79 .\templates\shop\shop.html:69
+msgid "Size"
+msgstr "مقاس"
+
+#: .\templates\business\allProducts.html:107
+#: .\templates\shop\compare_products.html:66
+#: .\templates\shop\compare_products.html:77
+#: .\templates\shop\my-wishlist.html:76
+#: .\templates\shop\product_detail.html:346
+msgid "Out of Stock"
+msgstr "إنتهى من المخزن"
+
+#: .\templates\business\allProducts.html:109
+msgid "Available"
+msgstr "متوفرة"
+
+#: .\templates\business\allProducts.html:114
+msgid "Active"
+msgstr "نشيط"
+
+#: .\templates\business\allProducts.html:116
+msgid "Inactive"
+msgstr "غير نشط"
+
+#: .\templates\business\allReviewRatings.html:5
+#: .\templates\business\allReviewRatings.html:20
+#: .\templates\business\allReviewRatings.html:25
+msgid "All Ratings & Reviews"
+msgstr "جميع التقييمات والمراجعات"
+
+#: .\templates\business\allReviewRatings.html:24
+msgid "Ratings & Reviews"
+msgstr "التقييمات والمراجعات"
+
+#: .\templates\business\allReviewRatings.html:39
+msgid "You do not have any ratings yet"
+msgstr "ليس لديك أي تقييمات حتى الآن"
+
+#: .\templates\business\allReviewRatings.html:60
+#: .\templates\business\includes\_sidebar.html:175
+msgid "Rating & Reviews"
+msgstr "التقييم والمراجعات"
+
+#: .\templates\business\allSizes.html:4 .\templates\business\allSizes.html:20
+msgid "Variant Sizes"
+msgstr "مقاسات مختلفة"
+
+#: .\templates\business\allSizes.html:50
+msgid "Add Size"
+msgstr "إضافة الحجم"
+
+#: .\templates\business\commentReplies.html:21
+msgid "All replies to "
+msgstr "كافة الردود على"
+
+#: .\templates\business\commentReplies.html:40
+msgid "There is no reply to this comment yet."
+msgstr "لا يوجد رد على هذا التعليق حتى الان."
+
+#: .\templates\business\commentReplies.html:58
+msgid "Customer"
+msgstr "عميل"
+
+#: .\templates\business\commentReplies.html:59
+msgid "Blog"
+msgstr "مقالات"
+
+#: .\templates\business\commentReplies.html:92
+#: .\templates\business\editColor.html:60
+#: .\templates\business\editSize.html:53
+#: .\templates\business\sitesettings\contactUs.html:105
+#: .\templates\business\sitesettings\editBanner.html:97
+#: .\templates\business\sitesettings\editPolicy.html:55
+#: .\templates\business\sitesettings\editStoreFeature.html:73
+#: .\templates\business\sitesettings\editTermsConditions.html:58
+#: .\templates\business\sitesettings\homepage_background.html:101
+#: .\templates\business\viewContact.html:73
+msgid "Back"
+msgstr "عودة"
+
+#: .\templates\business\dashboard.html:27
+msgid "QUICK LINKS"
+msgstr "روابط سريعة"
+
+#: .\templates\business\dashboard.html:30
+msgid "YOUR STORE"
+msgstr "متجرك"
+
+#: .\templates\business\dashboard.html:36
+msgid "SETTINGS"
+msgstr "الإعدادات"
+
+#: .\templates\business\dashboard.html:38
+#: .\templates\business\includes\_sidebar.html:36
+#: .\templates\business\sitesettings\topbarEdit.html:22
+#: .\templates\business\sitesettings\topbarEdit.html:34
+msgid "Topbar"
+msgstr "الشريط العلوى"
+
+#: .\templates\business\dashboard.html:39
+#: .\templates\business\includes\_sidebar.html:37
+msgid "Header"
+msgstr "رأس"
+
+#: .\templates\business\dashboard.html:40
+#: .\templates\business\includes\_sidebar.html:38
+#: .\templates\business\sitesettings\footerEdit.html:22
+msgid "Footer"
+msgstr "تذييل"
+
+#: .\templates\business\dashboard.html:41
+#: .\templates\business\includes\_sidebar.html:40
+msgid "Banners"
+msgstr "لافتات"
+
+#: .\templates\business\dashboard.html:42
+#: .\templates\business\includes\_sidebar.html:44
+#: .\templates\business\sitesettings\paymentGateways.html:22
+msgid "Payment Gateways"
+msgstr "بوابات الدفع"
+
+#: .\templates\business\dashboard.html:59 .\templates\business\profile.html:38
+msgid "Welcome back!"
+msgstr "مرحبا بعودتك!"
+
+#: .\templates\business\dashboard.html:71 .\templates\business\profile.html:50
+msgid "Business Account"
+msgstr "حساب تجاري"
+
+#: .\templates\business\dashboard.html:84 .\templates\business\profile.html:63
+msgid "Revenue"
+msgstr "إيرادات"
+
+#: .\templates\business\editBlog.html:4 .\templates\business\editBlog.html:20
+#: .\templates\business\editBlog.html:25
+msgid "Edit Blog"
+msgstr "تحرير المدونة"
+
+#: .\templates\business\editBlog.html:62
+msgid "Short Description"
+msgstr "وصف قصير"
+
+#: .\templates\business\editBlog.html:70
+msgid "Full Description"
+msgstr "وصف كامل"
+
+#: .\templates\business\editBlog.html:87
+msgid "Blog Image"
+msgstr "صورة المدونة"
+
+#: .\templates\business\editBlogCategory.html:4
+#: .\templates\business\editBlogCategory.html:16
+#: .\templates\business\editCategory.html:4
+#: .\templates\business\editCategory.html:20
+msgid "Edit Category"
+msgstr "تحرير الفئة"
+
+#: .\templates\business\editColor.html:4
+#: .\templates\business\editColor.html:20
+msgid "Edit Color"
+msgstr "تحرير اللون"
+
+#: .\templates\business\editColor.html:42
+msgid "Color Name"
+msgstr "اسم اللون"
+
+#: .\templates\business\editOrder.html:5
+#: .\templates\business\editOrder.html:21
+#: .\templates\business\viewOrder.html:243
+msgid "Edit Order"
+msgstr "تحرير الأمر"
+
+#: .\templates\business\editOrder.html:26
+#: .\templates\business\editProduct.html:4
+#: .\templates\business\editProduct.html:25
+msgid "Edit Product"
+msgstr "تحرير المنتج"
+
+#: .\templates\business\editOrder.html:57
+#: .\templates\business\planHistoryDetail.html:62
+#: .\templates\business\planPurchaseHistory.html:61
+#: .\templates\business\viewOrder.html:46
+#: .\templates\orders\order_placed_email.html:49
+msgid "Transaction ID"
+msgstr "رقم المعاملة"
+
+#: .\templates\business\editOrder.html:63
+msgid "This order has been completed."
+msgstr "اكتمل هذا الطلب."
+
+#: .\templates\business\editOrder.html:66
+msgid "This order has been cancelled."
+msgstr "تم الغاء هذا الطلب."
+
+#: .\templates\business\editOrder.html:68
+#: .\templates\business\viewOrder.html:48
+#: .\templates\orders\order_status_email.html:188
+msgid "Order Status"
+msgstr "حالة الطلب"
+
+#: .\templates\business\editOrder.html:117
+#: .\templates\business\editOrder.html:123
+#: .\templates\business\sitesettings\contactUs.html:42
+#: .\templates\business\sitesettings\contactUs.html:48
+#: .\templates\shop\checkout.html:57 .\templates\shop\checkout.html:61
+msgid "Address Line"
+msgstr "خط عنوان"
+
+#: .\templates\business\editOrder.html:131
+#: .\templates\business\sitesettings\contactUs.html:77
+#: .\templates\shop\checkout.html:81
+msgid "State"
+msgstr "حالة"
+
+#: .\templates\business\editOrder.html:137
+#: .\templates\business\sitesettings\contactUs.html:71
+#: .\templates\shop\checkout.html:77
+msgid "Country"
+msgstr "دولة"
+
+#: .\templates\business\editOrder.html:145 .\templates\shop\checkout.html:71
+msgid "Pin Code"
+msgstr "الرقم السري"
+
+#: .\templates\business\editOrder.html:151
+msgid "Order Note"
+msgstr "مذكرة النظام"
+
+#: .\templates\business\editOrder.html:163
+#: .\templates\business\planHistoryDetail.html:63
+#: .\templates\business\viewOrder.html:97 .\templates\orders\payments.html:70
+msgid "Payment method"
+msgstr "طريقة الدفع او السداد"
+
+#: .\templates\business\editOrder.html:181
+#: .\templates\business\viewOrder.html:114
+msgid "Direct Deposit Payment Details"
+msgstr "تفاصيل دفع الإيداع المباشر"
+
+#: .\templates\business\editOrder.html:188
+#: .\templates\business\viewOrder.html:121
+#: .\templates\orders\payments.html:212
+msgid "Amount Paid"
+msgstr "المبلغ المدفوع"
+
+#: .\templates\business\editOrder.html:189
+#: .\templates\business\viewOrder.html:122
+#: .\templates\orders\payments.html:217
+msgid "Transaction Detail"
+msgstr "تفاصيل الصفقة"
+
+#: .\templates\business\editOrder.html:190
+#: .\templates\business\viewOrder.html:123
+#: .\templates\orders\payments.html:221
+msgid "Date of Payment"
+msgstr "تاريخ السداد"
+
+#: .\templates\business\editOrder.html:191
+#: .\templates\business\viewOrder.html:124
+#: .\templates\orders\payments.html:225
+msgid "Attachment"
+msgstr "مرفق"
+
+#: .\templates\business\editOrder.html:226
+#: .\templates\business\viewOrder.html:160
+msgid "Ordered Products"
+msgstr "المنتجات المطلوبة"
+
+#: .\templates\business\editOrder.html:301
+msgid "Update"
+msgstr "تحديث"
+
+#: .\templates\business\editProduct.html:132
+msgid "SKIP"
+msgstr "تخطى"
+
+#: .\templates\business\editSize.html:4 .\templates\business\editSize.html:20
+msgid "Edit Size"
+msgstr "تحرير الحجم"
+
+#: .\templates\business\emails\email_detail.html:5
+msgid "Email Details"
+msgstr "تفاصيل البريد الإلكتروني"
+
+#: .\templates\business\emails\email_detail.html:20
+msgid "Email Detail"
+msgstr "تفاصيل البريد الإلكتروني"
+
+#: .\templates\business\emails\email_detail.html:40
+#: .\templates\business\emails\emails.html:84
+msgid "Sent"
+msgstr "مرسل"
+
+#: .\templates\business\emails\email_detail.html:40
+#: .\templates\business\emails\emails.html:84
+msgid "Failed"
+msgstr "باءت بالفشل"
+
+#: .\templates\business\emails\email_detail.html:41
+msgid "Recipients"
+msgstr "المستلمون"
+
+#: .\templates\business\emails\email_detail.html:48
+#: .\templates\business\emails\emails.html:68
+#: .\templates\business\emails\send_email.html:40
+#: .\templates\business\viewContact.html:50 .\templates\pages\contact.html:57
+msgid "Subject"
+msgstr "موضوع"
+
+#: .\templates\business\emails\email_settings.html:4
+#: .\templates\business\emails\email_settings.html:20
+#: .\templates\business\emails\email_settings.html:31
+#: .\templates\business\includes\_sidebar.html:154
+msgid "Email Settings"
+msgstr "إعدادات البريد الإلكتروني"
+
+#: .\templates\business\emails\email_settings.html:37
+msgid "Your email configuration is invalid."
+msgstr "تكوين البريد الإلكتروني الخاص بك غير صالح."
+
+#: .\templates\business\emails\email_settings.html:39
+msgid "Your email configuration is verified."
+msgstr "تم التحقق من تكوين البريد الإلكتروني الخاص بك."
+
+#: .\templates\business\emails\email_settings.html:51
+msgid "Save and Test Connection"
+msgstr "حفظ واختبار الاتصال"
+
+#: .\templates\business\emails\email_settings.html:57
+msgid "Troubleshooting steps"
+msgstr "خطوات استكشاف الأخطاء وإصلاحها"
+
+#: .\templates\business\emails\email_settings.html:59
+msgid "Make sure your email address and password are correct."
+msgstr "تأكد من صحة عنوان بريدك الإلكتروني وكلمة المرور."
+
+#: .\templates\business\emails\email_settings.html:60
+msgid "Make sure your host is correct."
+msgstr "تأكد من صحة مضيفك."
+
+#: .\templates\business\emails\email_settings.html:61
+msgid "Make sure the Port number is correct."
+msgstr "تأكد من صحة رقم المنفذ."
+
+#: .\templates\business\emails\email_settings.html:62
+msgid "If you are using Gmail, please turn ON"
+msgstr "إذا كنت تستخدم Gmail ، فيرجى تشغيله"
+
+#: .\templates\business\emails\emails.html:4
+#: .\templates\business\emails\emails.html:20
+#: .\templates\business\includes\_sidebar.html:149
+msgid "Emails"
+msgstr "رسائل البريد الإلكتروني"
+
+#: .\templates\business\emails\emails.html:34
+msgid "You have not sent any emails yet"
+msgstr "لم ترسل أي رسائل بريد إلكتروني حتى الآن"
+
+#: .\templates\business\emails\emails.html:36
+msgid "Write An Email"
+msgstr "اكتب رسالة بريد الكتروني"
+
+#: .\templates\business\emails\emails.html:51
+#: .\templates\business\includes\_sidebar.html:153
+msgid "Send New Email"
+msgstr "إرسال بريد إلكتروني جديد"
+
+#: .\templates\business\emails\send_email.html:4
+msgid "Send an Email"
+msgstr "أرسل بريدا إلكترونيا"
+
+#: .\templates\business\emails\send_email.html:20
+#: .\templates\business\emails\send_email.html:33
+msgid "Send An Email"
+msgstr "أرسل بريدا إلكترونيا"
+
+#: .\templates\business\emails\send_email.html:49
+msgid "Email Body"
+msgstr "هيئة البريد الإلكتروني"
+
+#: .\templates\business\emails\send_email.html:55
+msgid "SEND"
+msgstr "يرسل"
+
+#: .\templates\business\emails\send_email.html:68
+msgid "Subscribers"
+msgstr "مشتركين"
+
+#: .\templates\business\includes\_navbar.html:46
+#: .\templates\business\plans.html:22
+msgid "Your account is expired."
+msgstr "انتهت صلاحية حسابك."
+
+#: .\templates\business\includes\_navbar.html:46
+msgid "Please"
+msgstr "لو سمحت"
+
+#: .\templates\business\includes\_navbar.html:46
+msgid "activate your account"
+msgstr "فعل حسابك"
+
+#: .\templates\business\includes\_navbar.html:46
+msgid "to resume the service."
+msgstr "لاستئناف الخدمة."
+
+#: .\templates\business\includes\_navbar.html:55
+msgid "VIEW SITE"
+msgstr "عرض الموقع"
+
+#: .\templates\business\includes\_navbar.html:95
+#: .\templates\business\includes\_sidebar.html:212
+#: .\templates\includes\_navbar.html:113
+msgid "Logout"
+msgstr "تسجيل خروج"
+
+#: .\templates\business\includes\_sidebar.html:13
+msgid "Menu"
+msgstr "قائمة الطعام"
+
+#: .\templates\business\includes\_sidebar.html:33
+msgid "Website Settings"
+msgstr "إعدادات موقع الويب"
+
+#: .\templates\business\includes\_sidebar.html:41
+#: .\templates\business\sitesettings\store_features.html:20
+msgid "Store Features"
+msgstr "ميزات المتجر"
+
+#: .\templates\business\includes\_sidebar.html:42
+msgid "Homepage Background"
+msgstr "الصفحة الرئيسية الخلفية"
+
+#: .\templates\business\includes\_sidebar.html:43
+#: .\templates\business\sitesettings\socialIcons.html:4
+#: .\templates\business\sitesettings\socialIcons.html:23
+msgid "Social Icons"
+msgstr "الرموز الاجتماعية"
+
+#: .\templates\business\includes\_sidebar.html:54
+msgid "Pages"
+msgstr "الصفحات"
+
+#: .\templates\business\includes\_sidebar.html:57
+#: .\templates\includes\_navbar.html:56 .\templates\includes\_navbar.html:257
+#: .\templates\pages\about.html:3 .\templates\pages\about.html:11
+#: .\templates\pages\home.html:263
+msgid "About Us"
+msgstr "معلومات عنا"
+
+#: .\templates\business\includes\_sidebar.html:58
+#: .\templates\includes\_footer.html:53 .\templates\includes\_navbar.html:57
+#: .\templates\includes\_navbar.html:260 .\templates\pages\contact.html:13
+#: .\templates\pages\contact.html:19
+msgid "Contact Us"
+msgstr "معلومات عنا"
+
+#: .\templates\business\includes\_sidebar.html:59
+#: .\templates\business\sitesettings\editPolicy.html:4
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+#: .\templates\business\includes\_sidebar.html:60
+#: .\templates\business\sitesettings\editTermsConditions.html:4
+#: .\templates\business\sitesettings\editTermsConditions.html:51
+msgid "Terms & Conditions"
+msgstr "البنود و الظروف"
+
+#: .\templates\business\includes\_sidebar.html:80
+msgid "Product Variants"
+msgstr "متغيرات المنتج"
+
+#: .\templates\business\includes\_sidebar.html:83
+msgid "Colors"
+msgstr "الألوان"
+
+#: .\templates\business\includes\_sidebar.html:84
+msgid "Sizes"
+msgstr "الأحجام"
+
+#: .\templates\business\includes\_sidebar.html:129
+#: .\templates\business\paymentSettings.html:4
+#: .\templates\business\paymentSettings.html:20
+msgid "Payment Settings"
+msgstr "إعدادات الدفع"
+
+#: .\templates\business\includes\_sidebar.html:136
+#: .\templates\business\includes\_sidebar.html:200
+msgid "Subscription (Plans)"
+msgstr "الاشتراك (الخطط)"
+
+#: .\templates\business\includes\_sidebar.html:139
+#: .\templates\business\includes\_sidebar.html:203
+#: .\templates\business\planPurchaseHistory.html:33
+msgid "Buy/Renew"
+msgstr "شراء / تجديد"
+
+#: .\templates\business\includes\_sidebar.html:141
+#: .\templates\business\includes\_sidebar.html:205
+msgid "Purchase History"
+msgstr "تاريخ شراء"
+
+#: .\templates\business\includes\_sidebar.html:152
+msgid "All Emails"
+msgstr "كل رسائل البريد الإلكتروني"
+
+#: .\templates\business\includes\_sidebar.html:181
+msgid "Contact Us Inbox"
+msgstr "اتصل بنا Inbox"
+
+#: .\templates\business\paymentSettings.html:37
+msgid "Set Your Preferred Payment Method"
+msgstr "حدد طريقة الدفع المفضلة لديك"
+
+#: .\templates\business\paymentSettings.html:44
+msgid "Preferred Payment Method"
+msgstr "يفضل طريقة الدفع"
+
+#: .\templates\business\paymentSettings.html:50
+msgid "PayPal Address"
+msgstr "عنوان PayPal"
+
+#: .\templates\business\paymentSettings.html:59
+msgid "Bank Name"
+msgstr "اسم البنك"
+
+#: .\templates\business\paymentSettings.html:63
+msgid "Account Name"
+msgstr "إسم الحساب"
+
+#: .\templates\business\paymentSettings.html:70
+msgid "Account Number"
+msgstr "رقم حساب"
+
+#: .\templates\business\paymentSettings.html:74
+msgid "Bank Code"
+msgstr "رمز بنكي"
+
+#: .\templates\business\planHistoryDetail.html:5
+#: .\templates\business\planHistoryDetail.html:20
+msgid "Purchase Details"
+msgstr "تفاصيل شراء"
+
+#: .\templates\business\planHistoryDetail.html:45
+msgid "Purchased on"
+msgstr "تم شراؤها على"
+
+#: .\templates\business\planHistoryDetail.html:61
+#: .\templates\business\planPurchaseHistory.html:59
+msgid "Plan"
+msgstr "يخطط"
+
+#: .\templates\business\planHistoryDetail.html:71
+#: .\templates\orders\order_placed_email.html:105
+#: .\templates\orders\payments.html:170 .\templates\shop\checkout.html:107
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
+#: .\templates\business\planPurchaseHistory.html:5
+#: .\templates\business\planPurchaseHistory.html:20
+msgid "Plan Purchase History"
+msgstr "تاريخ شراء الخطة"
+
+#: .\templates\business\planPurchaseHistory.html:32
+msgid ""
+"Your subscription is expired. Please renew it to continue using the website"
+msgstr "انتهى اشتراكك. يرجى تجديده لمواصلة استخدام الموقع"
+
+#: .\templates\business\planPurchaseHistory.html:36
+#: .\templates\business\plans.html:25
+msgid "You are currently on"
+msgstr "أنت الآن على"
+
+#: .\templates\business\planPurchaseHistory.html:36
+#: .\templates\business\plans.html:25
+msgid "plan"
+msgstr "خطة"
+
+#: .\templates\business\planPurchaseHistory.html:36
+msgid "Your subscription will be expired on"
+msgstr "ستنتهي صلاحية اشتراكك في"
+
+#: .\templates\business\planPurchaseHistory.html:38
+msgid "No history found."
+msgstr "لم يتم العثور على سجل."
+
+#: .\templates\business\plans.html:4
+msgid "Plans"
+msgstr "الخطط"
+
+#: .\templates\business\plans.html:23
+msgid "Expired on"
+msgstr "انتهت يوم"
+
+#: .\templates\business\plans.html:26
+msgid "Your account will be expired on"
+msgstr "ستنتهي صلاحية حسابك في"
+
+#: .\templates\business\plans.html:52
+msgid "Purchase Now"
+msgstr "شراء الآن"
+
+#: .\templates\business\profile.html:84
+msgid "Full Name"
+msgstr "الاسم بالكامل"
+
+#: .\templates\business\profile.html:88
+msgid "Company Name"
+msgstr "اسم الشركة"
+
+#: .\templates\business\profile.html:92
+msgid "Mobile"
+msgstr "التليفون المحمول"
+
+#: .\templates\business\profile.html:96
+msgid "E-mail"
+msgstr "بريد إلكتروني"
+
+#: .\templates\business\profile.html:100
+msgid "Location"
+msgstr "موقع"
+
+#: .\templates\business\profile.html:106
+msgid "Date of Join"
+msgstr "تاريخ الانضمام"
+
+#: .\templates\business\profile.html:110
+msgid "Account Expiry Date"
+msgstr "تاريخ انتهاء الحساب"
+
+#: .\templates\business\profile.html:115 .\templates\orders\payments.html:43
+#: .\templates\orders\payments.html:73 .\templates\orders\payments.html:97
+msgid "Edit"
+msgstr "يحرر"
+
+#: .\templates\business\reset_password_email.html:4
+#: .\templates\regional_managers\reset_password_email.html:4
+msgid "Please follow below link to reset your account."
+msgstr "يرجى اتباع الرابط أدناه لإعادة تعيين حسابك"
+
+#: .\templates\business\reset_password_email.html:7
+#: .\templates\regional_managers\reset_password_email.html:7
+msgid "this is right"
+msgstr "هذا صحيح"
+
+#: .\templates\business\reset_password_email.html:8
+#: .\templates\regional_managers\reset_password_email.html:8
+msgid "If you need any help, please contact support."
+msgstr "إذا كان لديك أي استفسار أو تعليق ، فلا تتردد في الاتصال بنا"
+
+#: .\templates\business\sitesettings\aboutUs.html:3
+#: .\templates\business\sitesettings\aboutUs.html:22
+#: .\templates\business\sitesettings\aboutUs.html:32
+msgid "Edit About Us Page"
+msgstr "تحرير صفحة من نحن"
+
+#: .\templates\business\sitesettings\aboutUs.html:43
+#: .\templates\business\sitesettings\editPolicy.html:39
+#: .\templates\business\sitesettings\editTermsConditions.html:42
+msgid "Heading"
+msgstr "عنوان"
+
+#: .\templates\business\sitesettings\aboutUs.html:52
+msgid "Sub Heading"
+msgstr "العنوان الفرعي"
+
+#: .\templates\business\sitesettings\aboutUs.html:76
+msgid "About Us Page"
+msgstr "من نحن الصفحة"
+
+#: .\templates\business\sitesettings\aboutUs.html:130
+msgid "ADD ANOTHER SECTION"
+msgstr "أضف قسمًا آخر"
+
+#: .\templates\business\sitesettings\addIcon.html:60
+#: .\templates\business\sitesettings\editIcon.html:58
+msgid "Icon Picker"
+msgstr "منتقي الأيقونات"
+
+#: .\templates\business\sitesettings\addIcon.html:65
+#: .\templates\business\sitesettings\editIcon.html:63
+msgid "Filter by Style"
+msgstr "تصفية حسب النمط"
+
+#: .\templates\business\sitesettings\banners.html:20
+msgid "All Banners"
+msgstr "جميع اللافتات"
+
+#: .\templates\business\sitesettings\banners.html:34
+msgid "You do not have any banners"
+msgstr "ليس لديك أي لافتات"
+
+#: .\templates\business\sitesettings\banners.html:36
+#: .\templates\business\sitesettings\banners.html:51
+msgid "Add New Banner"
+msgstr "أضف بانر جديد"
+
+#: .\templates\business\sitesettings\banners.html:67
+#: .\templates\business\sitesettings\editBanner.html:42
+msgid "Banner Image"
+msgstr "صورة بانر"
+
+#: .\templates\business\sitesettings\banners.html:69
+#: .\templates\business\sitesettings\editBanner.html:64
+#: .\templates\business\sitesettings\editStoreFeature.html:62
+#: .\templates\business\sitesettings\store_features.html:74
+msgid "Sub Title"
+msgstr "العنوان الفرعي"
+
+#: .\templates\business\sitesettings\banners.html:70
+#: .\templates\business\sitesettings\editBanner.html:72
+#: .\templates\business\sitesettings\homepage_background.html:76
+msgid "Button Name"
+msgstr "اسم الزر"
+
+#: .\templates\business\sitesettings\banners.html:71
+#: .\templates\business\sitesettings\editBanner.html:86
+#: .\templates\business\sitesettings\homepage_background.html:90
+msgid "Button Color"
+msgstr "لون الزر"
+
+#: .\templates\business\sitesettings\banners.html:72
+#: .\templates\business\sitesettings\editBanner.html:92
+#: .\templates\business\sitesettings\homepage_background.html:96
+msgid "Content Alignment"
+msgstr "محاذاة المحتوى"
+
+#: .\templates\business\sitesettings\contactUs.html:4
+msgid "Edit Contact Us"
+msgstr "تحرير اتصل بنا"
+
+#: .\templates\business\sitesettings\contactUs.html:21
+#: .\templates\business\sitesettings\contactUs.html:35
+msgid "Edit Contact Us Page"
+msgstr "تحرير صفحة اتصل بنا"
+
+#: .\templates\business\sitesettings\contactUs.html:63
+msgid "Pincode"
+msgstr "الرمز السري"
+
+#: .\templates\business\sitesettings\contactUs.html:99
+msgid "Embed Google Map"
+msgstr "تضمين خريطة جوجل"
+
+#: .\templates\business\sitesettings\contactUs.html:101
+msgid "Google Maps"
+msgstr "خرائط جوجل"
+
+#: .\templates\business\sitesettings\contactUs.html:101
+msgid ""
+" select your location > click on Share > select Embed a map > COPY HTML and "
+"paste it inside above field. "
+msgstr ""
+"حدد موقعك ، انقر فوق مشاركة وحدد تضمين خريطة نسخة HTML والصقها داخل الحقل "
+"أعلاه."
+
+#: .\templates\business\sitesettings\contactUs.html:101
+msgid "See Example"
+msgstr "انظر المثال"
+
+#: .\templates\business\sitesettings\editBanner.html:4
+#: .\templates\business\sitesettings\homepage_background.html:4
+msgid "Banner Settings"
+msgstr "إعدادات البانر"
+
+#: .\templates\business\sitesettings\editBanner.html:20
+#: .\templates\business\sitesettings\editBanner.html:34
+msgid "Edit Banner"
+msgstr "تحرير الشعار"
+
+#: .\templates\business\sitesettings\editBanner.html:78
+#: .\templates\business\sitesettings\homepage_background.html:82
+msgid "Button Link"
+msgstr "ارتباط الزر"
+
+#: .\templates\business\sitesettings\editIcon.html:4
+#: .\templates\business\sitesettings\editIcon.html:22
+#: .\templates\business\sitesettings\editIcon.html:33
+msgid "Edit Social Media Link"
+msgstr "تحرير رابط الوسائط الاجتماعية"
+
+#: .\templates\business\sitesettings\editIcon.html:41
+#: .\templates\business\sitesettings\socialIcons.html:67
+msgid "Social Media Name"
+msgstr "اسم وسائل التواصل الاجتماعي"
+
+#: .\templates\business\sitesettings\editIcon.html:50
+msgid "Choose Icon"
+msgstr "اختر الرمز"
+
+#: .\templates\business\sitesettings\editIcon.html:84
+msgid "Enter Link"
+msgstr "أدخل الارتباط"
+
+#: .\templates\business\sitesettings\editPolicy.html:21
+#: .\templates\business\sitesettings\editPolicy.html:32
+msgid "Edit Privacy Policy"
+msgstr "تحرير نهج الخصوصية"
+
+#: .\templates\business\sitesettings\editPolicy.html:48
+msgid "Policy"
+msgstr "سياسة"
+
+#: .\templates\business\sitesettings\editStoreFeature.html:4
+msgid "Edit Store Feature"
+msgstr "تحرير ميزة المتجر"
+
+#: .\templates\business\sitesettings\editStoreFeature.html:20
+#: .\templates\business\sitesettings\editStoreFeature.html:34
+msgid "Add Feature"
+msgstr "إضافة ميزة"
+
+#: .\templates\business\sitesettings\editStoreFeature.html:41
+msgid "Feature Icon"
+msgstr "رمز الميزة"
+
+#: .\templates\business\sitesettings\editStoreFeature.html:68
+#: .\templates\business\sitesettings\store_features.html:75
+msgid "Feature URL"
+msgstr "ميزة URL"
+
+#: .\templates\business\sitesettings\editTermsConditions.html:21
+#: .\templates\business\sitesettings\editTermsConditions.html:35
+msgid "Edit Terms & Policy"
+msgstr "تحرير الشروط والسياسة"
+
+#: .\templates\business\sitesettings\footerEdit.html:4
+msgid "Footer Settings"
+msgstr "إعدادات التذييل"
+
+#: .\templates\business\sitesettings\footerEdit.html:32
+msgid "Footer Copyright"
+msgstr "حقوق التأليف والنشر التذييل"
+
+#: .\templates\business\sitesettings\headerEdit.html:4
+#: .\templates\business\sitesettings\headerEdit.html:22
+#: .\templates\business\sitesettings\headerEdit.html:32
+msgid "Header Settings"
+msgstr "إعدادات الرأس"
+
+#: .\templates\business\sitesettings\headerEdit.html:50
+msgid "Logo"
+msgstr "شعار"
+
+#: .\templates\business\sitesettings\headerEdit.html:56
+msgid "You have not set your logo"
+msgstr "لم تقم بتعيين شعارك"
+
+#: .\templates\business\sitesettings\headerEdit.html:61
+msgid "Favicon"
+msgstr "فافيكون"
+
+#: .\templates\business\sitesettings\headerEdit.html:67
+msgid "You have not set your site favicon"
+msgstr "لم تقم بتعيين الرمز المفضل لموقعك"
+
+#: .\templates\business\sitesettings\homepage_background.html:20
+msgid "Manage Homepage Background Image"
+msgstr "إدارة صورة الخلفية للصفحة الرئيسية"
+
+#: .\templates\business\sitesettings\homepage_background.html:34
+msgid "Set Homepage Background"
+msgstr "تعيين خلفية الصفحة الرئيسية"
+
+#: .\templates\business\sitesettings\homepage_background.html:42
+msgid "Background Image"
+msgstr "الصورة الخلفية"
+
+#: .\templates\business\sitesettings\paymentGateways.html:4
+msgid "Payment Gateways Settings"
+msgstr "إعدادات بوابات الدفع"
+
+#: .\templates\business\sitesettings\paymentGateways.html:39
+msgid "PAYPAL"
+msgstr "باي بال"
+
+#: .\templates\business\sitesettings\paymentGateways.html:46
+#: .\templates\business\sitesettings\paymentGateways.html:81
+#: .\templates\business\sitesettings\topbarEdit.html:38
+msgid "Enabled"
+msgstr "ممكن"
+
+#: .\templates\business\sitesettings\paymentGateways.html:46
+#: .\templates\business\sitesettings\paymentGateways.html:81
+#: .\templates\business\sitesettings\topbarEdit.html:38
+msgid "Disabled"
+msgstr "معاق"
+
+#: .\templates\business\sitesettings\paymentGateways.html:58
+msgid ""
+"Client ID is a combination of long strings and numbers that is used to "
+"connect your application with PayPal Payment gateway."
+msgstr ""
+"Client ID هو مزيج من السلاسل الطويلة والأرقام المستخدمة لربط تطبيقك ببوابة "
+"PayPal Payment."
+
+#: .\templates\business\sitesettings\paymentGateways.html:73
+msgid "DIRECT DEPOSIT"
+msgstr "إيداع مباشر"
+
+#: .\templates\business\sitesettings\paymentGateways.html:94
+msgid ""
+"Your customers will make a direct deposit payment to this email address."
+msgstr "سيقوم عملاؤك بإجراء دفعة إيداع مباشرة إلى عنوان البريد الإلكتروني هذا."
+
+#: .\templates\business\sitesettings\socialIcons.html:34
+msgid "You have not added any Social Icons yet"
+msgstr "لم تقم بإضافة أي أيقونات اجتماعية حتى الآن"
+
+#: .\templates\business\sitesettings\socialIcons.html:36
+msgid "Add New Icon"
+msgstr "إضافة أيقونة جديدة"
+
+#: .\templates\business\sitesettings\socialIcons.html:51
+msgid "Add New Social Icon"
+msgstr "إضافة أيقونة اجتماعية جديدة"
+
+#: .\templates\business\sitesettings\socialIcons.html:68
+#: .\templates\business\sitesettings\store_features.html:72
+msgid "Icon"
+msgstr "أيقونة"
+
+#: .\templates\business\sitesettings\socialIcons.html:69
+msgid "Link"
+msgstr "نهاية لهذه الغاية"
+
+#: .\templates\business\sitesettings\socialIcons.html:70
+msgid "Updated At"
+msgstr "تم التحديث في"
+
+#: .\templates\business\sitesettings\store_features.html:4
+msgid "Store Feature"
+msgstr "Store Feature"
+
+#: .\templates\business\sitesettings\store_features.html:34
+msgid "You have not added any store features"
+msgstr "لم تقم بإضافة أي ميزات المتجر"
+
+#: .\templates\business\sitesettings\store_features.html:55
+msgid "Add New Feature"
+msgstr "إضافة ميزة جديدة"
+
+#: .\templates\business\sitesettings\topbarEdit.html:4
+msgid "Topbar Settings"
+msgstr "إعدادات الشريط العلوي"
+
+#: .\templates\business\viewContact.html:5
+msgid "Contact Request Details"
+msgstr "تفاصيل طلب الاتصال"
+
+#: .\templates\business\viewContact.html:20
+msgid "Contact Details"
+msgstr "بيانات المتصل"
+
+#: .\templates\business\viewContact.html:40
+#: .\templates\business\viewInquiry.html:40
+msgid "From"
+msgstr "من"
+
+#: .\templates\business\viewInquiry.html:5
+msgid "Inquiry Details"
+msgstr "تفاصيل التحقيق"
+
+#: .\templates\business\viewInquiry.html:20
+msgid "Inquiry Detail"
+msgstr "تفاصيل التحقيق"
+
+#: .\templates\business\viewOrder.html:21
+msgid "Order Detail"
+msgstr "تفاصيل الطلب"
+
+#: .\templates\business\viewOrder.html:32
+msgid "Order Information"
+msgstr "معلومات الطلب"
+
+#: .\templates\business\viewOrder.html:127
+msgid "Click to open"
+msgstr "انقر لفتح"
+
+#: .\templates\business\viewOrder.html:133
+msgid "Direct Deposit Payment Attachment"
+msgstr "مرفق دفع الإيداع المباشر"
+
+#: .\templates\business\viewOrder.html:142
+#: .\templates\shop\product_detail.html:469
+msgid "Close"
+msgstr "يغلق"
+
+#: .\templates\includes\_footer.html:20 .\templates\includes\_footer.html:24
+msgid "Phone"
+msgstr "هاتف"
+
+#: .\templates\includes\_footer.html:36
+msgid "Quick Shop"
+msgstr "التسوق السريع"
+
+#: .\templates\includes\_footer.html:45
+msgid "Important Links"
+msgstr "روابط مهمة"
+
+#: .\templates\includes\_footer.html:52
+msgid "About us"
+msgstr "معلومات عنا"
+
+#: .\templates\includes\_footer.html:54
+msgid "Privacy policy"
+msgstr "سياسة خاصة"
+
+#: .\templates\includes\_footer.html:55
+msgid "Terms"
+msgstr "مصطلحات"
+
+#: .\templates\includes\_footer.html:55
+msgid "condition"
+msgstr "شرط"
+
+#: .\templates\includes\_footer.html:64
+msgid "Newsletter"
+msgstr "النشرة الإخبارية"
+
+#: .\templates\includes\_footer.html:65
+msgid "Enter your email to receive latest news and get discount coupons."
+msgstr "أدخل بريدك الإلكتروني لتلقي آخر الأخبار والحصول على كوبونات الخصم."
+
+#: .\templates\includes\_footer.html:68
+msgid "Email address"
+msgstr "عنوان البريد الإلكتروني"
+
+#: .\templates\includes\_footer.html:100
+msgid "Subscribe"
+msgstr "يشترك"
+
+#: .\templates\includes\_navbar.html:55 .\templates\includes\_navbar.html:254
+#: .\templates\shop\shop.html:3 .\templates\shop\shop.html:17
+#: .\templates\shop\shop.html:180
+msgid "Shop"
+msgstr "محل"
+
+#: .\templates\includes\_navbar.html:72
+msgid "What are you looking for?"
+msgstr "عما تبحث؟"
+
+#: .\templates\includes\_navbar.html:80
+msgid "Search for products"
+msgstr "ابحث عن المنتجات"
+
+#: .\templates\includes\_navbar.html:106
+msgid "Welcome"
+msgstr "أهلا بك"
+
+#: .\templates\includes\_navbar.html:108
+msgid "Business Dashboard"
+msgstr "لوحة معلومات الأعمال"
+
+#: .\templates\includes\_navbar.html:110
+msgid "Account Manager"
+msgstr "إدارة حساب المستخدم"
+
+#: .\templates\includes\_navbar.html:122
+msgid "Welcome Guest"
+msgstr "أهلاً بك ضيف"
+
+#: .\templates\includes\_navbar.html:124
+msgid "New User?"
+msgstr "مستخدم جديد؟"
+
+#: .\templates\includes\_navbar.html:124
+msgid "Create an Account"
+msgstr "انشئ حساب"
+
+#: .\templates\includes\_navbar.html:194
+msgid "Close Menu"
+msgstr "إغلاق القائمة"
+
+#: .\templates\orders\order_placed_email.html:31
+msgid "ORDER PLACED"
+msgstr "تم الطلب"
+
+#: .\templates\orders\order_placed_email.html:31
+msgid "ORDER CONFIRMATION"
+msgstr "تأكيد الطلب"
+
+#: .\templates\orders\order_placed_email.html:44
+msgid "Thank You For Your Order"
+msgstr "شكرا لطلبك"
+
+#: .\templates\orders\order_placed_email.html:51
+msgid "Thank you for shopping with us. Here is your order details"
+msgstr "شكرا للتسوق معنا. هنا تفاصيل طلبك"
+
+#: .\templates\orders\order_placed_email.html:64
+msgid "Purchased Items"
+msgstr "البنود التي تم شراؤها"
+
+#: .\templates\orders\order_placed_email.html:65
+#: .\templates\orders\payments.html:133 .\templates\shop\checkout.html:106
+msgid "Qty"
+msgstr "الكمية"
+
+#: .\templates\orders\order_placed_email.html:121
+msgid "TOTAL"
+msgstr "مجموع"
+
+#: .\templates\orders\order_placed_email.html:143
+msgid "DELIVERY ADDRESS"
+msgstr "عنوان التسليم"
+
+#: .\templates\orders\order_placed_email.html:160
+msgid "Shop Again"
+msgstr "تسوق مرة أخرى"
+
+#: .\templates\orders\payments.html:3
+msgid "Make Payment"
+msgstr "قم بالدفع"
+
+#: .\templates\orders\payments.html:14 .\templates\shop\checkout.html:15
+msgid "Cart"
+msgstr "عربة التسوق"
+
+#: .\templates\orders\payments.html:14 .\templates\shop\checkout.html:3
+#: .\templates\shop\checkout.html:15 .\templates\shop\checkout.html:21
+msgid "Checkout"
+msgstr "الدفع"
+
+#: .\templates\orders\payments.html:14
+msgid "Complete Order"
+msgstr "اكمل الطلب"
+
+#: .\templates\orders\payments.html:20
+msgid "complete order"
+msgstr "اكمل الطلب"
+
+#: .\templates\orders\payments.html:32
+msgid "Review Your Order and Pay"
+msgstr "راجع طلبك وادفع"
+
+#: .\templates\orders\payments.html:94
+msgid "Review Products"
+msgstr "مراجعة المنتجات"
+
+#: .\templates\orders\payments.html:163
+msgid "make payment"
+msgstr "قم بالدفع"
+
+#: .\templates\orders\payments.html:201
+msgid ""
+"Please make payment to below email address and submit the transaction "
+"details."
+msgstr "يرجى الدفع إلى عنوان البريد الإلكتروني أدناه وإرسال تفاصيل المعاملة."
+
+#: .\templates\orders\payments.html:229
+msgid "Order will be confirmed after the payment is recieved."
+msgstr "سيتم تأكيد الطلب بعد استلام الدفع."
+
+#: .\templates\orders\payments.html:248
+msgid "Please wait"
+msgstr "ارجوك انتظر"
+
+#: .\templates\orders\payments.html:250
+msgid "We are processing your payment."
+msgstr "نحن نعالج دفعتك."
+
+#: .\templates\orders\payments.html:251
+msgid "This may take a few seconds, please be patient"
+msgstr "قد يستغرق هذا بضع ثوان ، يرجى التحلي بالصبر"
+
+#: .\templates\pages\about.html:21
+msgid "Your sub heading content goes here"
+msgstr "محتوى العنوان الفرعي الخاص بك يذهب هنا"
+
+#: .\templates\pages\contact.html:24
+msgid "Drop Us A Line"
+msgstr "ترك لنا خطا"
+
+#: .\templates\pages\contact.html:25
+msgid " If you any query or feedback, please feel free to contact us"
+msgstr "إذا كان لديك أي استفسار أو تعليق ، فلا تتردد في الاتصال بنا"
+
+#: .\templates\pages\contact.html:88
+msgid "Send Message"
+msgstr "أرسل رسالة"
+
+#: .\templates\pages\home.html:49 .\templates\pages\home.html:67
+msgid "Your title goes here"
+msgstr "العنوان الخاص بك يذهب هنا"
+
+#: .\templates\pages\home.html:51 .\templates\pages\home.html:69
+msgid "Your subtitle goes here"
+msgstr "العنوان الفرعي الخاص بك يذهب هنا"
+
+#: .\templates\pages\home.html:53 .\templates\pages\home.html:71
+msgid "BUTTON"
+msgstr "زر"
+
+#: .\templates\pages\home.html:108
+msgid "Call Us Anytime"
+msgstr "اتصل بنا في أي وقت"
+
+#: .\templates\pages\home.html:108
+msgid "+1 (555) 555-5555"
+msgstr "+1 (555) 555-5555"
+
+#: .\templates\pages\home.html:115
+msgid "Free Shipping"
+msgstr "الشحن مجانا"
+
+#: .\templates\pages\home.html:115
+msgid "When you spend $100+"
+msgstr "عندما تنفق 100 دولار +"
+
+#: .\templates\pages\home.html:122
+msgid "Genuine Quality"
+msgstr "جودة اصلية"
+
+#: .\templates\pages\home.html:122
+msgid "All our products are Genuine"
+msgstr "جميع منتجاتنا أصلية"
+
+#: .\templates\pages\home.html:129
+msgid "Secure Payments"
+msgstr "مدفوعات آمنة"
+
+#: .\templates\pages\home.html:129
+msgid "We accept all major credit cards."
+msgstr "نحن نقبل جميع بطاقات الائتمان الرئيسية."
+
+#: .\templates\pages\home.html:146
+msgid "New Arrivals"
+msgstr "القادمون الجدد"
+
+#: .\templates\pages\home.html:147
+msgid "Shop our new arrivals from established brands"
+msgstr "تسوق لدينا الوافدين الجدد من العلامات التجارية الراسخة"
+
+#: .\templates\pages\home.html:164
+msgid "New Arrival"
+msgstr "قادم جديد"
+
+#: .\templates\pages\home.html:200 .\templates\shop\shop.html:205
+msgid "No products found"
+msgstr "لا توجد منتجات"
+
+#: .\templates\pages\home.html:224
+msgid "Shop Now"
+msgstr "تسوق الآن"
+
+#: .\templates\pages\home.html:258
+msgid "About your business"
+msgstr "حول عملك"
+
+#: .\templates\shop\cart.html:3
+msgid "Your Shopping Cart"
+msgstr "سلة التسوق الخاصة بك"
+
+#: .\templates\shop\cart.html:13 .\templates\shop\cart.html:22
+msgid "Your Cart"
+msgstr "عربتك"
+
+#: .\templates\shop\cart.html:30
+msgid "Your Shopping Cart is Empty"
+msgstr "سلة التسوق الخاصة بك فارغة"
+
+#: .\templates\shop\cart.html:33
+msgid "Continue Shopping"
+msgstr "مواصلة التسوق"
+
+#: .\templates\shop\cart.html:46
+msgid "Quantity"
+msgstr "كمية"
+
+#: .\templates\shop\cart.html:142
+msgid "Continue shopping"
+msgstr "مواصلة التسوق"
+
+#: .\templates\shop\cart.html:185
+msgid "Tax (if any) will be calculated in the checkout page."
+msgstr "سيتم احتساب الضريبة (إن وجدت) في صفحة الخروج."
+
+#: .\templates\shop\cart.html:186
+msgid "Proceed To Checkout"
+msgstr "باشرالخروج من الفندق"
+
+#: .\templates\shop\checkout.html:31
+msgid "Billing details"
+msgstr "تفاصيل الفاتورة"
+
+#: .\templates\shop\checkout.html:44
+msgid "E-Mail"
+msgstr "البريد الإلكتروني"
+
+#: .\templates\shop\checkout.html:48
+msgid "Telephone"
+msgstr "هاتف"
+
+#: .\templates\shop\checkout.html:87
+msgid "Order Notes"
+msgstr "ترتيب ملاحظات"
+
+#: .\templates\shop\checkout.html:98
+msgid "Your Order"
+msgstr "طلبك"
+
+#: .\templates\shop\checkout.html:103 .\templates\shop\my-wishlist.html:39
+msgid "Product Image"
+msgstr "صورة المنتج"
+
+#: .\templates\shop\checkout.html:206
+msgid "Select Payment Method"
+msgstr "اختار طريقة الدفع"
+
+#: .\templates\shop\checkout.html:225
+msgid "Place order"
+msgstr "مكان الامر"
+
+#: .\templates\shop\checkout.html:228 .\templates\shop\checkout.html:231
+msgid "There are no payment options at the moment. Please come back later."
+msgstr "لا توجد خيارات للدفع في الوقت الحالي. يرجى العودة لاحقًا."
+
+#: .\templates\shop\color_list.html:4 .\templates\shop\product_detail.html:169
+msgid "Choose Color"
+msgstr "اختر اللون"
+
+#: .\templates\shop\compare_products.html:3
+#: .\templates\shop\compare_products.html:16
+msgid "Product Comparison"
+msgstr "مقارنة السلعة"
+
+#: .\templates\shop\compare_products.html:22
+msgid "Please add products to see the Comparison."
+msgstr "الرجاء إضافة منتجات لرؤية المقارنة."
+
+#: .\templates\shop\compare_products.html:25
+#: .\templates\shop\my-wishlist.html:25
+msgid "Add products"
+msgstr "أضف المنتجات"
+
+#: .\templates\shop\compare_products.html:35
+msgid "Features"
+msgstr "سمات"
+
+#: .\templates\shop\compare_products.html:37
+msgid "Add another product"
+msgstr "أضف منتجًا آخر"
+
+#: .\templates\shop\compare_products.html:68
+#: .\templates\shop\compare_products.html:79
+#: .\templates\shop\product_detail.html:93
+msgid "In Stock"
+msgstr "في المخزن"
+
+#: .\templates\shop\compare_products.html:89
+#: .\templates\shop\compare_products.html:96
+msgid "View Product"
+msgstr "عرض المنتج"
+
+#: .\templates\shop\compare_products.html:90
+#: .\templates\shop\compare_products.html:97
+#: .\templates\shop\my-wishlist.html:38
+msgid "Remove"
+msgstr "إزالة"
+
+#: .\templates\shop\my-wishlist.html:3 .\templates\shop\my-wishlist.html:17
+msgid "My Wishlist"
+msgstr "قائمة امنياتي"
+
+#: .\templates\shop\my-wishlist.html:22
+msgid "Your Wishlist is Empty"
+msgstr "قائمة رغباتك فارغة"
+
+#: .\templates\shop\my-wishlist.html:74
+msgid "in stock"
+msgstr "في المخزن"
+
+#: .\templates\shop\my-wishlist.html:90
+#: .\templates\shop\product_detail.html:326
+#: .\templates\shop\product_detail.html:334
+#: .\templates\shop\product_detail.html:352
+msgid "Add to cart"
+msgstr "أضف إلى السلة"
+
+#: .\templates\shop\product_detail.html:44
+msgid "Zoom Image"
+msgstr "تكبير الصورة"
+
+#: .\templates\shop\product_detail.html:58
+msgid "Facebook"
+msgstr "فيسبوك"
+
+#: .\templates\shop\product_detail.html:87
+msgid "reviews"
+msgstr "المراجعات"
+
+#: .\templates\shop\product_detail.html:117
+msgid "Sorry! This product is not available at the moment."
+msgstr "آسف! هذا المنتج غير متوفر في الوقت الحالي."
+
+#: .\templates\shop\product_detail.html:120
+msgid "left in stock."
+msgstr "اليسار في الأوراق المالية."
+
+#: .\templates\shop\product_detail.html:154
+msgid "Choose Size"
+msgstr "اختر الحجم"
+
+#: .\templates\shop\product_detail.html:228
+msgid "choose color"
+msgstr "اختر اللون"
+
+#: .\templates\shop\product_detail.html:257
+msgid "Add to Wishlist"
+msgstr "أضف إلى قائمة الامنيات"
+
+#: .\templates\shop\product_detail.html:260
+msgid "Show Comparison"
+msgstr "عرض المقارنة"
+
+#: .\templates\shop\product_detail.html:262
+msgid "Add to Compare"
+msgstr "أضف للمقارنة"
+
+#: .\templates\shop\product_detail.html:318
+msgid "QTY"
+msgstr "الكمية"
+
+#: .\templates\shop\product_detail.html:330
+msgid "View Cart"
+msgstr "عرض عربة التسوق"
+
+#: .\templates\shop\product_detail.html:357
+msgid "I agree with the terms and conditions"
+msgstr "اني اوافق على الشروط والظروف"
+
+#: .\templates\shop\product_detail.html:360
+msgid "Buy it now"
+msgstr "اشتر الآن"
+
+#: .\templates\shop\product_detail.html:376
+msgid "Send an Inquiry"
+msgstr "ارسال استفسار"
+
+#: .\templates\shop\product_detail.html:384
+msgid "SEND AN INQUIRY"
+msgstr "ارسال استفسار"
+
+#: .\templates\shop\product_detail.html:402
+msgid "Please fill below form to inquire about this product."
+msgstr "يرجى ملء النموذج أدناه للاستعلام عن هذا المنتج."
+
+#: .\templates\shop\product_detail.html:423
+msgid "Phone Number (optional)"
+msgstr "رقم الهاتف (اختيارى)"
+
+#: .\templates\shop\product_detail.html:429
+msgid "Enter your message here"
+msgstr "أدخل رسالتك هنا"
+
+#: .\templates\shop\product_detail.html:482
+msgid "PRODUCT DETAILS"
+msgstr "تفاصيل المنتج"
+
+#: .\templates\shop\product_detail.html:493
+msgid "REVIEWS"
+msgstr "المراجعات"
+
+#: .\templates\shop\product_detail.html:500
+msgid "Write Your Review"
+msgstr "اكتب مراجعتك"
+
+#: .\templates\shop\product_detail.html:503
+msgid "How do you rate this product?"
+msgstr "كيف تقيم هذا المنتج؟"
+
+#: .\templates\shop\product_detail.html:523
+msgid "Review Title"
+msgstr "مراجعة العنوان"
+
+#: .\templates\shop\product_detail.html:528
+msgid "Review"
+msgstr "إعادة النظر"
+
+#: .\templates\shop\product_detail.html:553
+msgid "Please note, reviews must be approved before they are published"
+msgstr "يرجى ملاحظة أنه يجب الموافقة على المراجعات قبل نشرها"
+
+#: .\templates\shop\product_detail.html:559
+msgid "You must purchase this product to write a review."
+msgstr "يجب عليك شراء هذا المنتج لكتابة مراجعة."
+
+#: .\templates\shop\product_detail.html:562
+msgid "You must be logged in to post a review."
+msgstr "يجب عليك تسجيل الدخول لنشر الاستعراض."
+
+#: .\templates\shop\product_detail.html:562
+msgid "Login now"
+msgstr "تسجيل الدخول الآن"
+
+#: .\templates\shop\product_detail.html:571
+msgid "Customer Reviews"
+msgstr "آراء المستهلكين"
+
+#: .\templates\shop\product_detail.html:591
+msgid "Be the first to review this product."
+msgstr "كن أول من يراجع هذا المنتج."
+
+#: .\templates\shop\product_detail.html:610
+msgid "on"
+msgstr "على"
+
+#: .\templates\shop\product_detail.html:640
+#: .\templates\shop\product_detail.html:676
+msgid "Please choose size"
+msgstr "الرجاء اختيار الحجم"
+
+#: .\templates\shop\product_detail.html:646
+#: .\templates\shop\product_detail.html:652
+#: .\templates\shop\product_detail.html:682
+#: .\templates\shop\product_detail.html:688
+msgid "Please choose color"
+msgstr "الرجاء اختيار اللون"
+
+#: .\templates\shop\product_detail.html:661
+msgid "Please select a rating star!"
+msgstr "الرجاء تحديد نجمة التصنيف!"
+
+#: .\templates\shop\shop.html:15 .\templates\shop\shop.html:178
+msgid "Search Result"
+msgstr "نتيجة البحث"
+
+#: .\templates\shop\shop.html:40
+msgid "Select Price Range"
+msgstr "حدد نطاق السعر"
+
+#: .\templates\shop\shop.html:41
+msgid "Below"
+msgstr "أقل"
+
+#: .\templates\shop\shop.html:44
+msgid "Above"
+msgstr "في الاعلى"
+
+#: .\templates\shop\shop.html:54
+msgid "Min Price"
+msgstr "سعر دقيقة"
+
+#: .\templates\shop\shop.html:57
+msgid "Max Price"
+msgstr "أقصى سعر"
+
+#: .\templates\shop\shop.html:93
+msgid "filter"
+msgstr "منقي"
+
+#: .\templates\shop\shop.html:103
+msgid "Popular Products"
+msgstr "المنتجات الشعبية"
+
+#: .\templates\shop\shop.html:187
+msgid "Product Filters"
+msgstr "مرشحات المنتج"
+
+#: .\templates\shop\shop.html:219
+msgid "Popular"
+msgstr "شائع"

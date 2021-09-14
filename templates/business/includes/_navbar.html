@@ -1,0 +1,126 @@
+{% load static %}
+{% load i18n %}
+<header id="page-topbar">
+  <div class="navbar-header">
+    <div class="d-flex">
+      <!-- LOGO -->
+      <div class="navbar-brand-box">
+        <!-- <a href="{% url 'biz_dashboard' %}" class="logo logo-dark">
+          <span class="logo-sm">
+            <img src="{% static 'business/images/logo.svg' %}" alt="" height="22">
+          </span>
+          <span class="logo-lg">
+            <img src="{% static 'business/images/logo-dark.png' %}" alt="" height="17">
+          </span>
+        </a> -->
+
+        <a href="{% url 'biz_dashboard' %}" class="logo logo-light">
+          <span class="logo-sm">
+            {% if header.site_logo %}
+            <img src="{{header.site_logo.url}}" height="40">
+            {% else %}
+            <img src="{% static 'business/images/default-images/logo.png' %}" alt="" height="60">
+            {% endif %}
+          </span>
+          <span class="logo-lg">
+            {% if header.site_logo %}
+            <img src="{{header.site_logo.url}}" height="40">
+            {% else %}
+            <img src="{% static 'business/images/default-images/logo.png' %}" alt="" style="width:100%;">
+            {% endif %}
+
+          </span>
+        </a>
+      </div>
+
+      <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+        <i class="fa fa-fw fa-bars"></i>
+      </button>
+
+
+
+    </div>
+
+    {% if account_expiry %}
+    <div class="d-flex text-danger">
+      <h5 class="text-danger">{% trans 'Your account is expired.' %} {% trans 'Please' %} <span><a href="{% url 'plans' %}" class="text-danger" style="text-decoration: underline !important;">{% trans 'activate your account' %}</a></span> {% trans 'to resume the service.' %}</h5>
+    </div>
+    {% endif %}
+
+   
+    <div class="d-flex">
+      {% get_current_language as LANGUAGE_CODE  %}
+      <form action="{% url 'set_language' %}" id="lang_form" method="POST" class="lang_form" style="position: relative;top:25px;right:{% if LANGUAGE_CODE == 'ar' %}-10px{% else %}10px;{% endif %};">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{redirect_to}}">
+        <select name="language" id="select_lang" style="padding: 0 20px;">
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+          {% for language in languages %}
+              <option value="{{language.code}}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                {{language.name_local}} ({{language.code}})
+              </option>
+          {% endfor %}
+        </select>
+       
+      </form>
+     
+      <div class="dropdown d-inline-block">
+        <a href="http://{{domain}}/" target="_blank" style="color:black;">{% trans 'VIEW SITE' %}</a>
+        <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="visibility: hidden;">
+          <img id="header-lang-img" src="{% static 'business/images/flags/us.jpg' %}" alt="Header Language" height="16">
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="eng">
+            <img src="{% static 'business/images/flags/us.jpg' %}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English</span>
+          </a>
+
+          <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
+            <img src="{% static 'business/images/flags/spain.jpg' %}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Arabic</span>
+          </a>
+        </div>
+      </div>
+
+
+
+      <div class="dropdown d-none d-lg-inline-block ml-1">
+        <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+          <i class="bx bx-fullscreen"></i>
+        </button>
+      </div>
+
+
+
+      <div class="dropdown d-inline-block">
+        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="rounded-circle header-profile-user" src="{{ user.profile_picture.url }}" alt="Header Avatar">
+          <span class="d-none d-xl-inline-block ml-1" key="t-henry">{{ user.name }}</span>
+          <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <!-- item-->
+          <a class="dropdown-item" href="{% url 'biz_profile' %}"><i class="bx bx-user font-size-16 align-middle mr-1"></i> <span key="t-profile">{% trans 'Profile' %}</span></a>
+          <a class="dropdown-item d-block" href="{% url 'biz_changePassword' %}"><i class="fa fa-key" aria-hidden="true" fa-16x></i> <span key="t-settings">{% trans 'Change Password' %}</span></a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-danger" href="javascript:{document.getElementById('biz_logout_header').submit()}"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> <span key="t-logout">{% trans 'Logout' %}</span></a>
+          <form action="{% url 'biz_logout' %}" id="biz_logout_header" method="POST">
+            {% csrf_token %}
+            <input type="hidden">
+          </form>
+        </div>
+      </div>
+
+      <!-- <div class="dropdown d-inline-block">
+        <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+          <i class="bx bx-cog bx-spin"></i>
+        </button>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+<script>
+  $('#select_lang').change(function(){
+  $('#lang_form').submit();
+});
+</script>

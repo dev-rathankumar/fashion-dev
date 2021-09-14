@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+
+{% block title %} {{single_blog.title}} {% endblock %}
+{% block content %}
+{% load static %}
+{% load i18n %}
+
+
+
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{{single_blog.title}}</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+
+  <div class="container">
+    <div class="article">
+      <!-- Article Image -->
+      <div class="article_featured-image"><img class="blur-up ls-is-cached lazyloaded" data-src="{{single_blog.featured_image.url}}" src="{{single_blog.featured_image.url}}" alt="Blog Featured Image" style="width: 100%;"></div>
+      <h1>{{single_blog.title}}</h1>
+      <ul class="publish-detail">
+        <li><i class="anm anm-user-al" aria-hidden="true"></i> {{single_blog.author}}</li>
+        <li><i class="icon anm anm-clock-r"></i> <time>{{single_blog.created_on}}</time></li>
+        <li><i class="icon anm anm-comments-l"></i> <a href="#comment-section"> {{comments_count}} {% trans 'comments' %}</a></li>
+      </ul>
+      <hr>
+      <div class="rte">
+        <p>{{single_blog.blog_body|safe}}</p>
+      </div>
+      <hr>
+      <div class="social-sharing">
+        <a target="_blank" href="#" class="btn-link btn--share share-facebook" title="Share on Facebook">
+          <i class="fa fa-facebook-square" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">{% trans 'Share' %}</span>
+        </a>
+        <a target="_blank" href="#" class="btn-link btn--share share-twitter" title="Tweet on Twitter">
+          <i class="fa fa-twitter" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">{% trans 'Tweet' %}</span>
+        </a>
+        <a href="#" title="Share on google+" class="btn-link btn--share">
+          <i class="fa fa-google-plus" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">{% trans 'Google' %}+</span>
+        </a>
+        <a target="_blank" href="#" class="btn-link btn--share share-pinterest" title="Pin on Pinterest">
+          <i class="fa fa-pinterest" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">{% trans 'Pin it' %}</span>
+        </a>
+        <a href="#" class="btn-link btn--share share-pinterest" title="Share by Email" target="_blank">
+          <i class="fa fa-envelope" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">{% trans 'Email' %}</span>
+        </a>
+      </div>
+
+      <hr>
+      <div class="blog-comment">
+
+        {% if user.is_authenticated %}
+        <div class="formFeilds contact-form form-vertical">
+
+          <form action="#" id="comment_form" class="comment-form">
+            {% csrf_token %}
+            <h2>{% trans 'Write A Comment' %}</h2>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                {{comment_form.as_p}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <p class="fine-print"><i>{% trans 'Please note, comments must be approved before they are published' %}</i></p>
+                <div>
+                  <div class="container newsletterCaptcha" style="padding: 0px !important;">
+                    <div class="row">
+                      <div class="col">
+                        <input type="text" id="txtInput" placeholder="{% trans 'Enter Captcha' %}" class="form-control" />
+
+                      </div>
+                      <div class="col">
+                        <input type="text" id="txtCaptcha" style="background-image:url({% static 'images/default-images/captcha-bg.jpg' %}); text-align:center; font-size:20px; border:none;
+     font-weight:bold; font-family:Modern"; />
+                        <i class="fa fa-refresh" aria-hidden="true" onclick="DrawCaptcha();" style="font-size:24px;cursor:pointer;float:right;"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p id="invalidCode" class="text-danger"></p>
+                  <p id="blankCaptchaError" class="text-danger"></p>
+                </div>
+                
+                <input type="submit" name="submit" id="submit" value="{% trans 'Submit' %}" class="btn btn-danger" onclick="return ValidCaptcha();">
+              </div>
+            </div>
+            <br>
+            <h6 id="commentMessage"></h6>
+          </form>
+
+        </div>
+        {% else %}
+        <h5>Please <span><u><a href="{% url 'userLogin' %}">login</a></u></span> to write a comment.</h5>
+        {% endif %}
+
+        
+        <section id="comment-section" style="padding-top: 50px;;">
+          <h3>{% trans 'Latest Comments' %}</h3>
+          {% if not comments %}
+            <p>{% trans 'Be the first to comment on this blog.' %}</p><br>
+        </section>
+  
+        {% else %}
+          {% for comment in comments %}
+          <div class="comment">
+            <div class="comment__content" >
+              <div class="comment__header" style="display: flex;">
+                <div>
+                  <img src="{{comment.user.profile_picture.url}}" alt="" width="30" height="30" style="border-radius:50px;">
+                </div>
+                <div class="ml-2">
+                  <div class="comment__text"> {{comment.comment_body}}</div>
+                <p class="text-muted">{% trans 'Posted by' %} {{comment.user.name}} | {{comment.created_on}}</p>
+                <div class="comment__reply"><button onclick="DrawReplyCaptcha({{comment.id}});" class="btn reply-button" id="replybutton-{{comment.id}}">{% trans 'Reply' %}</button></div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <!-- C O M M E N T  R E P L Y -->
+            <div class="comment__content replies" id="replies-{{comment.id}}" style="display: none;">
+              {% if user.is_authenticated %}
+                <div class="formFeilds contact-form form-vertical pt-3" style="margin-left:5em;">
+                  <form action="#" id="comment_form_reply{{comment.id}}" onsubmit="replySubmit({{comment.id}});return false;" class="col-sm-12 col-md-6 col-lg-6 comment-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="comment_id" id="comment_id{{comment.id}}" value="{{comment.id}}">
+                    <h5>{% trans 'Write A Reply' %}</h5>
+                    <div class="row">
+                      <div class="col-sm-12 col-md-12 col-lg-12">
+                        <textarea name="comment_body" cols="30" rows="10" required id="id_comment_body{{comment.id}}"></textarea>
+                      </div>
+                    </div><br>
+
+                    <!-- R E P L Y  C A P T C H A -->
+                    <div>
+                      <div class="container replyCaptcha" style="padding: 0px !important;">
+                        <div class="row">
+                          <div class="col">
+                            <input type="text" id="txtInputReply{{comment.id}}" placeholder="Enter Captcha" class="form-control" />
+                          </div>
+                          <div class="col">
+                            <input type="text" id="txtCaptchaReply{{comment.id}}" style="background-image:url({% static 'images/default-images/captcha-bg.jpg' %}); text-align:center; font-size:20px; border:none;font-weight:bold;font-family:Modern;" />
+                            <i class="fa fa-refresh" aria-hidden="true" onclick="DrawReplyCaptcha({{comment.id}});" style="font-size:24px;cursor:pointer;float:right;"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <p id="invalidCode_r{{comment.id}}" class="text-danger"></p>
+                      <p id="blankCaptchaError_r{{comment.id}}" class="text-danger"></p>
+                    </div>
+                    <!-- R E P L Y  C A P T C H A -->
+
+                    <input type="submit" value="{% trans 'Submit' %}" class="btn btn-primary" onclick="return ValidCaptchaReply({{comment.id}});">
+                  </form>
+                  <h6 id="replyMessage{{comment.id}}" class="pt-2 ml-3"></h6>
+                </div>
+            {% else %}
+              <h5>Please <span><u><a href="{% url 'userLogin' %}">login</a></u></span> to write a reply.</h5>
+            {% endif %}
+          </div>
+          <!-- C O M M E N T  R E P L Y -->
+            {% for reply in comment.replies.all %}
+                  {% if reply.is_active %}
+                  <div class="comment__header mt-2 ml-5 d-flex">
+                    <div>
+                      <span>&mdash;</span>
+                      <img src="{{reply.user.profile_picture.url}}" alt="" width="30" height="30" style="border-radius:50px;">
+                    </div>
+                    <div>
+                    <div class="comment__text">&nbsp; {{reply.comment_body}}</div>
+                    <small class="text-muted">&nbsp; Posted by {{reply.user.name}} | {{reply.created_on}}</small><br>
+                  </div>
+                  </div><br>
+                  {% endif %}
+                {% endfor %}
+            
+            <hr>
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+      </div>
+    </div>
+  </div>
+  <!--End Page Wrapper-->
+  <script>
+    $(document).ready(function(){
+
+      $('button').click(function(){
+        var replybutton = this.id
+        var comment_id = replybutton.split('-')[1]
+        var replies = '#replies-'+comment_id
+        $(replies).slideToggle();
+      });
+    });
+
+
+    
+// Comment submit
+$(document).on('submit', '#comment_form', function(e) {
+  e.preventDefault();
+  var comment_body = $('#id_comment_body').val();
+  var url = "{{single_blog.get_url}}"
+  var csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val()
+
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: {
+      comment_body: comment_body,
+      csrfmiddlewaretoken: csrfmiddlewaretoken,
+    },
+
+    success: function(data) {
+      if (data.status == 'success'){
+        console.log(data.content)
+        document.getElementById("commentMessage").className = "text-success";
+        document.getElementById("commentMessage").innerHTML = "Thank you! Your comment will appear after it is approved by our system.";
+        document.getElementById("comment_form").reset();
+      }
+    },
+    error: function(data) {
+      document.getElementById("commentMessage").className = "text-danger";
+      document.getElementById("commentMessage").innerHTML = "Oops! Something went wrong. Please try again.";
+      document.getElementById("comment_form").reset();
+    }
+  });
+});
+
+
+
+function replySubmit(comment_id){
+  var id_comment_body = '#id_comment_body' +comment_id
+  var comment_body = $(id_comment_body).val();
+  var url = "{{single_blog.get_url}}"
+  var re_id = '#comment_id'+comment_id
+  var reply_id = $(re_id).val();
+  var csrfmiddlewaretoken = $('input[name=csrfmiddlewaretoken]').val()
+
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: {
+      comment_body: comment_body,
+      csrfmiddlewaretoken: csrfmiddlewaretoken,
+      'reply_id': reply_id,
+    },
+
+    success: function(data) {
+      if (data.status == 'success'){
+        var replyMessage = 'replyMessage'+comment_id
+        var replyForm = 'comment_form_reply' + comment_id
+        document.getElementById(replyMessage).className = "text-success";
+        document.getElementById(replyMessage).innerHTML = "Thank you! Your reply will appear after it is approved by our system.";
+        document.getElementById(replyForm).reset();
+      }
+      else{
+        var replyMessage = 'replyMessage'+comment_id
+        var replyForm = 'comment_form_reply' + comment_id
+        document.getElementById(replyMessage).className = "text-danger";
+        document.getElementById(replyMessage).innerHTML = "Oops! Something went wrong. Please try again.";
+        document.getElementById(replyForm).reset();
+      }
+    },
+    error: function(data) {
+      var replyMessage = 'replyMessage'+comment_id
+      var replyForm = 'comment_form_reply' + comment_id
+      document.getElementById(replyMessage).className = "text-danger";
+      document.getElementById(replyMessage).innerHTML = "Oops! Something went wrong. Please try again.";
+      document.getElementById(replyForm).reset();
+    }
+  });
+}
+  </script>
+
+  {% endblock %}

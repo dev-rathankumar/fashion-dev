@@ -1,0 +1,269 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Edit Variants {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Add Product</h4>
+
+            <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">{{product.product_name}}</a></li>
+                <li class="breadcrumb-item active">Edit Product</li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container-fluid">
+            <div class="card-body">
+              <h4 class="card-title">Manage Product Variants</h4>
+              <!-- <p class="card-title-desc">Fill all information below</p> -->
+              {% include 'includes/_alerts.html' %}
+
+              <div class="container varImagContainer">
+                <p>Copy Image ID and paste it into <span><b>Image id</b></span> field</p>
+                {% for image in gallery %}
+                <label class="var_image">
+
+                  <ul class="var_image_list">
+                    <input type="radio" name="imageid" id="imageid" value="{{image.id}}">
+                    <li class="active">
+                      <img src="{{image.image.url}}" alt="Variant Image" width="50">
+                      <p class="text-center mt-2">ID: <b>{{image.id}}</b></p>
+                    </li>
+                  </ul>
+                </label>
+                {% endfor %}
+
+              </div>
+
+              <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="table">
+                  {{ formset.management_form }}
+
+                  {% for form in formset.forms %}
+                  <!-- {% with nvserial="{{ forloop.counter }}" %} -->
+                  <tr class="{% cycle row1 row2 %}formset_row" id="nv{{ forloop.counter }}" data-id="nv{{ forloop.counter }}">
+
+                    {% for field in form.visible_fields %}
+
+                    <td class="varField-{{field.label|cut:' '}}{% if field.name == 'product_attribute' or field.name == 'attribute_value' %} pr_variant_selection{% endif %}" id="varField-{{field.label|cut:' '}}">
+                      
+                      {% if forloop.first %}
+                      {% for hidden in form.hidden_fields %}
+                      {{ hidden }}
+                      {% endfor %}
+                      {% endif %}
+                      {{ field.errors.as_ul }}
+                      {{ field.label|capfirst }}
+                      {% if field.name == 'attribute_value' %}<input data-tdid="varField-{{field.label|cut:' '}}" data-id="nv{{ forloop.parentloop.counter }}" data-idnum="{{ forloop.parentloop.counter }}" type="button" value="&plus;" id="btn-add" class="btn btn-primary nvclass" style="padding: 2px 8px 2px 8px;margin-top: -12px;">{% endif %}
+                      {% if field.name == 'attribute_value' %}<input data-tdid="varField-{{field.label|cut:' '}}" data-id="nv{{ forloop.parentloop.counter }}" data-idnum="{{ forloop.parentloop.counter }}" type="button" value="&minus;" id="btn-delete1" class="btn btn-danger removeAttr" style="padding: 2px 8px 2px 8px;margin-top: -12px;">{% endif %}
+                      {{ field }}
+                      <!-- {% if field.name == 'attribute_value' %}<table id="item_table"></table>{% endif %}
+                      {% if field.name == 'attribute_value' %}<a name="add_more_attr" class="btn btn-primary add_more_attr" style="padding: 5px 15px 5px 15px;">Add</a>{% endif %} -->
+                      
+                    </td>
+                    {% endfor %}
+                  </tr>
+                  <!-- {% endwith %} -->
+                  {% endfor %}
+                  <tr>
+                    <td></td>
+                    <td class="text-center varField-Color"><small><a href="{% url 'addColor' %}" onclick="window.open('{% url 'addColor' %}', 'newwindow', 'width=1024, height=500');return false;"><i class="fa fa-plus"></i> Add Color</a><br><a href="">Refresh</a></small></td>
+                    <td class="text-center varField-Size"><small><a href="{% url 'addSize' %}" onclick="window.open('{% url 'addSize' %}', 'newwindow', 'width=1024, height=500');return false;"><i class="fa fa-plus"></i> Add Size</a><br><a href="">Refresh</a></small></td>
+                  </tr>
+                </table>
+                <a onclick="goBack()" class="btn margin-15px-top btn-secondary" style="letter-spacing: 2px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> BACK</a>
+                <button type="submit" name="add_another" value="true" class="btn btn-success mr-1 waves-effect waves-light" style="letter-spacing: 2px;" formaction="{% url 'editVariants' product.id %}"><i class='fas fa-plus'></i>
+                  SAVE & ADD ANOTHER</button>
+                <button type="submit" name="add_another" value="false" class="btn btn-primary mr-1 waves-effect waves-light" style="float: right;letter-spacing: 2px;" formaction="{% url 'editVariants' product.id %}"><i class="fas fa-check"></i>
+                  FINISH
+                </button>
+              </form>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="{% static 'js/jquery.formset.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      var command = "{{command}}";
+      if(command == 'delete_size'){
+        $(".varField-Size").css("display","none");
+      }
+      else if(command == 'delete_color'){
+        $(".varField-Color").css("display","none");
+      }
+      else if(command == 'delete_size_color'){
+        $(".varField-Color").css("display","none");
+        $(".varField-Size").css("display","none");
+      }
+    });
+
+    $(document).ready(function(){
+      $(document).on('click', '.add_more_attr', function(){
+        var html = '';
+        html += '<tr>';
+        html += '<td><select name="pr_attribute[]" class="form-control pr_attribute"><option value="">Select Attribute</option><option value="Material">Material</option></select></td>';
+        html += '<td><select name="attr_value[]" class="form-control attr_value"><option value="">Select Value</option><option value="Cotton">Cotton</option></select></td>';
+        html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove"><i class="far fa-trash-alt"></i></button></td></tr>';
+        $('#item_table').append(html);
+      });
+
+      $(document).on('click', '.remove', function(){
+        $(this).closest('tr').remove();
+      });
+
+      $(document).on('click', '.nvclass', function(){
+        // var i = 1 + Math.floor(Math.random(3) * 6000);
+        // var j = 1 + Math.floor(Math.random(3) * 6000);
+        var i = Math.floor(1000 + Math.random() * 9000);
+        var j = Math.floor(1000 + Math.random() * 9000);
+        var nvid = $(this).data('id');
+        var tdid = $(this).data('tdid');
+        var idnum = $(this).data('idnum');
+        var vFA = $('#'+nvid).find("td[id='varField-Productattribute']");
+        var rtvFAName = vFA[0]['children'][0].getAttribute("name");
+        
+        var vFV = $('#'+nvid).find("td[id='varField-Attributevalue']");
+        var rtvFVName = vFV[0]['children'][2].getAttribute("name");
+        
+        var y = document.createElement('tr');
+        y.className = i;
+        var x = document.createElement('tr');
+        x.className = i;
+
+        y.innerHTML = '<select id="id_variants_set-0-product_attribute'+i+ '" class="form-control nvremove'+nvid+'" name="'+rtvFAName+'"></select>';
+        $(vFA).append(y);
+
+        var $options = $('#id_variants_set-0-product_attribute > option').clone();
+        $('#id_variants_set-0-product_attribute' + i).append($options);
+        
+        x.innerHTML = '<select id="id_variants_set-0-attribute_value'+i+ '" class="form-control" name="'+rtvFVName+'"></select>';
+        $(vFV).append(x);
+
+        var $options = $('#id_variants_set-0-attribute_value > option').clone();
+        $('#id_variants_set-0-attribute_value' + i).append($options);
+        
+        
+      });
+
+      $(document).on('click', '.removeAttr', function(){
+
+        var nvid = $(this).data('id');
+        var tdid = $(this).data('tdid');
+        var idnum = $(this).data('idnum');
+        var vFA = $('#'+nvid+' tr:last').attr('class');
+            
+        // $(".varField-Attributevalue select:last-child").remove();
+        $('tr.' + vFA).remove();
+      });
+
+    });
+    
+    $(document).on("change", ".pr_variant_selection select", function(){
+    var attr_id = $(this).attr('id');
+    if(attr_id.length > 35){
+      attr_id = attr_id.slice(0, -4)
+      
+    }
+    alert(attr_id);
+    return false;
+    if (attr_id.endsWith('product_attribute')){
+      prod_attr = attr_id
+      att = '#'+prod_attr+' '+'option:selected'
+     
+      var selectedText = $(att).text();
+      // form a JSON data
+      alert(selectedText)
+    }else if(attr_id.endsWith('attribute_value')){
+      attr_value = attr_id
+    }
+    
+    
+    var trId = $(this).closest('tr').prop('id');
+    var var_data = $('#'+trId).find("td[id='varField-Variantdata']");
+    var vardata_id = var_data[0]['children'][0].getAttribute("id");
+    document.getElementById(vardata_id).value = selectedText;
+    
+    
+    // form json data
+    
+    // $("#myHiddenField").attr("value", selectedText); //apply to hidden field  
+    });
+
+    $('#id_variants_set-0-product_attribute').on('change', function(e) {
+      e.preventDefault();
+      key = $( "#id_variants_set-0-product_attribute option:selected" ).val();
+      
+      
+      val = 'Cotton'
+      var varData = '{"'+key+'": "'+val+'"}';
+      document.getElementById('my_textarea_id').textContent = 'foo'
+      
+    });
+  </script>
+  <script type="text/javascript">
+    $('.formset_row').formset({
+      addText: 'Gallery Image',
+      deleteText: 'remove',
+      prefix: 'gallery_formset'
+    });
+  </script>
+
+<script type="text/javascript">
+  var i = 1;
+  function proAttribute(x){
+      
+      var y = document.createElement('tr');
+      y.innerHTML = '<select id="id_variants_set-0-product_attribute'+i+ '" class="form-control" name="variants_set-0-product_attribute"></select>';
+      document.getElementById(x).appendChild(y);
+      $('#id_variants_set-0-product_attribute' + i).html($('#id_variants_set-0-product_attribute').html());
+      i++;
+  }
+
+  
+  var j = 1;
+  function attrValue(x){
+      
+      var y = document.createElement('tr');
+      y.innerHTML = '<select id="id_variants_set-0-attribute_value'+j+ '" class="form-control" name="variants_set-0-attribute_value"></select>';
+      document.getElementById(x).appendChild(y);
+      
+      $('#id_variants_set-0-attribute_value' + j).html($('#id_variants_set-0-attribute_value').html());
+      j++;
+  }
+  
+</script>
+
+  {% endblock %}

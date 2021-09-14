@@ -1,0 +1,92 @@
+{% extends 'business/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} {% trans 'Header Settings' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">{% trans 'Header Settings' %}</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+              <h4 class="card-title">{% trans 'Header Settings' %}</h4>
+              <p class="card-title-desc">{% trans 'Fill all information below' %}</p>
+
+              <form method="POST" action="{% url 'headerEdit' header.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="sitetitle">{% trans 'Title' %} </label>
+                      {{ form.site_title }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label for="logo">{% trans 'Logo' %}</label>
+                      {{ form.site_logo }}
+                    </div>
+                    {% if form.site_logo.value %}
+                    <img src="{{form.site_logo.value.url}}" alt="Site Logo" width="50">
+                    {% else %}
+                    <lable class="text-warning">{% trans 'You have not set your logo' %}</lable>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label for="favicon">{% trans 'Favicon' %}</label>
+                      {{ form.favicon }}
+                    </div>
+                    {% if form.favicon.value %}
+                    <img src="{{form.favicon.value.url}}" alt="Favicon" width="50">
+                    {% else %}
+                    <lable class="text-warning">{% trans 'You have not set your site favicon' %}</lable>
+                    {% endif %}
+                  </div>
+                </div><br>
+                <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-save"></i> {% trans 'SAVE' %}</button>
+              </form>
+              <br>
+              <div style="width:300px;">
+                {% include 'includes/_alerts.html' %}
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

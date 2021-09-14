@@ -1,0 +1,73 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Assign a Value to Product Variant {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Assign a Value to Product Variant</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+
+
+            <div class="card-body">
+              
+              {% include 'includes/_alerts.html' %}
+
+              <form method="POST" action="{% url 'addVariantValue' %}" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="productname">Variant Name</label>
+                      {{ form.product_attribute }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="productname">Variant Value</label>
+                      {{ form.attribute_value }}
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex;">
+                  <a onclick="goBack()" class="btn btn-secondary" style="margin:5px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+                  <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="float: left;letter-spacing: 2px;margin:5px;"><i class="fas fa-check"></i> SAVE</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

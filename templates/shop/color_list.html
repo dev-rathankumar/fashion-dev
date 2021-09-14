@@ -1,0 +1,17 @@
+{% load i18n %}
+<input type="hidden" name="size" id="size" value="{{ size_id }}">
+<ul class="color-option" >
+    <li><span class="text-uppercase" style="font-size:16px;font-weight:600;letter-spacing:1px;">{% trans 'Choose Color' %}</span></li> <br>
+    {% for rs in colors %}
+      <label class="var_color">
+          <input type="radio"  {% if variant.id == rs.id %} checked {% endif %} name="variantid" id="variantid" value="{{ rs.id }}" onchange="this.form.submit();">
+        <li  {% if variant.id == rs.id %} class="active" {% endif %}>
+            <p style="color: #2d2c2c; width: 60px;font-size: 12px;margin-bottom: 5px;margin-left: 0;">
+                <!-- ${{ rs.price }} -->
+                {{ rs.color }}
+            </p>
+            <img src="{{ rs.image }}" style="height: 50px">
+        </li>
+      </label>
+    {% endfor %}
+</ul>

@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hi,
+
+You have a new message from the website contact form.
+
+Name: {{contact.name}}
+Email Address: {{contact.email}}
+Phone Number: {{contact.phone}}
+Subject: {{contact.subject}}
+Message: {{contact.contact_message}}
+
+{% endautoescape %}

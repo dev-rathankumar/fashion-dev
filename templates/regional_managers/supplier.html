@@ -1,0 +1,155 @@
+{% extends 'regional_managers/base.html' %}
+{% load static %}
+
+{% block title %} Supplier Details {% endblock %}
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0 font-size-18">Supplier Profile</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+{% if supplier is not None %}
+            <div class="row">
+                <div class="col-xl-8" style="margin:auto;">
+                    <div class="card overflow-hidden">
+                        <div class="bg-soft-primary" style="background-image: url('{{dashboardimage.business_landing_image.url}}');background-size: cover;height: 300px;">
+                            <div class="row">
+                                <div class="col-7">
+                                    <div class="text-primary p-3">
+                                      <h5 class="text-primary text-light">{{ supplier.company_name }}</h5>
+                                      <p class="text-light">Business ID: <span><b>{{ supplier.business_id }}</b></span></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="avatar-md profile-user-wid mb-4">
+                                        <img src="{{ supplier.user.profile_picture.url }}" alt="" class="img-thumbnail rounded-circle">
+                                    </div>
+                                    <h5 class="font-size-15 text-truncate">{{ supplier.user.name }}</h5>
+                                    <p class="text-muted mb-0 text-truncate">Supplier</p>
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <div class="pt-4">
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h5 class="font-size-15">{{orders_count}}</h5>
+                                                <p class="text-muted mb-0">Total Orders</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <h5 class="font-size-15">${{revenue}}</h5>
+                                                <p class="text-muted mb-0">Total Revenue</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <a href="{% url 'rm_dashboard' %}" class="btn btn-primary waves-effect waves-light btn-sm"><i class="mdi mdi-arrow-left ml-1"></i> Go to dashboard</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end card -->
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Personal Information</h4>
+
+                            <div class="table-responsive">
+                                <table class="table table-nowrap mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Full Name :</th>
+                                            <td>{{ supplier.user.name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Company Name :</th>
+                                            <td>{{ supplier.company_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Website :</th>
+                                            <td>{{ supplier.domain_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Mobile :</th>
+                                            <td>{{ supplier.user.phone_number }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">E-mail :</th>
+                                            <td>{{ supplier.user.email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Location :</th>
+                                            <td>{{ supplier.address_line_1 }}, {{ supplier.address_line_2 }} {{ supplier.city }} <br>
+                                            {{ supplier.state }}, {{ supplier.country }} - {{ supplier.pin_code }}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Date of Joining :</th>
+                                            <td>{{ supplier.user.date_joined }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Account Activation Date :</th>
+                                            <td>{{ supplier.account_activation_date }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Account Expiry Date :</th>
+                                            <td>{{ supplier.account_expiry_date }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <a href="{% url 'rm_editProfile' user.pk %}" class="btn margin-15px-top btn-primary" style="margin-left: .75rem; width:110px;"><i class="mdi mdi-arrow-left ml-1"></i> Go back</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div>
+
+                <div class="col-xl-8">
+
+                </div>
+            </div>
+
+    {% else %}
+<div class="card">
+  <div class="bg-default">
+      <div class="row">
+          <div class="container">
+              <div class="text-danger p-3">
+                <h2 class="text-center">No Supplier Associated Yet</h2>
+
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+    {% endif %}
+            <!-- end row -->
+
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+{% endblock %}

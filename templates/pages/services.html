@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Our Services' %} {% endblock %}
+{% block content %}
+{% load static %}
+
+
+<div id="page-content">
+    <!--Services-->
+    <div class="breadcrumbs-wrapper">
+        <div class="container">
+            <div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">{% trans 'Home' %}</a> <span aria-hidden="true">|</span> <span>{% trans 'Our Services' %}</span></div>
+        </div>
+    </div>
+    <div class="style4">
+        <div class="container">
+            <div class="page-title"><h1>Our Services</h1></div>
+            <div class="row">
+                {% for service in services %}
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 img-banner-item pb-5">
+                    <div class="imgBanner-grid-item">
+                        <div class="inner">
+                            <div class="img">
+                                <a ><img class="blur-up lazyload" src="{{ service.image.url }}" alt="Service Featured Image" title=" " /></a>
+                            </div>
+                            <div class="details">
+                                <h3 class="title text-center mt-3 text-uppercase">{{service.title}}</h3>
+                                <p class="text-center">{{ service.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!--End Services-->
+</div>
+{% endblock %}

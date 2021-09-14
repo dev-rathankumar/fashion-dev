@@ -1,0 +1,36 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+asgiref = "==3.3.1"
+django-admin-thumbnails = "==0.2.5"
+django-ckeditor = "==6.0.0"
+django-domainname = "==0.1.1"
+django-js-asset = "==1.2.2"
+django-mptt = "==0.11.0"
+django-smart-selects = "==1.5.9"
+pytz = "==2020.4"
+simplejson = "==3.17.2"
+six = "==1.15.0"
+sqlparse = "==0.4.1"
+urllib3 = "==1.26.2"
+Django = "==3.1.4"
+requests = "*"
+pillow = "*"
+python-decouple = "*"
+django-formset-js = "*"
+django-authtools = "*"
+django-colorfield = "*"
+django-constance = {extras = ["redis"], version = "*"}
+numpy = "*"
+psycopg2-binary = "*"
+tldextract = "*"
+django-faicon = {git = "https://github.com/dev-rathankumar/django-faicon-1.git"}
+psycopg2 = "==2.8.6"
+
+[requires]
+python_version = "3.8"

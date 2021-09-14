@@ -1,0 +1,74 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %} {% trans 'Plans' %} {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+          <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box align-items-center justify-content-between">
+            {% if account_expiry %}
+            <h4 class="mb-0 font-size-18 text-danger">{% trans 'Your account is expired.' %}</h4>
+            <p class="mt-1">{% trans 'Expired on' %} <b>{{account_expiry_date}}</b></p>
+            {% else %}
+            <h4 class="mb-0 font-size-18">{% trans 'You are currently on' %} <span class="text-success">{{current_plan}}</span> {% trans 'plan' %}</h4>
+            <p class="mt-1">{% trans 'Your account will be expired on' %} <b>{{account_expiry_date}}</b></p>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-10" style="margin:auto;">
+          {% include 'includes/_alerts.html' %}
+
+
+          <div class="card-deck mb-3 text-center">
+
+            {% for plan in plans %}
+            <div class="card">
+              <div class="card-header">
+                <h5 class="my-0">{{plan.plan_name}}</h5>
+              </div>
+              <div class="card-body">
+                <h1 class="card-title pricing-card-title">${{plan.plan_price}}</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>{{plan.plan_description}}</li>
+                </ul>
+                <form action="{% url 'purchasePlan' %}" method="GET">
+                  <input type="hidden" name="plan_id" value="{{plan.id}}">
+                  <button type="submit" class="btn  btn-block btn-primary">{% trans 'Purchase Now' %}</button>
+                </form>
+
+              </div>
+            </div>
+            {% endfor %}
+
+          </div> <!-- card-deck.// -->
+          <!-- end card -->
+        </div>
+
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+
+
+  <!-- End Page-content -->
+
+
+
+  {% endblock %}

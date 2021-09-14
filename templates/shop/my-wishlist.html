@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'My Wishlist' %} {% endblock %}
+{% block content %}
+{% load humanize %}
+<div id="page-content">
+  <!--Body Container-->
+  <!--Breadcrumbs-->
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs"><a href="{% url 'home' %}" title="Back to the home page">Home</a> <span aria-hidden="true">|</span> <span>My Wishlist</span></div>
+    </div>
+  </div>
+  <!--End Breadcrumbs-->
+  <!--Page Title with Image-->
+  <div class="page-title">
+    <h1>{% trans 'My Wishlist' %}</h1>
+  </div>
+  <!--End Page Title with Image-->
+  {% include 'includes/_alerts.html' %}
+  {% if not wishlist %}
+    <h2 class="text-center">{% trans 'Your Wishlist is Empty' %}</h2>
+    <br>
+    <div class="text-center">
+      <a href="{% url 'shop' %}" class="btn btn-primary">{% trans 'Add products' %}</a>
+    </div>
+{% else %}
+  <div class="container">
+    <div class="row">
+      <!--Main Content-->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+
+
+        <div class="wishlist-table table-content table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="product-name text-center alt-font">{% trans 'Remove' %}</th>
+                <th class="product-price text-center alt-font">{% trans 'Product Image' %}</th>
+                <th class="product-name alt-font">{% trans 'Product' %}</th>
+                <th class="product-price text-center alt-font">{% trans 'Price' %}</th>
+                <th class="stock-status text-center alt-font">{% trans 'Status' %}</th>
+                <th class="product-subtotal text-center alt-font"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for wish in wishlist %}
+              <tr>
+                <td class="product-remove text-center" valign="middle"><a href="{% url 'wishlist_delete' wish.id %}" onclick="return confirm('Are you sure you want to delete this product from Wishlist?')"><i class="icon icon anm anm-times-l"></i></a></td>
+                <td class="product-thumbnail text-center">
+                  {% if wish.variant.image_id  > 0 %}
+                  <a href="{{ wish.product.get_url }}">
+                    <img class="cart__image" src="{{wish.variant.image }}" alt="">
+                  </a>
+                  {% else %}
+                  <a href="{{ wish.product.get_url }}">
+                    <img class="cart__image" src="{{wish.product.image.url }}" alt="">
+                  </a>
+                  {% endif %}
+                </td>
+                <td class="product-name">
+                  <h4 class="no-margin"><a href="{{ wish.product.get_url }}">{{ wish.variant.title }}</a></h4>
+                  <span><small>{% if wish.variant.product.variant == 'Size' %}
+                    Size: {{ wish.variant.size }}
+                    {% elif wish.variant.product.variant == 'Color' %}
+                    Color: {{ wish.variant.color }}
+                    {% elif wish.product.variant == 'Custom' %}
+                    {% for key, value in wish.variant.variant_data.items %}
+                      {{key}} : {{value}} {% if not forloop.last %}|{% endif %}
+                    {% endfor %}
+                    {% else %}
+                    Color: {{ wish.variant.color }} | Size: {{ wish.variant.size }}
+                    {% endif %}</small></span>
+                </td>
+                <td class="product-price text-center"><span class="amount">${{ wish.variant.price | intcomma }}</span></td>
+                <td class="stock text-center">
+                  {% if wish.variant.quantity > 0  %}
+                  <span class="in-stock">{% trans 'in stock' %}</span>
+                  {% else %}
+                  <span class="in-stock" style="color:red;">{% trans 'Out of Stock' %}</span>
+                  {% endif %}
+                </td>
+                <td class="stock text-center">
+                  <form action="{% url 'wishlist_addtoshopcart' wish.product.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="command" id="command" value="add">
+                    <input type="hidden" name="variantid" id="variantid" value="{{ wish.variant.id }}">
+                    <input class="input" name="size" type="hidden" value="{{ wish.variant.size }}">
+                    <input class="input" name="color" type="hidden" value="{{ wish.variant.color }}">
+                    <input class="input" name="quantity" type="hidden" value="1" min="1">
+                    <div class="qty-input">
+                      <div class="product-form__item--submit">
+                        <button type="submit" {% if wish.variant.quantity < 1  %} disabled {% endif %} class="btn product-form__cart-submit add-to-cart">
+                          <span> {% trans 'Add to cart' %}</span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <!--End Main Content-->
+    </div>
+
+  </div>
+  <!--End Body Container-->
+{% endif %}
+</div>
+<!--End Page Wrapper-->
+
+{% endblock %}

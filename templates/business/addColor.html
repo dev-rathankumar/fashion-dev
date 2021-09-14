@@ -1,0 +1,80 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Add Color {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Add Color</h4>
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+
+
+            <div class="card-body">
+              <div class="text-sm-right">
+                <a href="{% url 'addSize' %}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> Add Size</a>
+              </div>
+              {% include 'includes/_alerts.html' %}
+
+              <form method="POST" action="{% url 'addColor' %}" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="productname">Color Name</label>
+                      {{ form.name }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="productname">Color Code</label>
+                      {{ form.code }}
+                    </div>
+                  </div>
+                </div>
+
+
+<div style="display:flex;">
+  <a onclick="goBack()" class="btn btn-secondary" style="margin:5px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+  <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="float: left;letter-spacing: 2px;margin:5px;"><i class="fas fa-check"></i> SAVE</button>
+</div>
+
+
+              </form>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

@@ -1,0 +1,159 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Sales Popup Settings {% endblock %}
+{% load i18n %}
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+
+
+<script>
+  $(document).ready(function() {
+    $("#id_background_color").focusout(function(){
+      var bg_color = $('#id_background_color').val();
+      $("#notification-box").css("background-color", bg_color);
+    });
+    $("#id_text_color").focusout(function(){
+      var txt_color = $('#id_text_color').val();
+      $(".text").css("color", txt_color);
+    });
+    $("#id_notification_position").change(function(){
+      var option = this.value;
+      if(option == 'Right Bottom Corner'){
+        $("#notification-box").css("top", 'unset');
+        $("#notification-box").css("left", 'unset');
+        $("#notification-box").css("right", '100px');
+        $("#notification-box").css("bottom", '50px');
+      }else if(option == 'Left Top Corner'){
+        $("#notification-box").css("bottom", 'unset');
+        $("#notification-box").css("right", 'unset');
+        $("#notification-box").css("top", '80px');
+        $("#notification-box").css("left", '300px');
+      }else if(option == 'Right Top Corner'){
+        $("#notification-box").css("bottom", 'unset');
+        $("#notification-box").css("left", 'unset');
+        $("#notification-box").css("top", '80px');
+        $("#notification-box").css("right", '100px');
+      }else{
+        $("#notification-box").css("top", 'unset');
+        $("#notification-box").css("right", 'unset');
+        $("#notification-box").css("bottom", '50px');
+        $("#notification-box").css("left", '300px');
+      }
+    });
+    $("#id_notification_style").change(function(){
+      var option = this.value;
+      if(option == 'Rectangled'){
+        $("#notification-box").css("border-radius", '0px');
+        $("#notification-box img").css("border-radius", '0px');
+      }else{
+        $("#notification-box").css("border-radius", '15px');
+        $("#notification-box img").css("border-radius", '15px');
+      }
+    });
+    
+  });
+</script>
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Popup Settings</h4>
+          </div>
+        </div>
+
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card container">
+            <div class="card-body">
+              
+              {% include 'includes/_alerts.html' %}
+              <form method="POST" action="{% url 'salesPopupSettings' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label for="Background Color">Background Color</label>
+                      {{ form.background_color }}
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label for="Text Color">Text Color</label>
+                      {{ form.text_color }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label for="Notification Position">Notification Position</label>
+                      {{form.notification_position}}
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="form-group">
+                      <label for="Notification Style">Notification Style</label>
+                      {{ form.notification_style }}
+                    </div>
+                  </div>
+                </div>
+                
+                  <br>
+                  <a onclick="goBack()" class="btn margin-15px-top btn-secondary"><i class="fa fa-arrow-left" aria-hidden="true"></i> {% trans 'Back' %} </a>
+                  <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light" style="letter-spacing: 2px;"><i class="fas fa-save"></i> SAVE</button>
+              </form>
+              <br>
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+      <div class="row">
+        <!--  S A L E S  P O P U P  -->
+        <div class="col-md-4 offset-md-2">
+        <div id="salespopup" class="salespopup">
+          <div id="notification-box" class="notification-box" style="position: fixed; z-index:5;
+          {% if settings.notification_position == 'Left Bottom Corner' %}bottom: 50px; left:300px;
+          {% elif settings.notification_position == 'Right Bottom Corner' %}bottom: 50px; right:100px;
+          {% elif settings.notification_position == 'Left Top Corner' %}top: 80px; left:300px;
+          {% elif settings.notification_position == 'Right Top Corner' %}top: 80px; right:100px;
+          {% else %}bottom: 50px; left:100px;{% endif %} background-color:{{settings.background_color}}; border-radius:{% if settings.notification_style == 'Rounded' %}15px{% else %}0px{% endif %};padding: 10px;min-width: 400px;box-shadow: 1px 1px 10px 1px #8e8d8d;">
+           
+            <div class="row" style="padding-left: 15px; color: #FFFFFF;">
+                  <div class="col-2 p-0">
+                      <img src="{% static 'images/default-images/salespopup-demo.jpg' %}" style="max-width: 50px;border-radius:{% if settings.notification_style == 'Rounded' %}15px{% else %}0px{% endif %};">
+                  </div>
+                  <div class="col-9 p-0">
+                      <p class="text" style="margin:0;font-size: 12px;color: {{settings.text_color}};">Someone in Toronto, Ontario purchased</p>
+                      <p class="text" style="margin:0;font-size: 12px;"><span><a href="#" class="text" style="color: {{settings.text_color}};"><b>The product name goes here</b></a></span></p>
+                      <span class="text" style="font-size: 10px;color: {{settings.text_color}};">10 minutes ago</span>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+<!--  S A L E S  P O P U P  -->
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  {% endblock %}

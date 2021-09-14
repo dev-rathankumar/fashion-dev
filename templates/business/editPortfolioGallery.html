@@ -1,0 +1,151 @@
+{% extends 'business/base.html' %}
+{% load static %}
+{% block title %} Edit Portfolio Gallery {% endblock %}
+
+{% block content %}
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+
+  <div class="page-content">
+    <div class="container-fluid">
+
+      <!-- start page title -->
+      <div class="row">
+        <div class="col-12">
+          <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0 font-size-18">Edit Portfolio</h4>
+
+            <div class="page-title-right">
+              <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="javascript: void(0);">{{product.product_name}}</a></li>
+                <li class="breadcrumb-item active">Edit Product</li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- end page title -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card container">
+            <div class="card-body">
+              <h4 class="card-title">Manage Portfolio Gallery</h4>
+              {{portfolio.title}}
+              {% include 'includes/_alerts.html' %}
+
+              <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="table">
+                  {{ formset.management_form }}
+                  <!-- {% for form in formset %}
+                  {% if form.image.value.url is not None %}
+                  <img src="{{form.image.value.url}}" alt="" width="75" height="75">
+                  {% else %}
+                  {% endif %}
+                  {% endfor %} -->
+                  {% for form in formset.forms %}
+                  {% if forloop.first %}
+                  <thead>
+                    <tr>
+                      {% for field in form.visible_fields %}
+                      <th>{{ field.label|capfirst }}</th>
+                      {% endfor %}
+                    </tr>
+                  </thead>
+                  {% endif %}
+                  <tr class="{% cycle row1 row2 %} formset_row editPortfolioGallery">
+                    {% for field in form.visible_fields %}
+                    <td>
+                      {# Include the hidden fields in the form #}
+                      {% if forloop.first %}
+                        {% for hidden in form.hidden_fields %}
+                          {{ hidden }}
+                        {% endfor %}
+                      {% endif %}
+                      {{ field.errors.as_ul }}
+                     {% if field.value == None %}
+                      <input type="hidden" name="galleryEmpty" id="galleryEmpty" value="">
+                     {% endif %}
+                     <input type="hidden" name="galleryEmpty" id="galleryEmpty" value="pass">
+                      <img src="{{ field.value.url }}" width="75"><br>
+                      {% if field.name == 'image' %} <span class="text-muted">600 x 300px</span>{% endif %}
+                      {{ field }}
+                    </td>
+                    {% endfor %}
+                  </tr>
+                  {% endfor %}
+                </table>
+                <p class="text-danger" id="chkGalleryError"></p>
+                <div class="row">
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <a onclick="goBack()" class="btn margin-15px-top btn-secondary" style="letter-spacing: 2px;"><i class="fa fa-arrow-left" aria-hidden="true"></i> BACK</a>
+                    <!-- <button type="submit" onclick="return checkgallery();" name="add_another" value="true" class="btn btn-success mr-1 waves-effect waves-light" style="letter-spacing: 2px;" formaction="{% url 'editPortfolioGallery' portfolio.id %}"><i class='fas fa-plus'></i>
+                      SAVE & ADD ANOTHER</button> -->
+                    <button type="submit" name="add_another" value="true" class="btn btn-success mr-1 waves-effect waves-light" style="letter-spacing: 2px;" formaction="{% url 'editPortfolioGallery' portfolio.id %}"><i class='fas fa-plus'></i>
+                      SAVE & ADD ANOTHER</button>
+                  </div>
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <!-- <button type="submit" name="add_another" onclick="return checkgallery();" value="finish" class="btn btn-primary mr-1 waves-effect waves-light" style="float: right;letter-spacing: 2px;" formaction="{% url 'editPortfolioGallery' portfolio.id %}"><i class="fas fa-check"></i> FINISH
+                      </button> -->
+                    <button type="submit" name="add_another" value="finish" class="btn btn-primary mr-1 waves-effect waves-light" style="float: right;letter-spacing: 2px;" formaction="{% url 'editPortfolioGallery' portfolio.id %}"><i class="fas fa-check"></i> FINISH
+                      </button>
+                    
+                  </div>
+                </div>
+                
+                  
+              </form>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+      <!-- end row -->
+
+    </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{% static 'js/jquery.formset.js' %}"></script>
+<script type="text/javascript">
+    $('.formset_row').formset({
+        addText: 'Gallery Image',
+        deleteText: 'remove',
+        prefix: 'gallery_formset'
+    });
+
+    // Check for empty gallery
+    function checkgallery(){
+      var chkGallery = $('#galleryEmpty').val();
+      var titleValue = $('.file-caption-name').attr('title');
+      if(titleValue === undefined){
+        if(chkGallery === ''){
+        document.getElementById("chkGalleryError").innerHTML = "Add atleast one image in the gallery";
+        return false;
+        }
+        else{
+          document.getElementById("chkGalleryError").innerHTML = "";
+          return true;
+        }
+      }
+    }
+
+    $(document).ready(function() {
+      var chkGallery = $('#galleryEmpty').val();
+      if(chkGallery === ''){
+        document.getElementById("skipButton").style.display = "none";
+      }
+    });
+   
+</script>
+
+  {% endblock %}
