@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Blog, Category, Comment, BlogActivation
 from mptt.admin import DraggableMPTTAdmin
-
+from modeltranslation.admin import TranslationAdmin
 
 
 class CategoryAdmin(DraggableMPTTAdmin):
@@ -38,7 +38,7 @@ class CategoryAdmin(DraggableMPTTAdmin):
         return instance.blogs_cumulative_count
     related_blogs_cumulative_count.short_description = 'Related blogs (in tree)'
 
-class BlogAdmin(admin.ModelAdmin):
+class BlogAdmin(TranslationAdmin):
     list_display = ('title', 'slug', 'status','created_on')
     list_filter = ("status",)
     search_fields = ['title', 'content']

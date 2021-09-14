@@ -12,6 +12,7 @@ from orders.models import Order
 from carts.models import TaxSetting
 from blogs.models import Blog
 from blogs.models import Category as BlogCategory
+from modeltranslation.forms import TranslationModelForm
 
 
 class UserForm(forms.ModelForm):
@@ -205,7 +206,7 @@ class SizeForm(forms.ModelForm):
 
 
 #addBlogForm
-class BlogForm(forms.ModelForm):
+class BlogForm(TranslationModelForm):
     featured_image = forms.ImageField(label=('Blog Image'), required=False, error_messages = {'invalid':("Image files only")}, widget=forms.FileInput(attrs={
         "type": "file",
         "data-show-preview": "false"
